@@ -1,7 +1,7 @@
 # Oriabure Numerous — Fullstack & Claude Automation Portfolio
 
-> **Live Website**: [https://kalminx.github.io/numerous-portfolio/](https://kalminx.github.io/numerous-portfolio/)  
-> **Repository**: [https://github.com/KalminX/numerous-portfolio](https://github.com/KalminX/numerous-portfolio)
+> **Live Website**: [https://kalminx.github.io/](https://kalminx.github.io/)  
+> **Repository**: [https://github.com/KalminX/KalminX.github.io](https://github.com/KalminX/KalminX.github.io)
 
 Production portfolio showcasing **10 enterprise fullstack automation engines**, Model Context Protocol (MCP) servers, document parsing pipelines, and deterministic business agent workflows.
 
