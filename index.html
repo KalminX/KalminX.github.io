@@ -28,30 +28,21 @@
           },
           colors: {
             brand: {
-              50: '#ecfdf5',
-              100: '#d1fae5',
               400: '#34d399',
               500: '#10b981',
               600: '#059669',
-              700: '#047857',
             },
             accent: {
               400: '#38bdf8',
               500: '#0ea5e9',
-              600: '#0284c7',
             },
             dark: {
-              950: '#05070c',
-              900: '#0b101b',
-              850: '#0f172a',
+              950: '#090d14',
+              900: '#0e1422',
+              850: '#141c2e',
               800: '#1e293b',
               700: '#334155',
             }
-          },
-          boxShadow: {
-            'glow-emerald': '0 0 35px -5px rgba(16, 185, 129, 0.4)',
-            'glow-cyan': '0 0 35px -5px rgba(14, 165, 233, 0.4)',
-            'glow-card': '0 16px 40px -10px rgba(0, 0, 0, 0.6), 0 0 25px -5px rgba(16, 185, 129, 0.15)',
           }
         }
       }
@@ -63,29 +54,21 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
   <style>
-    .bg-grid {
-      background-size: 40px 40px;
-      background-image: 
-        linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
-    }
     .glass-panel {
-      background: rgba(11, 16, 27, 0.85);
+      background: rgba(14, 20, 34, 0.9);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border: 1px solid rgba(255, 255, 255, 0.08);
     }
     .glass-card {
-      background: rgba(15, 23, 42, 0.7);
-      backdrop-filter: blur(12px);
+      background: #0e1422;
       border: 1px solid rgba(255, 255, 255, 0.08);
       transform-style: preserve-3d;
       will-change: transform, opacity;
-      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      transition: border-color 0.25s ease, transform 0.25s ease;
     }
     .glass-card:hover {
-      border-color: rgba(52, 211, 153, 0.4);
-      box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.7), 0 0 30px -5px rgba(16, 185, 129, 0.25);
+      border-color: rgba(52, 211, 153, 0.5);
     }
     .video-container {
       position: relative;
@@ -98,7 +81,7 @@
       height: 100%;
       object-fit: cover;
       display: block;
-      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: transform 0.4s ease;
     }
     .glass-card:hover .video-container video {
       transform: scale(1.02);
@@ -116,7 +99,7 @@
       width: 7px;
     }
     ::-webkit-scrollbar-track {
-      background: #05070c;
+      background: #090d14;
     }
     ::-webkit-scrollbar-thumb {
       background: #1e293b;
@@ -124,13 +107,6 @@
     }
     ::-webkit-scrollbar-thumb:hover {
       background: #334155;
-    }
-    @keyframes pulseGlow {
-      0%, 100% { opacity: 0.35; transform: scale(1); }
-      50% { opacity: 0.75; transform: scale(1.05); }
-    }
-    .glow-orb {
-      animation: pulseGlow 8s ease-in-out infinite alternate;
     }
   </style>
 </head>
@@ -140,19 +116,13 @@
   <!-- Interactive Nature of Code Physics Canvas -->
   <canvas id="noc-canvas"></canvas>
 
-  <!-- Background Gradients & Grid -->
-  <div class="fixed inset-0 bg-grid pointer-events-none z-0"></div>
-  <div class="fixed top-0 left-1/4 w-[34rem] h-[34rem] bg-brand-500/10 rounded-full blur-[130px] pointer-events-none z-0 glow-orb"></div>
-  <div class="fixed top-1/3 right-10 w-[32rem] h-[32rem] bg-accent-500/10 rounded-full blur-[130px] pointer-events-none z-0 glow-orb" style="animation-delay: 2s;"></div>
-  <div class="fixed bottom-10 left-1/3 w-[38rem] h-[38rem] bg-indigo-500/5 rounded-full blur-[150px] pointer-events-none z-0 glow-orb" style="animation-delay: 4s;"></div>
-
   <!-- Navigation Header -->
-  <header class="sticky top-0 z-50 glass-panel border-b border-white/5 transition-all">
+  <header class="sticky top-0 z-50 glass-panel border-b border-white/10 transition-all">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
       
       <!-- Brand -->
       <a href="#" class="flex items-center gap-3 group magnetic-btn">
-        <div class="w-9 h-9 rounded-lg bg-gradient-to-tr from-brand-600 via-brand-500 to-accent-500 flex items-center justify-center text-white font-bold text-sm shadow-glow-emerald">
+        <div class="w-9 h-9 rounded-lg bg-brand-500 flex items-center justify-center text-dark-950 font-extrabold text-sm">
           ON
         </div>
         <div class="flex flex-col">
@@ -173,13 +143,13 @@
       <!-- Right Action CTA -->
       <div class="flex items-center gap-3">
         <a href="https://github.com/KalminX" target="_blank" rel="noopener noreferrer" 
-           class="magnetic-btn inline-flex items-center gap-2 px-3.5 py-1.5 rounded-md text-xs font-mono font-medium text-slate-200 bg-dark-800 hover:bg-dark-700 border border-white/10 hover:border-white/20 transition-all">
+           class="magnetic-btn inline-flex items-center gap-2 px-3.5 py-1.5 rounded-md text-xs font-mono font-medium text-slate-200 bg-dark-850 hover:bg-dark-800 border border-white/10 hover:border-white/20 transition-all">
           <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
           </svg>
           <span>GitHub</span>
         </a>
-        <a href="#contact" class="magnetic-btn inline-flex items-center gap-1.5 px-4 py-2 rounded-md text-xs font-semibold text-dark-950 bg-gradient-to-r from-brand-400 via-brand-500 to-accent-400 hover:from-brand-300 hover:to-accent-300 transition-all shadow-glow-emerald font-sans">
+        <a href="#contact" class="magnetic-btn inline-flex items-center gap-1.5 px-4 py-2 rounded-md text-xs font-bold text-dark-950 bg-brand-500 hover:bg-brand-400 transition-all font-sans">
           <span>Book a Strategy Call</span>
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
         </a>
@@ -188,12 +158,12 @@
   </header>
 
   <!-- Pitch Hero Section -->
-  <section class="relative z-10 pt-20 pb-16 lg:pt-28 lg:pb-24 border-b border-white/5 overflow-hidden">
+  <section class="relative z-10 pt-20 pb-16 lg:pt-28 lg:pb-24 border-b border-white/10 overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-4xl">
         
         <!-- Status Badge -->
-        <div class="hero-badge inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-400 text-xs font-mono font-medium mb-8">
+        <div class="hero-badge inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-dark-850 border border-brand-500/30 text-brand-400 text-xs font-mono font-medium mb-8">
           <span class="relative flex h-2 w-2">
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"></span>
             <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-500"></span>
@@ -204,7 +174,7 @@
         <!-- Main Pitch Headline -->
         <h1 class="hero-title text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12] mb-6 font-sans">
           I Build Custom AI Systems That <br class="hidden sm:inline" />
-          <span class="bg-clip-text text-transparent bg-gradient-to-r from-brand-400 via-accent-400 to-indigo-400">
+          <span class="text-brand-400">
             Cut 70% of Manual Work
           </span>
           & Eliminate Operational Bottlenecks.
@@ -217,7 +187,7 @@
 
         <!-- CTA Action Buttons -->
         <div class="hero-cta flex flex-wrap items-center gap-4 mb-16">
-          <a href="#contact" class="magnetic-btn inline-flex items-center gap-2 px-7 py-3.5 rounded-lg text-sm font-bold text-dark-950 bg-gradient-to-r from-brand-400 to-brand-500 hover:from-brand-300 hover:to-brand-400 transition-all shadow-glow-emerald font-sans">
+          <a href="#contact" class="magnetic-btn inline-flex items-center gap-2 px-7 py-3.5 rounded-lg text-sm font-bold text-dark-950 bg-brand-500 hover:bg-brand-400 transition-all font-sans">
             <span>Automate Your Workflows</span>
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
           </a>
@@ -248,7 +218,7 @@
             <div class="text-xs text-slate-400 uppercase tracking-wider">Human-In-The-Loop Control</div>
           </div>
           <div class="metric-item">
-            <div class="text-2xl sm:text-3xl font-bold text-indigo-400 mb-1 flex items-baseline">
+            <div class="text-2xl sm:text-3xl font-bold text-white mb-1 flex items-baseline">
               <span class="counter" data-target="14">0</span><span> Days</span>
             </div>
             <div class="text-xs text-slate-400 uppercase tracking-wider">Typical MVP Delivery</div>
@@ -260,7 +230,7 @@
   </section>
 
   <!-- Live Solutions / Case Studies Showcase -->
-  <section id="solutions" class="relative z-10 py-20 lg:py-28 border-b border-white/5">
+  <section id="solutions" class="relative z-10 py-20 lg:py-28 border-b border-white/10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <!-- Section Header -->
@@ -290,15 +260,14 @@
 
         <!-- Solution 1: Business Operations Agent -->
         <div class="glass-card rounded-xl overflow-hidden flex flex-col group project-card" data-category="operations">
-          <div class="video-container aspect-video border-b border-white/5 relative">
+          <div class="video-container aspect-video border-b border-white/10 relative">
             <video preload="metadata" muted playsinline loop poster="assets/images/local_mcp_business_op_poster.png" class="hover-video">
               <source src="assets/videos/local_mcp_business_op.mp4" type="video/mp4">
             </video>
-            <div class="absolute inset-0 bg-gradient-to-t from-dark-950/80 via-transparent to-transparent pointer-events-none"></div>
-            <div class="absolute top-3 left-3 px-3 py-1 rounded bg-dark-950/85 backdrop-blur-md border border-brand-500/30 text-[11px] font-mono font-semibold text-brand-400">
+            <div class="absolute top-3 left-3 px-3 py-1 rounded bg-dark-950 border border-brand-500/40 text-[11px] font-mono font-semibold text-brand-400">
               $45K+ REVENUE RECOVERED
             </div>
-            <div class="absolute bottom-3 right-3 px-2.5 py-1 rounded bg-black/60 backdrop-blur-md text-[11px] font-mono text-slate-300 flex items-center gap-1.5">
+            <div class="absolute bottom-3 right-3 px-2.5 py-1 rounded bg-dark-950/90 text-[11px] font-mono text-slate-300 flex items-center gap-1.5">
               <svg class="w-3 h-3 text-brand-400" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
               <span>Hover to Play Video</span>
             </div>
@@ -313,12 +282,12 @@
                 <strong class="text-brand-400">The Solution:</strong> An intelligent agent that autonomously queries live records, identifies at-risk accounts, drafts follow-up tasks, and stages one-click approval requests for staff.
               </p>
               <div class="flex flex-wrap gap-2 mb-6">
-                <span class="px-2.5 py-1 rounded bg-brand-500/10 text-brand-400 font-mono text-xs font-semibold">15+ Hours Saved/Week</span>
-                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">One-Click Approvals</span>
-                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">CRM & Invoice Sync</span>
+                <span class="px-2.5 py-1 rounded bg-dark-850 border border-brand-500/30 text-brand-400 font-mono text-xs font-semibold">15+ Hours Saved/Week</span>
+                <span class="px-2.5 py-1 rounded bg-dark-850 text-slate-300 font-mono text-xs">One-Click Approvals</span>
+                <span class="px-2.5 py-1 rounded bg-dark-850 text-slate-300 font-mono text-xs">CRM & Invoice Sync</span>
               </div>
             </div>
-            <div class="pt-4 border-t border-white/5 flex items-center justify-between">
+            <div class="pt-4 border-t border-white/10 flex items-center justify-between">
               <span class="text-xs text-slate-400 font-mono">100% Auditable Record</span>
               <a href="https://github.com/KalminX/local_mcp_business_op" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-bold text-brand-400 hover:text-brand-300 font-sans">
                 <span>View Full Case Study & Code</span>
@@ -330,15 +299,14 @@
 
         <!-- Solution 2: AI Opportunity Audit -->
         <div class="glass-card rounded-xl overflow-hidden flex flex-col group project-card" data-category="operations">
-          <div class="video-container aspect-video border-b border-white/5 relative">
+          <div class="video-container aspect-video border-b border-white/10 relative">
             <video preload="metadata" muted playsinline loop poster="assets/images/ai_opportunity_audit_poster.png" class="hover-video">
               <source src="assets/videos/ai_opportunity_audit.mp4" type="video/mp4">
             </video>
-            <div class="absolute inset-0 bg-gradient-to-t from-dark-950/80 via-transparent to-transparent pointer-events-none"></div>
-            <div class="absolute top-3 left-3 px-3 py-1 rounded bg-dark-950/85 backdrop-blur-md border border-accent-500/30 text-[11px] font-mono font-semibold text-accent-400">
+            <div class="absolute top-3 left-3 px-3 py-1 rounded bg-dark-950 border border-accent-500/40 text-[11px] font-mono font-semibold text-accent-400">
               EXECUTIVE DECISION PLATFORM
             </div>
-            <div class="absolute bottom-3 right-3 px-2.5 py-1 rounded bg-black/60 backdrop-blur-md text-[11px] font-mono text-slate-300 flex items-center gap-1.5">
+            <div class="absolute bottom-3 right-3 px-2.5 py-1 rounded bg-dark-950/90 text-[11px] font-mono text-slate-300 flex items-center gap-1.5">
               <svg class="w-3 h-3 text-accent-400" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
               <span>Hover to Play Video</span>
             </div>
@@ -353,12 +321,12 @@
                 <strong class="text-accent-400">The Solution:</strong> An executive audit dashboard that benchmarks company operations, scores ROI vs. implementation complexity, and auto-generates 90-day execution roadmaps.
               </p>
               <div class="flex flex-wrap gap-2 mb-6">
-                <span class="px-2.5 py-1 rounded bg-accent-500/10 text-accent-400 font-mono text-xs font-semibold">Immediate ROI Clarity</span>
-                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">Visual Process Maps</span>
-                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">90-Day Implementation Plan</span>
+                <span class="px-2.5 py-1 rounded bg-dark-850 border border-accent-500/30 text-accent-400 font-mono text-xs font-semibold">Immediate ROI Clarity</span>
+                <span class="px-2.5 py-1 rounded bg-dark-850 text-slate-300 font-mono text-xs">Visual Process Maps</span>
+                <span class="px-2.5 py-1 rounded bg-dark-850 text-slate-300 font-mono text-xs">90-Day Implementation Plan</span>
               </div>
             </div>
-            <div class="pt-4 border-t border-white/5 flex items-center justify-between">
+            <div class="pt-4 border-t border-white/10 flex items-center justify-between">
               <span class="text-xs text-slate-400 font-mono">Executive-Ready Outputs</span>
               <a href="https://github.com/KalminX/ai_opportunity_audit" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-bold text-accent-400 hover:text-accent-300 font-sans">
                 <span>View Full Case Study & Code</span>
@@ -370,15 +338,14 @@
 
         <!-- Solution 3: AI Invoice & Document Processor -->
         <div class="glass-card rounded-xl overflow-hidden flex flex-col group project-card" data-category="finance">
-          <div class="video-container aspect-video border-b border-white/5 relative">
+          <div class="video-container aspect-video border-b border-white/10 relative">
             <video preload="metadata" muted playsinline loop poster="assets/images/ai_invoice_document_poster.png" class="hover-video">
               <source src="assets/videos/ai_invoice_document.mp4" type="video/mp4">
             </video>
-            <div class="absolute inset-0 bg-gradient-to-t from-dark-950/80 via-transparent to-transparent pointer-events-none"></div>
-            <div class="absolute top-3 left-3 px-3 py-1 rounded bg-dark-950/85 backdrop-blur-md border border-brand-500/30 text-[11px] font-mono font-semibold text-brand-400">
+            <div class="absolute top-3 left-3 px-3 py-1 rounded bg-dark-950 border border-brand-500/40 text-[11px] font-mono font-semibold text-brand-400">
               90% FASTER INVOICE ENTRY
             </div>
-            <div class="absolute bottom-3 right-3 px-2.5 py-1 rounded bg-black/60 backdrop-blur-md text-[11px] font-mono text-slate-300 flex items-center gap-1.5">
+            <div class="absolute bottom-3 right-3 px-2.5 py-1 rounded bg-dark-950/90 text-[11px] font-mono text-slate-300 flex items-center gap-1.5">
               <svg class="w-3 h-3 text-brand-400" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
               <span>Hover to Play Video</span>
             </div>
@@ -393,12 +360,12 @@
                 <strong class="text-brand-400">The Solution:</strong> An automated OCR pipeline that extracts line items with visual bounding boxes, performs mathematical reconciliation, maps GL codes, and syncs to ERP systems.
               </p>
               <div class="flex flex-wrap gap-2 mb-6">
-                <span class="px-2.5 py-1 rounded bg-brand-500/10 text-brand-400 font-mono text-xs font-semibold">99.4% Parsing Accuracy</span>
-                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">Math Validation</span>
-                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">QuickBooks & NetSuite Export</span>
+                <span class="px-2.5 py-1 rounded bg-dark-850 border border-brand-500/30 text-brand-400 font-mono text-xs font-semibold">99.4% Parsing Accuracy</span>
+                <span class="px-2.5 py-1 rounded bg-dark-850 text-slate-300 font-mono text-xs">Math Validation</span>
+                <span class="px-2.5 py-1 rounded bg-dark-850 text-slate-300 font-mono text-xs">QuickBooks & NetSuite Export</span>
               </div>
             </div>
-            <div class="pt-4 border-t border-white/5 flex items-center justify-between">
+            <div class="pt-4 border-t border-white/10 flex items-center justify-between">
               <span class="text-xs text-slate-400 font-mono">Zero Manual Re-typing</span>
               <a href="https://github.com/KalminX/ai_invoice_document" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-bold text-brand-400 hover:text-brand-300 font-sans">
                 <span>View Full Case Study & Code</span>
@@ -410,37 +377,36 @@
 
         <!-- Solution 4: Meeting Intelligence -->
         <div class="glass-card rounded-xl overflow-hidden flex flex-col group project-card" data-category="operations">
-          <div class="video-container aspect-video border-b border-white/5 relative">
+          <div class="video-container aspect-video border-b border-white/10 relative">
             <video preload="metadata" muted playsinline loop poster="assets/images/meeting_intelligence_poster.png" class="hover-video">
               <source src="assets/videos/meeting_intelligence.mp4" type="video/mp4">
             </video>
-            <div class="absolute inset-0 bg-gradient-to-t from-dark-950/80 via-transparent to-transparent pointer-events-none"></div>
-            <div class="absolute top-3 left-3 px-3 py-1 rounded bg-dark-950/85 backdrop-blur-md border border-indigo-500/30 text-[11px] font-mono font-semibold text-indigo-400">
+            <div class="absolute top-3 left-3 px-3 py-1 rounded bg-dark-950 border border-brand-500/40 text-[11px] font-mono font-semibold text-brand-400">
               ZERO DROPPED ACTION ITEMS
             </div>
-            <div class="absolute bottom-3 right-3 px-2.5 py-1 rounded bg-black/60 backdrop-blur-md text-[11px] font-mono text-slate-300 flex items-center gap-1.5">
-              <svg class="w-3 h-3 text-indigo-400" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            <div class="absolute bottom-3 right-3 px-2.5 py-1 rounded bg-dark-950/90 text-[11px] font-mono text-slate-300 flex items-center gap-1.5">
+              <svg class="w-3 h-3 text-brand-400" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
               <span>Hover to Play Video</span>
             </div>
           </div>
           <div class="p-6 flex-1 flex flex-col justify-between">
             <div>
-              <h3 class="text-xl font-bold text-white group-hover:text-indigo-400 transition-colors font-sans mb-2">
+              <h3 class="text-xl font-bold text-white group-hover:text-brand-400 transition-colors font-sans mb-2">
                 Executive Meeting Intelligence & Task Dispatch
               </h3>
               <p class="text-sm text-slate-300 leading-relaxed mb-4">
                 <strong class="text-white">The Problem:</strong> Critical action items and commitments made during executive calls get forgotten, leading to costly project delays.<br>
-                <strong class="text-indigo-400">The Solution:</strong> An intelligence hub that transcribes conversations, identifies key decisions and risks, and automatically dispatches assigned tasks into Asana or Linear.
+                <strong class="text-brand-400">The Solution:</strong> An intelligence hub that transcribes conversations, identifies key decisions and risks, and automatically dispatches assigned tasks into Asana or Linear.
               </p>
               <div class="flex flex-wrap gap-2 mb-6">
-                <span class="px-2.5 py-1 rounded bg-indigo-500/10 text-indigo-400 font-mono text-xs font-semibold">Instant Executive Briefs</span>
-                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">Automated Task Dispatch</span>
-                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">Asana / Linear Sync</span>
+                <span class="px-2.5 py-1 rounded bg-dark-850 border border-brand-500/30 text-brand-400 font-mono text-xs font-semibold">Instant Executive Briefs</span>
+                <span class="px-2.5 py-1 rounded bg-dark-850 text-slate-300 font-mono text-xs">Automated Task Dispatch</span>
+                <span class="px-2.5 py-1 rounded bg-dark-850 text-slate-300 font-mono text-xs">Asana / Linear Sync</span>
               </div>
             </div>
-            <div class="pt-4 border-t border-white/5 flex items-center justify-between">
+            <div class="pt-4 border-t border-white/10 flex items-center justify-between">
               <span class="text-xs text-slate-400 font-mono">100% Accountability</span>
-              <a href="https://github.com/KalminX/meeting_intelligence" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-400 hover:text-indigo-300 font-sans">
+              <a href="https://github.com/KalminX/meeting_intelligence" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-bold text-brand-400 hover:text-brand-300 font-sans">
                 <span>View Full Case Study & Code</span>
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
               </a>
@@ -450,15 +416,14 @@
 
         <!-- Solution 5: Client Query Triage -->
         <div class="glass-card rounded-xl overflow-hidden flex flex-col group project-card" data-category="client">
-          <div class="video-container aspect-video border-b border-white/5 relative">
+          <div class="video-container aspect-video border-b border-white/10 relative">
             <video preload="metadata" muted playsinline loop poster="assets/images/client_query_triage_poster.png" class="hover-video">
               <source src="assets/videos/client_query_triage.mp4" type="video/mp4">
             </video>
-            <div class="absolute inset-0 bg-gradient-to-t from-dark-950/80 via-transparent to-transparent pointer-events-none"></div>
-            <div class="absolute top-3 left-3 px-3 py-1 rounded bg-dark-950/85 backdrop-blur-md border border-brand-500/30 text-[11px] font-mono font-semibold text-brand-400">
+            <div class="absolute top-3 left-3 px-3 py-1 rounded bg-dark-950 border border-brand-500/40 text-[11px] font-mono font-semibold text-brand-400">
               5X FASTER RESPONSE TIMES
             </div>
-            <div class="absolute bottom-3 right-3 px-2.5 py-1 rounded bg-black/60 backdrop-blur-md text-[11px] font-mono text-slate-300 flex items-center gap-1.5">
+            <div class="absolute bottom-3 right-3 px-2.5 py-1 rounded bg-dark-950/90 text-[11px] font-mono text-slate-300 flex items-center gap-1.5">
               <svg class="w-3 h-3 text-brand-400" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
               <span>Hover to Play Video</span>
             </div>
@@ -473,12 +438,12 @@
                 <strong class="text-brand-400">The Solution:</strong> A real-time triage inbox that scores sentiment urgency, manages SLA countdowns, and generates verified policy-grounded draft responses in seconds.
               </p>
               <div class="flex flex-wrap gap-2 mb-6">
-                <span class="px-2.5 py-1 rounded bg-brand-500/10 text-brand-400 font-mono text-xs font-semibold">Zero SLA Breaches</span>
-                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">Urgency Scoring</span>
-                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">Policy-Compliant Drafts</span>
+                <span class="px-2.5 py-1 rounded bg-dark-850 border border-brand-500/30 text-brand-400 font-mono text-xs font-semibold">Zero SLA Breaches</span>
+                <span class="px-2.5 py-1 rounded bg-dark-850 text-slate-300 font-mono text-xs">Urgency Scoring</span>
+                <span class="px-2.5 py-1 rounded bg-dark-850 text-slate-300 font-mono text-xs">Policy-Compliant Drafts</span>
               </div>
             </div>
-            <div class="pt-4 border-t border-white/5 flex items-center justify-between">
+            <div class="pt-4 border-t border-white/10 flex items-center justify-between">
               <span class="text-xs text-slate-400 font-mono">Real-Time Queue</span>
               <a href="https://github.com/KalminX/client_query_triage" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-bold text-brand-400 hover:text-brand-300 font-sans">
                 <span>View Full Case Study & Code</span>
@@ -490,15 +455,14 @@
 
         <!-- Solution 6: Client Onboarding System -->
         <div class="glass-card rounded-xl overflow-hidden flex flex-col group project-card" data-category="client">
-          <div class="video-container aspect-video border-b border-white/5 relative">
+          <div class="video-container aspect-video border-b border-white/10 relative">
             <video preload="metadata" muted playsinline loop poster="assets/images/client_boarding_poster.png" class="hover-video">
               <source src="assets/videos/client_boarding.mp4" type="video/mp4">
             </video>
-            <div class="absolute inset-0 bg-gradient-to-t from-dark-950/80 via-transparent to-transparent pointer-events-none"></div>
-            <div class="absolute top-3 left-3 px-3 py-1 rounded bg-dark-950/85 backdrop-blur-md border border-accent-500/30 text-[11px] font-mono font-semibold text-accent-400">
+            <div class="absolute top-3 left-3 px-3 py-1 rounded bg-dark-950 border border-accent-500/40 text-[11px] font-mono font-semibold text-accent-400">
               FRICTIONLESS ONBOARDING
             </div>
-            <div class="absolute bottom-3 right-3 px-2.5 py-1 rounded bg-black/60 backdrop-blur-md text-[11px] font-mono text-slate-300 flex items-center gap-1.5">
+            <div class="absolute bottom-3 right-3 px-2.5 py-1 rounded bg-dark-950/90 text-[11px] font-mono text-slate-300 flex items-center gap-1.5">
               <svg class="w-3 h-3 text-accent-400" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
               <span>Hover to Play Video</span>
             </div>
@@ -513,12 +477,12 @@
                 <strong class="text-accent-400">The Solution:</strong> A guided intake portal with instant document verification, automated risk scoring, and tiered manager approval queues.
               </p>
               <div class="flex flex-wrap gap-2 mb-6">
-                <span class="px-2.5 py-1 rounded bg-accent-500/10 text-accent-400 font-mono text-xs font-semibold">Same-Day Onboarding</span>
-                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">Automated Verification</span>
-                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">Audit Trail</span>
+                <span class="px-2.5 py-1 rounded bg-dark-850 border border-accent-500/30 text-accent-400 font-mono text-xs font-semibold">Same-Day Onboarding</span>
+                <span class="px-2.5 py-1 rounded bg-dark-850 text-slate-300 font-mono text-xs">Automated Verification</span>
+                <span class="px-2.5 py-1 rounded bg-dark-850 text-slate-300 font-mono text-xs">Audit Trail</span>
               </div>
             </div>
-            <div class="pt-4 border-t border-white/5 flex items-center justify-between">
+            <div class="pt-4 border-t border-white/10 flex items-center justify-between">
               <span class="text-xs text-slate-400 font-mono">SOC-2 Ready Architecture</span>
               <a href="https://github.com/KalminX/client_boarding" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-bold text-accent-400 hover:text-accent-300 font-sans">
                 <span>View Full Case Study & Code</span>
@@ -530,15 +494,14 @@
 
         <!-- Solution 7: Internal Knowledge Hub -->
         <div class="glass-card rounded-xl overflow-hidden flex flex-col group project-card" data-category="docs">
-          <div class="video-container aspect-video border-b border-white/5 relative">
+          <div class="video-container aspect-video border-b border-white/10 relative">
             <video preload="metadata" muted playsinline loop poster="assets/images/internal_knowledge_hub_poster.png" class="hover-video">
               <source src="assets/videos/internal_knowledge_hub.mp4" type="video/mp4">
             </video>
-            <div class="absolute inset-0 bg-gradient-to-t from-dark-950/80 via-transparent to-transparent pointer-events-none"></div>
-            <div class="absolute top-3 left-3 px-3 py-1 rounded bg-dark-950/85 backdrop-blur-md border border-brand-500/30 text-[11px] font-mono font-semibold text-brand-400">
+            <div class="absolute top-3 left-3 px-3 py-1 rounded bg-dark-950 border border-brand-500/40 text-[11px] font-mono font-semibold text-brand-400">
               INSTANT COMPANY KNOWLEDGE
             </div>
-            <div class="absolute bottom-3 right-3 px-2.5 py-1 rounded bg-black/60 backdrop-blur-md text-[11px] font-mono text-slate-300 flex items-center gap-1.5">
+            <div class="absolute bottom-3 right-3 px-2.5 py-1 rounded bg-dark-950/90 text-[11px] font-mono text-slate-300 flex items-center gap-1.5">
               <svg class="w-3 h-3 text-brand-400" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
               <span>Hover to Play Video</span>
             </div>
@@ -553,12 +516,12 @@
                 <strong class="text-brand-400">The Solution:</strong> A lightning-fast knowledge assistant that answers complex team questions in under 40ms with highlighted source citations.
               </p>
               <div class="flex flex-wrap gap-2 mb-6">
-                <span class="px-2.5 py-1 rounded bg-brand-500/10 text-brand-400 font-mono text-xs font-semibold">&lt; 40ms Responses</span>
-                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">Exact Source Citations</span>
-                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">Zero-Hallucination Guarantee</span>
+                <span class="px-2.5 py-1 rounded bg-dark-850 border border-brand-500/30 text-brand-400 font-mono text-xs font-semibold">&lt; 40ms Responses</span>
+                <span class="px-2.5 py-1 rounded bg-dark-850 text-slate-300 font-mono text-xs">Exact Source Citations</span>
+                <span class="px-2.5 py-1 rounded bg-dark-850 text-slate-300 font-mono text-xs">Zero-Hallucination Guarantee</span>
               </div>
             </div>
-            <div class="pt-4 border-t border-white/5 flex items-center justify-between">
+            <div class="pt-4 border-t border-white/10 flex items-center justify-between">
               <span class="text-xs text-slate-400 font-mono">Role-Based Security</span>
               <a href="https://github.com/KalminX/internal_knowledge_hub" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-bold text-brand-400 hover:text-brand-300 font-sans">
                 <span>View Full Case Study & Code</span>
@@ -570,15 +533,14 @@
 
         <!-- Solution 8: Board Deck Generator -->
         <div class="glass-card rounded-xl overflow-hidden flex flex-col group project-card" data-category="docs">
-          <div class="video-container aspect-video border-b border-white/5 relative">
+          <div class="video-container aspect-video border-b border-white/10 relative">
             <video preload="metadata" muted playsinline loop poster="assets/images/board_deck_generator_poster.png" class="hover-video">
               <source src="assets/videos/board_deck_generator.mp4" type="video/mp4">
             </video>
-            <div class="absolute inset-0 bg-gradient-to-t from-dark-950/80 via-transparent to-transparent pointer-events-none"></div>
-            <div class="absolute top-3 left-3 px-3 py-1 rounded bg-dark-950/85 backdrop-blur-md border border-accent-500/30 text-[11px] font-mono font-semibold text-accent-400">
+            <div class="absolute top-3 left-3 px-3 py-1 rounded bg-dark-950 border border-accent-500/40 text-[11px] font-mono font-semibold text-accent-400">
               BOARD-READY IN 60 SECONDS
             </div>
-            <div class="absolute bottom-3 right-3 px-2.5 py-1 rounded bg-black/60 backdrop-blur-md text-[11px] font-mono text-slate-300 flex items-center gap-1.5">
+            <div class="absolute bottom-3 right-3 px-2.5 py-1 rounded bg-dark-950/90 text-[11px] font-mono text-slate-300 flex items-center gap-1.5">
               <svg class="w-3 h-3 text-accent-400" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
               <span>Hover to Play Video</span>
             </div>
@@ -593,12 +555,12 @@
                 <strong class="text-accent-400">The Solution:</strong> An automated slide generation engine that transforms company data into branded, executive-grade PowerPoint (.pptx) and PDF presentations.
               </p>
               <div class="flex flex-wrap gap-2 mb-6">
-                <span class="px-2.5 py-1 rounded bg-accent-500/10 text-accent-400 font-mono text-xs font-semibold">1-Click PPTX Export</span>
-                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">Narrative Outlines</span>
-                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">Corporate Branding</span>
+                <span class="px-2.5 py-1 rounded bg-dark-850 border border-accent-500/30 text-accent-400 font-mono text-xs font-semibold">1-Click PPTX Export</span>
+                <span class="px-2.5 py-1 rounded bg-dark-850 text-slate-300 font-mono text-xs">Narrative Outlines</span>
+                <span class="px-2.5 py-1 rounded bg-dark-850 text-slate-300 font-mono text-xs">Corporate Branding</span>
               </div>
             </div>
-            <div class="pt-4 border-t border-white/5 flex items-center justify-between">
+            <div class="pt-4 border-t border-white/10 flex items-center justify-between">
               <span class="text-xs text-slate-400 font-mono">Pixel-Perfect Layouts</span>
               <a href="https://github.com/KalminX/board_deck_generator" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-bold text-accent-400 hover:text-accent-300 font-sans">
                 <span>View Full Case Study & Code</span>
@@ -610,37 +572,36 @@
 
         <!-- Solution 9: Storybook Generator -->
         <div class="glass-card rounded-xl overflow-hidden flex flex-col group project-card" data-category="docs">
-          <div class="video-container aspect-video border-b border-white/5 relative">
+          <div class="video-container aspect-video border-b border-white/10 relative">
             <video preload="metadata" muted playsinline loop poster="assets/images/storybook_generator_poster.png" class="hover-video">
               <source src="assets/videos/storybook_generator.mp4" type="video/mp4">
             </video>
-            <div class="absolute inset-0 bg-gradient-to-t from-dark-950/80 via-transparent to-transparent pointer-events-none"></div>
-            <div class="absolute top-3 left-3 px-3 py-1 rounded bg-dark-950/85 backdrop-blur-md border border-indigo-500/30 text-[11px] font-mono font-semibold text-indigo-400">
+            <div class="absolute top-3 left-3 px-3 py-1 rounded bg-dark-950 border border-brand-500/40 text-[11px] font-mono font-semibold text-brand-400">
               MULTIMODAL PUBLISHING
             </div>
-            <div class="absolute bottom-3 right-3 px-2.5 py-1 rounded bg-black/60 backdrop-blur-md text-[11px] font-mono text-slate-300 flex items-center gap-1.5">
-              <svg class="w-3 h-3 text-indigo-400" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            <div class="absolute bottom-3 right-3 px-2.5 py-1 rounded bg-dark-950/90 text-[11px] font-mono text-slate-300 flex items-center gap-1.5">
+              <svg class="w-3 h-3 text-brand-400" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
               <span>Hover to Play Video</span>
             </div>
           </div>
           <div class="p-6 flex-1 flex flex-col justify-between">
             <div>
-              <h3 class="text-xl font-bold text-white group-hover:text-indigo-400 transition-colors font-sans mb-2">
+              <h3 class="text-xl font-bold text-white group-hover:text-brand-400 transition-colors font-sans mb-2">
                 Automated Storybook & Content Publisher
               </h3>
               <p class="text-sm text-slate-300 leading-relaxed mb-4">
                 <strong class="text-white">The Problem:</strong> Producing illustrated children's books or visual storyboards requires weeks of costly freelance illustration and manual typesetting.<br>
-                <strong class="text-indigo-400">The Solution:</strong> An end-to-end publishing engine that preserves character consistency across chapters and renders interactive web flipbooks and 300 DPI print PDFs.
+                <strong class="text-brand-400">The Solution:</strong> An end-to-end publishing engine that preserves character consistency across chapters and renders interactive web flipbooks and 300 DPI print PDFs.
               </p>
               <div class="flex flex-wrap gap-2 mb-6">
-                <span class="px-2.5 py-1 rounded bg-indigo-500/10 text-indigo-400 font-mono text-xs font-semibold">Print-Ready 300 DPI</span>
-                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">Consistent Characters</span>
-                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">Interactive Reader</span>
+                <span class="px-2.5 py-1 rounded bg-dark-850 border border-brand-500/30 text-brand-400 font-mono text-xs font-semibold">Print-Ready 300 DPI</span>
+                <span class="px-2.5 py-1 rounded bg-dark-850 text-slate-300 font-mono text-xs">Consistent Characters</span>
+                <span class="px-2.5 py-1 rounded bg-dark-850 text-slate-300 font-mono text-xs">Interactive Reader</span>
               </div>
             </div>
-            <div class="pt-4 border-t border-white/5 flex items-center justify-between">
+            <div class="pt-4 border-t border-white/10 flex items-center justify-between">
               <span class="text-xs text-slate-400 font-mono">Full Publishing Pipeline</span>
-              <a href="https://github.com/KalminX/storybook_generator" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-400 hover:text-indigo-300 font-sans">
+              <a href="https://github.com/KalminX/storybook_generator" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-bold text-brand-400 hover:text-brand-300 font-sans">
                 <span>View Full Case Study & Code</span>
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
               </a>
@@ -650,15 +611,14 @@
 
         <!-- Solution 10: Financial Reporting Engine -->
         <div class="glass-card rounded-xl overflow-hidden flex flex-col group project-card" data-category="finance">
-          <div class="video-container aspect-video border-b border-white/5 relative">
+          <div class="video-container aspect-video border-b border-white/10 relative">
             <video preload="metadata" muted playsinline loop poster="assets/images/finance_report_poster.png" class="hover-video">
               <source src="assets/videos/finance_report.mp4" type="video/mp4">
             </video>
-            <div class="absolute inset-0 bg-gradient-to-t from-dark-950/80 via-transparent to-transparent pointer-events-none"></div>
-            <div class="absolute top-3 left-3 px-3 py-1 rounded bg-dark-950/85 backdrop-blur-md border border-brand-500/30 text-[11px] font-mono font-semibold text-brand-400">
+            <div class="absolute top-3 left-3 px-3 py-1 rounded bg-dark-950 border border-brand-500/40 text-[11px] font-mono font-semibold text-brand-400">
               REAL-TIME FINANCIAL CLARITY
             </div>
-            <div class="absolute bottom-3 right-3 px-2.5 py-1 rounded bg-black/60 backdrop-blur-md text-[11px] font-mono text-slate-300 flex items-center gap-1.5">
+            <div class="absolute bottom-3 right-3 px-2.5 py-1 rounded bg-dark-950/90 text-[11px] font-mono text-slate-300 flex items-center gap-1.5">
               <svg class="w-3 h-3 text-brand-400" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
               <span>Hover to Play Video</span>
             </div>
@@ -673,12 +633,12 @@
                 <strong class="text-brand-400">The Solution:</strong> Automated financial consolidation with real-time EBITDA and cash runway forecasting, automated variance commentary, and compliance audit logs.
               </p>
               <div class="flex flex-wrap gap-2 mb-6">
-                <span class="px-2.5 py-1 rounded bg-brand-500/10 text-brand-400 font-mono text-xs font-semibold">1-Click Month-End Close</span>
-                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">Automated Variance Analysis</span>
-                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">Cash Runway Forecast</span>
+                <span class="px-2.5 py-1 rounded bg-dark-850 border border-brand-500/30 text-brand-400 font-mono text-xs font-semibold">1-Click Month-End Close</span>
+                <span class="px-2.5 py-1 rounded bg-dark-850 text-slate-300 font-mono text-xs">Automated Variance Analysis</span>
+                <span class="px-2.5 py-1 rounded bg-dark-850 text-slate-300 font-mono text-xs">Cash Runway Forecast</span>
               </div>
             </div>
-            <div class="pt-4 border-t border-white/5 flex items-center justify-between">
+            <div class="pt-4 border-t border-white/10 flex items-center justify-between">
               <span class="text-xs text-slate-400 font-mono">100% Reconciled Ledgers</span>
               <a href="https://github.com/KalminX/finance_report" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-bold text-brand-400 hover:text-brand-300 font-sans">
                 <span>View Full Case Study & Code</span>
@@ -693,7 +653,7 @@
   </section>
 
   <!-- How It Works / Workflow Simulation -->
-  <section id="how-it-works" class="relative z-10 py-20 lg:py-28 border-b border-white/5 bg-dark-900/40">
+  <section id="how-it-works" class="relative z-10 py-20 lg:py-28 border-b border-white/10 bg-dark-900">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="section-header text-center max-w-3xl mx-auto mb-16">
@@ -710,7 +670,7 @@
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 font-sans">
         
         <div class="glass-card p-8 rounded-2xl relative">
-          <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 font-mono font-bold text-lg mb-6">
+          <div class="w-12 h-12 rounded-xl bg-dark-850 border border-brand-500/30 flex items-center justify-center text-brand-400 font-mono font-bold text-lg mb-6">
             01
           </div>
           <h3 class="text-xl font-bold text-white mb-3">Workflow Audit & Scope</h3>
@@ -720,7 +680,7 @@
         </div>
 
         <div class="glass-card p-8 rounded-2xl relative">
-          <div class="w-12 h-12 rounded-xl bg-accent-500/10 border border-accent-500/20 flex items-center justify-center text-accent-400 font-mono font-bold text-lg mb-6">
+          <div class="w-12 h-12 rounded-xl bg-dark-850 border border-accent-500/30 flex items-center justify-center text-accent-400 font-mono font-bold text-lg mb-6">
             02
           </div>
           <h3 class="text-xl font-bold text-white mb-3">Rapid Prototype & Build</h3>
@@ -730,7 +690,7 @@
         </div>
 
         <div class="glass-card p-8 rounded-2xl relative">
-          <div class="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 font-mono font-bold text-lg mb-6">
+          <div class="w-12 h-12 rounded-xl bg-dark-850 border border-brand-500/30 flex items-center justify-center text-brand-400 font-mono font-bold text-lg mb-6">
             03
           </div>
           <h3 class="text-xl font-bold text-white mb-3">Deploy & Hand Over</h3>
@@ -742,26 +702,26 @@
       </div>
 
       <!-- Live Operations Simulator Box -->
-      <div class="terminal-box max-w-4xl mx-auto rounded-xl overflow-hidden glass-panel border border-white/10 shadow-2xl">
+      <div class="terminal-box max-w-4xl mx-auto rounded-xl overflow-hidden glass-panel border border-white/10">
         <div class="bg-dark-950 px-5 py-3.5 border-b border-white/10 flex items-center justify-between">
           <div class="flex items-center gap-2">
-            <span class="w-3 h-3 rounded-full bg-emerald-500/80 animate-pulse"></span>
+            <span class="w-3 h-3 rounded-full bg-brand-500"></span>
             <span class="font-mono text-xs font-semibold text-slate-300">Live Automation Execution Pipeline</span>
           </div>
           <span class="font-mono text-xs text-brand-400 font-medium">Status: Active &bull; Zero Errors</span>
         </div>
         
-        <div class="p-6 sm:p-8 bg-dark-950/90 font-sans space-y-4">
-          <div class="flex items-start gap-4 p-4 rounded-lg bg-dark-900 border border-white/5">
-            <div class="w-8 h-8 rounded-lg bg-accent-500/20 text-accent-400 flex items-center justify-center shrink-0 font-bold text-sm mt-0.5">1</div>
+        <div class="p-6 sm:p-8 bg-dark-950 font-sans space-y-4">
+          <div class="flex items-start gap-4 p-4 rounded-lg bg-dark-900 border border-white/10">
+            <div class="w-8 h-8 rounded-lg bg-dark-850 text-accent-400 border border-accent-500/30 flex items-center justify-center shrink-0 font-bold text-sm mt-0.5">1</div>
             <div>
               <div class="text-sm font-bold text-white mb-1">Trigger: Automated Opportunity & Anomaly Detection</div>
               <div class="text-xs text-slate-400">System queries CRM & financial ledgers &bull; Detects 3 overdue accounts totaling $42,500 with pending contract renewals.</div>
             </div>
           </div>
 
-          <div class="flex items-start gap-4 p-4 rounded-lg bg-dark-900 border border-white/5">
-            <div class="w-8 h-8 rounded-lg bg-brand-500/20 text-brand-400 flex items-center justify-center shrink-0 font-bold text-sm mt-0.5">2</div>
+          <div class="flex items-start gap-4 p-4 rounded-lg bg-dark-900 border border-white/10">
+            <div class="w-8 h-8 rounded-lg bg-dark-850 text-brand-400 border border-brand-500/30 flex items-center justify-center shrink-0 font-bold text-sm mt-0.5">2</div>
             <div>
               <div class="text-sm font-bold text-white mb-1">Action: Intelligent Draft & Task Staging</div>
               <div class="text-xs text-slate-400">Generates tailored follow-up notices, calculates exact fee reconciliations, and stages preview for management.</div>
@@ -769,13 +729,13 @@
           </div>
 
           <div class="flex items-start gap-4 p-4 rounded-lg bg-dark-900 border border-brand-500/30">
-            <div class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0 font-bold text-sm mt-0.5">3</div>
+            <div class="w-8 h-8 rounded-lg bg-dark-850 text-brand-400 border border-brand-500/30 flex items-center justify-center shrink-0 font-bold text-sm mt-0.5">3</div>
             <div class="flex-1 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <div>
-                <div class="text-sm font-bold text-emerald-400 mb-0.5">Human Approval & Commit: Ready</div>
+                <div class="text-sm font-bold text-brand-400 mb-0.5">Human Approval & Commit: Ready</div>
                 <div class="text-xs text-slate-300">Manager reviews exact proposed action with one click &bull; Committed to ledger with permanent audit log.</div>
               </div>
-              <button class="px-4 py-1.5 rounded bg-brand-500 text-dark-950 font-bold text-xs shrink-0 shadow-glow-emerald">
+              <button class="px-4 py-2 rounded bg-brand-500 hover:bg-brand-400 text-dark-950 font-bold text-xs shrink-0 transition-colors">
                 &check; Approved in 1 Click
               </button>
             </div>
@@ -787,7 +747,7 @@
   </section>
 
   <!-- Why Work With Me Section -->
-  <section id="benefits" class="relative z-10 py-20 lg:py-28 border-b border-white/5">
+  <section id="benefits" class="relative z-10 py-20 lg:py-28 border-b border-white/10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="section-header text-center max-w-3xl mx-auto mb-16">
@@ -804,7 +764,7 @@
         
         <div class="glass-card p-6 rounded-xl flex flex-col justify-between">
           <div>
-            <div class="w-10 h-10 rounded-lg bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 mb-4 font-bold text-base">
+            <div class="w-10 h-10 rounded-lg bg-dark-850 border border-brand-500/30 flex items-center justify-center text-brand-400 mb-4 font-bold text-base">
               ⚡
             </div>
             <h3 class="text-lg font-bold text-white mb-2">Fast Turnaround</h3>
@@ -812,14 +772,14 @@
               Most automation workflows go from initial blueprint to working production prototype in just 10–14 days.
             </p>
           </div>
-          <div class="mt-6 pt-4 border-t border-white/5 text-xs font-mono text-brand-400 font-semibold">
+          <div class="mt-6 pt-4 border-t border-white/10 text-xs font-mono text-brand-400 font-semibold">
             &check; 2-Week Delivery
           </div>
         </div>
 
         <div class="glass-card p-6 rounded-xl flex flex-col justify-between">
           <div>
-            <div class="w-10 h-10 rounded-lg bg-accent-500/10 border border-accent-500/20 flex items-center justify-center text-accent-400 mb-4 font-bold text-base">
+            <div class="w-10 h-10 rounded-lg bg-dark-850 border border-accent-500/30 flex items-center justify-center text-accent-400 mb-4 font-bold text-base">
               🛡️
             </div>
             <h3 class="text-lg font-bold text-white mb-2">Total Control & Safety</h3>
@@ -827,14 +787,14 @@
               Every sensitive change requires explicit human confirmation. Your team always retains the final say.
             </p>
           </div>
-          <div class="mt-6 pt-4 border-t border-white/5 text-xs font-mono text-accent-400 font-semibold">
+          <div class="mt-6 pt-4 border-t border-white/10 text-xs font-mono text-accent-400 font-semibold">
             &check; Staged Approvals
           </div>
         </div>
 
         <div class="glass-card p-6 rounded-xl flex flex-col justify-between">
           <div>
-            <div class="w-10 h-10 rounded-lg bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 mb-4 font-bold text-base">
+            <div class="w-10 h-10 rounded-lg bg-dark-850 border border-white/10 flex items-center justify-center text-slate-300 mb-4 font-bold text-base">
               💎
             </div>
             <h3 class="text-lg font-bold text-white mb-2">100% Code Ownership</h3>
@@ -842,14 +802,14 @@
               You own all intellectual property, clean documented source code, and data. Zero recurring platform tax.
             </p>
           </div>
-          <div class="mt-6 pt-4 border-t border-white/5 text-xs font-mono text-indigo-400 font-semibold">
+          <div class="mt-6 pt-4 border-t border-white/10 text-xs font-mono text-slate-300 font-semibold">
             &check; Zero Vendor Lock-in
           </div>
         </div>
 
         <div class="glass-card p-6 rounded-xl flex flex-col justify-between">
           <div>
-            <div class="w-10 h-10 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mb-4 font-bold text-base">
+            <div class="w-10 h-10 rounded-lg bg-dark-850 border border-brand-500/30 flex items-center justify-center text-brand-400 mb-4 font-bold text-base">
               📈
             </div>
             <h3 class="text-lg font-bold text-white mb-2">Measurable ROI</h3>
@@ -857,7 +817,7 @@
               Built specifically to save concrete headcount hours, eliminate customer wait times, and recover revenue.
             </p>
           </div>
-          <div class="mt-6 pt-4 border-t border-white/5 text-xs font-mono text-emerald-400 font-semibold">
+          <div class="mt-6 pt-4 border-t border-white/10 text-xs font-mono text-brand-400 font-semibold">
             &check; Direct Cost Reduction
           </div>
         </div>
@@ -868,7 +828,7 @@
   </section>
 
   <!-- Core Services Section -->
-  <section id="services" class="relative z-10 py-20 lg:py-28 border-b border-white/5 bg-dark-900/30">
+  <section id="services" class="relative z-10 py-20 lg:py-28 border-b border-white/10 bg-dark-900">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="section-header text-center max-w-3xl mx-auto mb-16">
@@ -902,12 +862,12 @@
               </li>
             </ul>
           </div>
-          <a href="#contact" class="mt-8 block text-center py-2.5 rounded-lg bg-dark-800 hover:bg-dark-700 border border-white/10 text-xs font-bold text-white transition-all">
+          <a href="#contact" class="mt-8 block text-center py-2.5 rounded-lg bg-dark-850 hover:bg-dark-800 border border-white/10 text-xs font-bold text-white transition-all">
             Discuss Your Workflow &rarr;
           </a>
         </div>
 
-        <div class="glass-card p-8 rounded-2xl flex flex-col justify-between border-brand-500/40 shadow-glow-card relative">
+        <div class="glass-card p-8 rounded-2xl flex flex-col justify-between border-brand-500/50 relative">
           <div class="absolute -top-3 right-6 px-3 py-0.5 rounded-full bg-brand-500 text-dark-950 font-bold font-mono text-[10px] uppercase tracking-wider">
             Most Popular
           </div>
@@ -929,7 +889,7 @@
               </li>
             </ul>
           </div>
-          <a href="#contact" class="mt-8 block text-center py-2.5 rounded-lg bg-gradient-to-r from-brand-400 to-brand-500 hover:from-brand-300 hover:to-brand-400 text-xs font-bold text-dark-950 transition-all shadow-glow-emerald">
+          <a href="#contact" class="mt-8 block text-center py-3 rounded-lg bg-brand-500 hover:bg-brand-400 text-xs font-bold text-dark-950 transition-all">
             Build a Custom Agent &rarr;
           </a>
         </div>
@@ -953,7 +913,7 @@
               </li>
             </ul>
           </div>
-          <a href="#contact" class="mt-8 block text-center py-2.5 rounded-lg bg-dark-800 hover:bg-dark-700 border border-white/10 text-xs font-bold text-white transition-all">
+          <a href="#contact" class="mt-8 block text-center py-2.5 rounded-lg bg-dark-850 hover:bg-dark-800 border border-white/10 text-xs font-bold text-white transition-all">
             Start a Fullstack Build &rarr;
           </a>
         </div>
@@ -967,8 +927,8 @@
   <section id="contact" class="relative z-10 py-20 lg:py-28">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="contact-box max-w-4xl mx-auto glass-panel p-8 sm:p-14 rounded-3xl border border-brand-500/30 shadow-glow-emerald text-center">
-        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-400 text-xs font-mono font-semibold mb-6">
+      <div class="contact-box max-w-4xl mx-auto glass-panel p-8 sm:p-14 rounded-3xl border border-brand-500/30 text-center">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-dark-850 border border-brand-500/30 text-brand-400 text-xs font-mono font-semibold mb-6">
           <span>READY TO SCALE YOUR BUSINESS?</span>
         </div>
 
@@ -982,13 +942,13 @@
 
         <div class="flex flex-wrap items-center justify-center gap-4">
           <a href="mailto:kalmintech@gmail.com" 
-             class="magnetic-btn inline-flex items-center gap-2.5 px-8 py-4 rounded-xl text-sm font-bold text-dark-950 bg-gradient-to-r from-brand-400 via-brand-500 to-accent-400 hover:from-brand-300 hover:to-accent-300 transition-all shadow-glow-emerald font-sans">
+             class="magnetic-btn inline-flex items-center gap-2.5 px-8 py-4 rounded-xl text-sm font-bold text-dark-950 bg-brand-500 hover:bg-brand-400 transition-all font-sans">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
             <span>Email Me: kalmintech@gmail.com</span>
           </a>
 
           <a href="https://github.com/KalminX" target="_blank" rel="noopener noreferrer" 
-             class="magnetic-btn inline-flex items-center gap-2.5 px-7 py-4 rounded-xl text-sm font-semibold text-white bg-dark-800 hover:bg-dark-700 border border-white/10 hover:border-white/20 transition-all font-sans">
+             class="magnetic-btn inline-flex items-center gap-2.5 px-7 py-4 rounded-xl text-sm font-semibold text-white bg-dark-850 hover:bg-dark-800 border border-white/10 hover:border-white/20 transition-all font-sans">
             <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
               <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
             </svg>
@@ -1002,7 +962,7 @@
   </section>
 
   <!-- Footer -->
-  <footer class="relative z-10 border-t border-white/5 py-10 bg-dark-950 text-slate-500 font-mono text-xs">
+  <footer class="relative z-10 border-t border-white/10 py-10 bg-dark-950 text-slate-500 font-mono text-xs">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
       <div>
         &copy; 2026 <strong class="text-slate-300 font-sans">Oriabure Numerous</strong>. Fullstack & Claude Automations.
@@ -1020,9 +980,6 @@
   <script>
     gsap.registerPlugin(ScrollTrigger);
 
-    /* ==========================================================================
-       1. NATURE OF CODE: AUTONOMOUS PARTICLES & RECURSIVE FRACTAL CANVAS
-       ========================================================================== */
     (function initNatureOfCode() {
       const canvas = document.getElementById('noc-canvas');
       const ctx = canvas.getContext('2d');
@@ -1179,9 +1136,6 @@
       requestAnimationFrame(animate);
     })();
 
-    /* ==========================================================================
-       2. GSAP ENTRANCE & SCROLL ANIMATIONS
-       ========================================================================== */
     document.addEventListener('DOMContentLoaded', () => {
       
       const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
@@ -1238,7 +1192,6 @@
         });
       });
 
-      // 3D Tilt Hover
       document.querySelectorAll('.glass-card').forEach(card => {
         const xTo = gsap.quickTo(card, 'rotationY', { duration: 0.4, ease: 'power2.out' });
         const yTo = gsap.quickTo(card, 'rotationX', { duration: 0.4, ease: 'power2.out' });
@@ -1257,7 +1210,6 @@
         });
       });
 
-      // Magnetic Buttons
       document.querySelectorAll('.magnetic-btn').forEach(btn => {
         const xTo = gsap.quickTo(btn, 'x', { duration: 0.3, ease: 'power2.out' });
         const yTo = gsap.quickTo(btn, 'y', { duration: 0.3, ease: 'power2.out' });
@@ -1276,9 +1228,6 @@
         });
       });
 
-      /* ==========================================================================
-         3. VIDEO HOVER CONTROLS & CATEGORY FILTERING
-         ========================================================================== */
       const videos = document.querySelectorAll('.hover-video');
       videos.forEach(video => {
         const container = video.closest('.video-container');
