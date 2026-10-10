@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Oriabure Numerous — Fullstack Engineer & Claude Automation Architect</title>
-  <meta name="description" content="Portfolio of Oriabure Numerous. Fullstack Engineer specializing in Claude Enterprise Automations, Model Context Protocol (MCP) systems, and high-performance business architectures." />
+  <title>Oriabure Numerous — Custom Business Automations & Fullstack Solutions</title>
+  <meta name="description" content="I build custom Claude-powered automation systems and fullstack applications that cut operational bottlenecks, recover revenue, and scale business operations." />
   
   <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%22%20%220%22%20100%20100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
 
-  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <!-- Google Fonts: Inter & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -22,8 +22,9 @@
       theme: {
         extend: {
           fontFamily: {
-            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
-            mono: ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
+            sans: ['Plus Jakarta Sans', 'Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+            body: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
           },
           colors: {
             brand: {
@@ -48,10 +49,9 @@
             }
           },
           boxShadow: {
-            'glow-emerald': '0 0 30px -5px rgba(16, 185, 129, 0.35)',
-            'glow-cyan': '0 0 30px -5px rgba(14, 165, 233, 0.35)',
-            'glow-indigo': '0 0 30px -5px rgba(99, 102, 241, 0.3)',
-            'glow-card': '0 12px 35px -10px rgba(0, 0, 0, 0.6), 0 0 25px -5px rgba(16, 185, 129, 0.12)',
+            'glow-emerald': '0 0 35px -5px rgba(16, 185, 129, 0.4)',
+            'glow-cyan': '0 0 35px -5px rgba(14, 165, 233, 0.4)',
+            'glow-card': '0 16px 40px -10px rgba(0, 0, 0, 0.6), 0 0 25px -5px rgba(16, 185, 129, 0.15)',
           }
         }
       }
@@ -63,32 +63,30 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
   <style>
-    /* Subtle grid background */
     .bg-grid {
       background-size: 40px 40px;
       background-image: 
-        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+        linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
     }
     .glass-panel {
-      background: rgba(11, 16, 27, 0.82);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
+      background: rgba(11, 16, 27, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       border: 1px solid rgba(255, 255, 255, 0.08);
     }
     .glass-card {
-      background: rgba(15, 23, 42, 0.65);
+      background: rgba(15, 23, 42, 0.7);
       backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       transform-style: preserve-3d;
       will-change: transform, opacity;
       transition: border-color 0.3s ease, box-shadow 0.3s ease;
     }
     .glass-card:hover {
-      border-color: rgba(52, 211, 153, 0.35);
-      box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.6), 0 0 25px -5px rgba(16, 185, 129, 0.2);
+      border-color: rgba(52, 211, 153, 0.4);
+      box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.7), 0 0 30px -5px rgba(16, 185, 129, 0.25);
     }
-    /* Video container */
     .video-container {
       position: relative;
       overflow: hidden;
@@ -105,7 +103,6 @@
     .glass-card:hover .video-container video {
       transform: scale(1.02);
     }
-    /* Canvas styling */
     #noc-canvas {
       position: fixed;
       top: 0;
@@ -115,7 +112,6 @@
       pointer-events: none;
       z-index: 1;
     }
-    /* Custom scrollbar */
     ::-webkit-scrollbar {
       width: 7px;
     }
@@ -129,10 +125,9 @@
     ::-webkit-scrollbar-thumb:hover {
       background: #334155;
     }
-    /* Glow text animation */
     @keyframes pulseGlow {
-      0%, 100% { opacity: 0.4; transform: scale(1); }
-      50% { opacity: 0.8; transform: scale(1.05); }
+      0%, 100% { opacity: 0.35; transform: scale(1); }
+      50% { opacity: 0.75; transform: scale(1.05); }
     }
     .glow-orb {
       animation: pulseGlow 8s ease-in-out infinite alternate;
@@ -140,39 +135,39 @@
   </style>
 </head>
 
-<body class="bg-dark-950 text-slate-200 font-sans antialiased selection:bg-brand-500/20 selection:text-brand-400 min-h-screen relative overflow-x-hidden">
+<body class="bg-dark-950 text-slate-200 font-body antialiased selection:bg-brand-500/20 selection:text-brand-400 min-h-screen relative overflow-x-hidden">
 
-  <!-- Interactive Nature of Code Canvas (Autonomous Particles & Recursive Fractals) -->
+  <!-- Interactive Nature of Code Physics Canvas -->
   <canvas id="noc-canvas"></canvas>
 
   <!-- Background Gradients & Grid -->
   <div class="fixed inset-0 bg-grid pointer-events-none z-0"></div>
-  <div class="fixed top-0 left-1/4 w-[32rem] h-[32rem] bg-brand-500/10 rounded-full blur-[120px] pointer-events-none z-0 glow-orb"></div>
-  <div class="fixed top-1/3 right-10 w-[30rem] h-[30rem] bg-accent-500/10 rounded-full blur-[120px] pointer-events-none z-0 glow-orb" style="animation-delay: 2s;"></div>
-  <div class="fixed bottom-10 left-1/3 w-[36rem] h-[36rem] bg-indigo-500/5 rounded-full blur-[140px] pointer-events-none z-0 glow-orb" style="animation-delay: 4s;"></div>
+  <div class="fixed top-0 left-1/4 w-[34rem] h-[34rem] bg-brand-500/10 rounded-full blur-[130px] pointer-events-none z-0 glow-orb"></div>
+  <div class="fixed top-1/3 right-10 w-[32rem] h-[32rem] bg-accent-500/10 rounded-full blur-[130px] pointer-events-none z-0 glow-orb" style="animation-delay: 2s;"></div>
+  <div class="fixed bottom-10 left-1/3 w-[38rem] h-[38rem] bg-indigo-500/5 rounded-full blur-[150px] pointer-events-none z-0 glow-orb" style="animation-delay: 4s;"></div>
 
   <!-- Navigation Header -->
   <header class="sticky top-0 z-50 glass-panel border-b border-white/5 transition-all">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
       
-      <!-- Brand / Logo -->
+      <!-- Brand -->
       <a href="#" class="flex items-center gap-3 group magnetic-btn">
         <div class="w-9 h-9 rounded-lg bg-gradient-to-tr from-brand-600 via-brand-500 to-accent-500 flex items-center justify-center text-white font-bold text-sm shadow-glow-emerald">
           ON
         </div>
         <div class="flex flex-col">
-          <span class="font-bold text-white text-sm tracking-tight group-hover:text-brand-400 transition-colors">Oriabure Numerous</span>
-          <span class="text-[10px] text-slate-400 font-mono tracking-wider">FULLSTACK & CLAUDE AUTOMATION</span>
+          <span class="font-bold text-white text-sm tracking-tight group-hover:text-brand-400 transition-colors font-sans">Oriabure Numerous</span>
+          <span class="text-[10px] text-slate-400 font-mono tracking-wider">FULLSTACK AUTOMATIONS</span>
         </div>
       </a>
 
-      <!-- Desktop Navigation Links -->
+      <!-- Navigation Links -->
       <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
-        <a href="#projects" class="hover:text-white transition-colors nav-link">Projects & Demos</a>
-        <a href="#mcp-architecture" class="hover:text-white transition-colors nav-link">MCP Architecture</a>
-        <a href="#engineering-standards" class="hover:text-white transition-colors nav-link">Engineering Standards</a>
-        <a href="#tech-stack" class="hover:text-white transition-colors nav-link">Tech Stack</a>
-        <a href="#contact" class="hover:text-white transition-colors nav-link">Contact</a>
+        <a href="#solutions" class="hover:text-white transition-colors">Case Studies</a>
+        <a href="#how-it-works" class="hover:text-white transition-colors">How It Works</a>
+        <a href="#benefits" class="hover:text-white transition-colors">Why Work With Me</a>
+        <a href="#services" class="hover:text-white transition-colors">Services</a>
+        <a href="#contact" class="hover:text-white transition-colors">Contact</a>
       </nav>
 
       <!-- Right Action CTA -->
@@ -184,53 +179,51 @@
           </svg>
           <span>GitHub</span>
         </a>
-        <a href="#contact" class="magnetic-btn inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-md text-xs font-semibold text-dark-950 bg-gradient-to-r from-brand-400 via-brand-500 to-accent-400 hover:from-brand-300 hover:to-accent-300 transition-all shadow-glow-emerald">
-          <span>Get in Touch</span>
+        <a href="#contact" class="magnetic-btn inline-flex items-center gap-1.5 px-4 py-2 rounded-md text-xs font-semibold text-dark-950 bg-gradient-to-r from-brand-400 via-brand-500 to-accent-400 hover:from-brand-300 hover:to-accent-300 transition-all shadow-glow-emerald font-sans">
+          <span>Book a Strategy Call</span>
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
         </a>
       </div>
     </div>
   </header>
 
-  <!-- Hero Section -->
+  <!-- Pitch Hero Section -->
   <section class="relative z-10 pt-20 pb-16 lg:pt-28 lg:pb-24 border-b border-white/5 overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-4xl">
         
         <!-- Status Badge -->
-        <div class="hero-badge inline-flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-400 text-xs font-mono font-medium mb-8">
+        <div class="hero-badge inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-400 text-xs font-mono font-medium mb-8">
           <span class="relative flex h-2 w-2">
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"></span>
             <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-500"></span>
           </span>
-          <span>AVAILABLE FOR FULLSTACK & CLAUDE AUTOMATION ARCHITECTURES</span>
+          <span>TAKING ON HIGH-IMPACT CLIENT AUTOMATION ENGAGEMENTS</span>
         </div>
 
-        <!-- Main Headline -->
-        <h1 class="hero-title text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12] mb-6">
-          Architecting Deterministic <br class="hidden sm:inline" />
+        <!-- Main Pitch Headline -->
+        <h1 class="hero-title text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12] mb-6 font-sans">
+          I Build Custom AI Systems That <br class="hidden sm:inline" />
           <span class="bg-clip-text text-transparent bg-gradient-to-r from-brand-400 via-accent-400 to-indigo-400">
-            Claude Fullstack Automations
+            Cut 70% of Manual Work
           </span>
-          & MCP Systems.
+          & Eliminate Operational Bottlenecks.
         </h1>
 
-        <!-- Subtitle -->
+        <!-- Pitch Subtitle -->
         <p class="hero-subtitle text-lg sm:text-xl text-slate-300 leading-relaxed mb-10 max-w-3xl">
-          Hi, I'm <strong class="text-white font-semibold">Oriabure Numerous</strong>. I engineer enterprise business automation systems that pair the 
-          <span class="text-brand-400 font-mono font-medium">Model Context Protocol (MCP)</span> and Claude tool-use with foundational fullstack software engineering. 
-          Zero fragile prompt hacks, 100% database-backed state, cryptographically staged approval gates, and deterministic reliability.
+          Hi, I'm <strong class="text-white font-semibold">Oriabure Numerous</strong>. I build custom, end-to-end fullstack automation systems and Claude agent workflows that turn expensive, repetitive business operations into reliable, one-click automated pipelines.
         </p>
 
         <!-- CTA Action Buttons -->
         <div class="hero-cta flex flex-wrap items-center gap-4 mb-16">
-          <a href="#projects" class="magnetic-btn inline-flex items-center gap-2 px-6 py-3.5 rounded-lg text-sm font-semibold text-dark-950 bg-gradient-to-r from-brand-400 to-brand-500 hover:from-brand-300 hover:to-brand-400 transition-all shadow-glow-emerald">
-            <span>Explore 10 Live Workflows</span>
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+          <a href="#contact" class="magnetic-btn inline-flex items-center gap-2 px-7 py-3.5 rounded-lg text-sm font-bold text-dark-950 bg-gradient-to-r from-brand-400 to-brand-500 hover:from-brand-300 hover:to-brand-400 transition-all shadow-glow-emerald font-sans">
+            <span>Automate Your Workflows</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
           </a>
-          <a href="#mcp-architecture" class="magnetic-btn inline-flex items-center gap-2 px-6 py-3.5 rounded-lg text-sm font-semibold text-slate-200 bg-dark-850 hover:bg-dark-800 border border-white/10 hover:border-white/20 transition-all">
-            <span>Inspect MCP Protocol Engine</span>
-            <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+          <a href="#solutions" class="magnetic-btn inline-flex items-center gap-2 px-6 py-3.5 rounded-lg text-sm font-semibold text-slate-200 bg-dark-850 hover:bg-dark-800 border border-white/10 hover:border-white/20 transition-all font-sans">
+            <span>See Working Case Studies & Videos</span>
+            <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
           </a>
         </div>
 
@@ -240,25 +233,25 @@
             <div class="text-2xl sm:text-3xl font-bold text-white mb-1 flex items-baseline">
               <span class="counter" data-target="10">0</span><span>+</span>
             </div>
-            <div class="text-xs text-slate-400 uppercase tracking-wider">Enterprise Systems Shipped</div>
+            <div class="text-xs text-slate-400 uppercase tracking-wider">Turnkey Systems Shipped</div>
           </div>
           <div class="metric-item">
             <div class="text-2xl sm:text-3xl font-bold text-brand-400 mb-1 flex items-baseline">
-              <span class="counter" data-target="100">0</span><span>%</span>
+              <span class="counter" data-target="90">0</span><span>%</span>
             </div>
-            <div class="text-xs text-slate-400 uppercase tracking-wider">Deterministic State & Schema</div>
+            <div class="text-xs text-slate-400 uppercase tracking-wider">Manual Work Reduced</div>
           </div>
           <div class="metric-item">
             <div class="text-2xl sm:text-3xl font-bold text-accent-400 mb-1">
-              <span>MCP SDK</span>
+              <span>100%</span>
             </div>
-            <div class="text-xs text-slate-400 uppercase tracking-wider">Standardized Tool Protocol</div>
+            <div class="text-xs text-slate-400 uppercase tracking-wider">Human-In-The-Loop Control</div>
           </div>
           <div class="metric-item">
             <div class="text-2xl sm:text-3xl font-bold text-indigo-400 mb-1 flex items-baseline">
-              <span class="counter" data-target="2">0</span><span>-Tier</span>
+              <span class="counter" data-target="14">0</span><span> Days</span>
             </div>
-            <div class="text-xs text-slate-400 uppercase tracking-wider">Human-In-The-Loop Approval</div>
+            <div class="text-xs text-slate-400 uppercase tracking-wider">Typical MVP Delivery</div>
           </div>
         </div>
 
@@ -266,480 +259,429 @@
     </div>
   </section>
 
-  <!-- Interactive Project Showcase Section -->
-  <section id="projects" class="relative z-10 py-20 lg:py-28 border-b border-white/5">
+  <!-- Live Solutions / Case Studies Showcase -->
+  <section id="solutions" class="relative z-10 py-20 lg:py-28 border-b border-white/5">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <!-- Section Header -->
       <div class="section-header flex flex-col md:flex-row md:items-end justify-between mb-12">
         <div>
-          <div class="text-xs font-mono text-brand-400 tracking-widest uppercase mb-2">Production Implementations</div>
-          <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-            Featured Automated Systems & Fullstack Engines
+          <div class="text-xs font-mono text-brand-400 tracking-widest uppercase mb-2 font-semibold">Proven Client Solutions</div>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight font-sans">
+            Real Automated Systems in Action
           </h2>
           <p class="text-slate-400 mt-2 max-w-2xl text-sm sm:text-base">
-            Every project below is an active, production-grade application backed by persistent storage, real API/MCP protocols, and verified demo recordings.
+            Watch the actual application demo videos below to see how these automated systems solve real operational challenges.
           </p>
         </div>
 
         <!-- Filter Tabs -->
         <div class="mt-6 md:mt-0 flex flex-wrap gap-1.5 p-1 rounded-lg bg-dark-900 border border-white/10 text-xs font-medium" id="filter-tabs">
-          <button data-filter="all" class="filter-btn active px-3 py-1.5 rounded-md bg-brand-500 text-dark-950 font-semibold transition-all">All (10)</button>
-          <button data-filter="mcp" class="filter-btn px-3 py-1.5 rounded-md text-slate-400 hover:text-white transition-all">MCP & Agents</button>
-          <button data-filter="enterprise" class="filter-btn px-3 py-1.5 rounded-md text-slate-400 hover:text-white transition-all">Enterprise Portals</button>
-          <button data-filter="data" class="filter-btn px-3 py-1.5 rounded-md text-slate-400 hover:text-white transition-all">Financial & Data</button>
-          <button data-filter="document" class="filter-btn px-3 py-1.5 rounded-md text-slate-400 hover:text-white transition-all">Document Pipelines</button>
+          <button data-filter="all" class="filter-btn active px-3.5 py-1.5 rounded-md bg-brand-500 text-dark-950 font-bold transition-all">All Solutions (10)</button>
+          <button data-filter="operations" class="filter-btn px-3 py-1.5 rounded-md text-slate-400 hover:text-white transition-all">Business Operations</button>
+          <button data-filter="finance" class="filter-btn px-3 py-1.5 rounded-md text-slate-400 hover:text-white transition-all">Finance & Billing</button>
+          <button data-filter="client" class="filter-btn px-3 py-1.5 rounded-md text-slate-400 hover:text-white transition-all">Client Portals</button>
+          <button data-filter="docs" class="filter-btn px-3 py-1.5 rounded-md text-slate-400 hover:text-white transition-all">Document & Content</button>
         </div>
       </div>
 
-      <!-- Project Cards Grid -->
+      <!-- Case Studies Grid -->
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8" id="projects-grid">
 
-        <!-- Project 1: Local MCP Business Operations Agent -->
-        <div class="glass-card rounded-xl overflow-hidden flex flex-col group project-card" data-category="mcp">
+        <!-- Solution 1: Business Operations Agent -->
+        <div class="glass-card rounded-xl overflow-hidden flex flex-col group project-card" data-category="operations">
           <div class="video-container aspect-video border-b border-white/5 relative">
             <video preload="metadata" muted playsinline loop poster="assets/images/local_mcp_business_op_poster.png" class="hover-video">
               <source src="assets/videos/local_mcp_business_op.mp4" type="video/mp4">
             </video>
             <div class="absolute inset-0 bg-gradient-to-t from-dark-950/80 via-transparent to-transparent pointer-events-none"></div>
-            <div class="absolute top-3 left-3 px-2.5 py-1 rounded bg-dark-950/80 backdrop-blur-md border border-brand-500/30 text-[11px] font-mono font-semibold text-brand-400">
-              REAL MCP SERVER & TOOL ENGINE
+            <div class="absolute top-3 left-3 px-3 py-1 rounded bg-dark-950/85 backdrop-blur-md border border-brand-500/30 text-[11px] font-mono font-semibold text-brand-400">
+              $45K+ REVENUE RECOVERED
             </div>
             <div class="absolute bottom-3 right-3 px-2.5 py-1 rounded bg-black/60 backdrop-blur-md text-[11px] font-mono text-slate-300 flex items-center gap-1.5">
               <svg class="w-3 h-3 text-brand-400" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-              <span>Hover to Play Demo</span>
+              <span>Hover to Play Video</span>
             </div>
           </div>
           <div class="p-6 flex-1 flex flex-col justify-between">
             <div>
-              <div class="flex items-center justify-between gap-4 mb-2">
-                <h3 class="text-xl font-bold text-white group-hover:text-brand-400 transition-colors">
-                  Local MCP Business Operations Agent
-                </h3>
-                <a href="https://github.com/KalminX/local_mcp_business_op" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white transition-colors" title="View GitHub Repository">
-                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-                </a>
-              </div>
+              <h3 class="text-xl font-bold text-white group-hover:text-brand-400 transition-colors font-sans mb-2">
+                Autonomous Business Operations Agent
+              </h3>
               <p class="text-sm text-slate-300 leading-relaxed mb-4">
-                Autonomous local operations agent powered by an official TypeScript MCP server. Features 12+ database-backed tools across CRM, invoices, projects, and tasks with deterministic entity routing and a strict two-phase Human-in-the-Loop write approval queue.
+                <strong class="text-white">The Problem:</strong> Operations teams lose 15+ hours weekly chasing overdue invoices, cross-referencing CRM records, and manually delegating follow-ups.<br>
+                <strong class="text-brand-400">The Solution:</strong> An intelligent agent that autonomously queries live records, identifies at-risk accounts, drafts follow-up tasks, and stages one-click approval requests for staff.
               </p>
               <div class="flex flex-wrap gap-2 mb-6">
-                <span class="px-2.5 py-1 rounded bg-brand-500/10 text-brand-400 font-mono text-xs">TypeScript</span>
-                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">Official MCP SDK</span>
-                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">SQLite Persistent DB</span>
-                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">Zod Validation</span>
-                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">Approval Queue</span>
+                <span class="px-2.5 py-1 rounded bg-brand-500/10 text-brand-400 font-mono text-xs font-semibold">15+ Hours Saved/Week</span>
+                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">One-Click Approvals</span>
+                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">CRM & Invoice Sync</span>
               </div>
             </div>
             <div class="pt-4 border-t border-white/5 flex items-center justify-between">
-              <span class="text-xs text-slate-400 font-mono">100% Zero-LLM Fallback Mode</span>
-              <a href="https://github.com/KalminX/local_mcp_business_op" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-400 hover:text-brand-300">
-                <span>View Architecture & Code</span>
+              <span class="text-xs text-slate-400 font-mono">100% Auditable Record</span>
+              <a href="https://github.com/KalminX/local_mcp_business_op" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-bold text-brand-400 hover:text-brand-300 font-sans">
+                <span>View Full Case Study & Code</span>
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
               </a>
             </div>
           </div>
         </div>
 
-        <!-- Project 2: AI Opportunity Audit & Decision Matrix -->
-        <div class="glass-card rounded-xl overflow-hidden flex flex-col group project-card" data-category="data">
+        <!-- Solution 2: AI Opportunity Audit -->
+        <div class="glass-card rounded-xl overflow-hidden flex flex-col group project-card" data-category="operations">
           <div class="video-container aspect-video border-b border-white/5 relative">
             <video preload="metadata" muted playsinline loop poster="assets/images/ai_opportunity_audit_poster.png" class="hover-video">
               <source src="assets/videos/ai_opportunity_audit.mp4" type="video/mp4">
             </video>
             <div class="absolute inset-0 bg-gradient-to-t from-dark-950/80 via-transparent to-transparent pointer-events-none"></div>
-            <div class="absolute top-3 left-3 px-2.5 py-1 rounded bg-dark-950/80 backdrop-blur-md border border-accent-500/30 text-[11px] font-mono font-semibold text-accent-400">
-              ROI & WORKFLOW OPTIMIZATION
+            <div class="absolute top-3 left-3 px-3 py-1 rounded bg-dark-950/85 backdrop-blur-md border border-accent-500/30 text-[11px] font-mono font-semibold text-accent-400">
+              EXECUTIVE DECISION PLATFORM
             </div>
             <div class="absolute bottom-3 right-3 px-2.5 py-1 rounded bg-black/60 backdrop-blur-md text-[11px] font-mono text-slate-300 flex items-center gap-1.5">
               <svg class="w-3 h-3 text-accent-400" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-              <span>Hover to Play Demo</span>
+              <span>Hover to Play Video</span>
             </div>
           </div>
           <div class="p-6 flex-1 flex flex-col justify-between">
             <div>
-              <div class="flex items-center justify-between gap-4 mb-2">
-                <h3 class="text-xl font-bold text-white group-hover:text-accent-400 transition-colors">
-                  AI Opportunity Audit & Decision Matrix
-                </h3>
-                <a href="https://github.com/KalminX/ai_opportunity_audit" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white transition-colors">
-                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-                </a>
-              </div>
+              <h3 class="text-xl font-bold text-white group-hover:text-accent-400 transition-colors font-sans mb-2">
+                AI Opportunity Audit & Decision Matrix
+              </h3>
               <p class="text-sm text-slate-300 leading-relaxed mb-4">
-                Enterprise decision-support engine that analyzes operational bottlenecks, scores ROI vs. implementation complexity, and generates automated Mermaid process maps and 90-day deployment roadmaps.
+                <strong class="text-white">The Problem:</strong> Leadership teams struggle to identify which internal workflows offer the highest ROI for automation without wasting months on analysis.<br>
+                <strong class="text-accent-400">The Solution:</strong> An executive audit dashboard that benchmarks company operations, scores ROI vs. implementation complexity, and auto-generates 90-day execution roadmaps.
               </p>
               <div class="flex flex-wrap gap-2 mb-6">
-                <span class="px-2.5 py-1 rounded bg-accent-500/10 text-accent-400 font-mono text-xs">Python 3.11</span>
-                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">FastAPI</span>
-                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">Mermaid.js Flowcharts</span>
-                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">ROI Valuation Matrix</span>
+                <span class="px-2.5 py-1 rounded bg-accent-500/10 text-accent-400 font-mono text-xs font-semibold">Immediate ROI Clarity</span>
+                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">Visual Process Maps</span>
+                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">90-Day Implementation Plan</span>
               </div>
             </div>
             <div class="pt-4 border-t border-white/5 flex items-center justify-between">
-              <span class="text-xs text-slate-400 font-mono">Automated Feasibility Engine</span>
-              <a href="https://github.com/KalminX/ai_opportunity_audit" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-semibold text-accent-400 hover:text-accent-300">
-                <span>View Architecture & Code</span>
+              <span class="text-xs text-slate-400 font-mono">Executive-Ready Outputs</span>
+              <a href="https://github.com/KalminX/ai_opportunity_audit" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-bold text-accent-400 hover:text-accent-300 font-sans">
+                <span>View Full Case Study & Code</span>
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
               </a>
             </div>
           </div>
         </div>
 
-        <!-- Project 3: AI Invoice & Document Processing Pipeline -->
-        <div class="glass-card rounded-xl overflow-hidden flex flex-col group project-card" data-category="document">
+        <!-- Solution 3: AI Invoice & Document Processor -->
+        <div class="glass-card rounded-xl overflow-hidden flex flex-col group project-card" data-category="finance">
           <div class="video-container aspect-video border-b border-white/5 relative">
             <video preload="metadata" muted playsinline loop poster="assets/images/ai_invoice_document_poster.png" class="hover-video">
               <source src="assets/videos/ai_invoice_document.mp4" type="video/mp4">
             </video>
             <div class="absolute inset-0 bg-gradient-to-t from-dark-950/80 via-transparent to-transparent pointer-events-none"></div>
-            <div class="absolute top-3 left-3 px-2.5 py-1 rounded bg-dark-950/80 backdrop-blur-md border border-brand-500/30 text-[11px] font-mono font-semibold text-brand-400">
-              DOCUMENT OCR & ERP RECONCILIATION
+            <div class="absolute top-3 left-3 px-3 py-1 rounded bg-dark-950/85 backdrop-blur-md border border-brand-500/30 text-[11px] font-mono font-semibold text-brand-400">
+              90% FASTER INVOICE ENTRY
             </div>
             <div class="absolute bottom-3 right-3 px-2.5 py-1 rounded bg-black/60 backdrop-blur-md text-[11px] font-mono text-slate-300 flex items-center gap-1.5">
               <svg class="w-3 h-3 text-brand-400" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-              <span>Hover to Play Demo</span>
+              <span>Hover to Play Video</span>
             </div>
           </div>
           <div class="p-6 flex-1 flex flex-col justify-between">
             <div>
-              <div class="flex items-center justify-between gap-4 mb-2">
-                <h3 class="text-xl font-bold text-white group-hover:text-brand-400 transition-colors">
-                  AI Invoice & Document Processing Pipeline
-                </h3>
-                <a href="https://github.com/KalminX/ai_invoice_document" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white transition-colors">
-                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-                </a>
-              </div>
+              <h3 class="text-xl font-bold text-white group-hover:text-brand-400 transition-colors font-sans mb-2">
+                Automated Invoice & Document Extraction
+              </h3>
               <p class="text-sm text-slate-300 leading-relaxed mb-4">
-                Automated multi-format document parser with bounding-box visual OCR highlights, line-item arithmetic reconciliation, smart GL coding recommendations, and zero-loss QuickBooks/NetSuite export.
+                <strong class="text-white">The Problem:</strong> Manual invoice data entry causes accounting backlogs, human typos, and delayed vendor payments.<br>
+                <strong class="text-brand-400">The Solution:</strong> An automated OCR pipeline that extracts line items with visual bounding boxes, performs mathematical reconciliation, maps GL codes, and syncs to ERP systems.
               </p>
               <div class="flex flex-wrap gap-2 mb-6">
-                <span class="px-2.5 py-1 rounded bg-brand-500/10 text-brand-400 font-mono text-xs">Python</span>
-                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">OCR / OpenCV</span>
-                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">GL Account Mapping</span>
-                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">ERP Integration</span>
+                <span class="px-2.5 py-1 rounded bg-brand-500/10 text-brand-400 font-mono text-xs font-semibold">99.4% Parsing Accuracy</span>
+                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">Math Validation</span>
+                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">QuickBooks & NetSuite Export</span>
               </div>
             </div>
             <div class="pt-4 border-t border-white/5 flex items-center justify-between">
-              <span class="text-xs text-slate-400 font-mono">99.4% Extraction Precision</span>
-              <a href="https://github.com/KalminX/ai_invoice_document" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-400 hover:text-brand-300">
-                <span>View Architecture & Code</span>
+              <span class="text-xs text-slate-400 font-mono">Zero Manual Re-typing</span>
+              <a href="https://github.com/KalminX/ai_invoice_document" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-bold text-brand-400 hover:text-brand-300 font-sans">
+                <span>View Full Case Study & Code</span>
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
               </a>
             </div>
           </div>
         </div>
 
-        <!-- Project 4: Meeting Intelligence & Executive Briefing Hub -->
-        <div class="glass-card rounded-xl overflow-hidden flex flex-col group project-card" data-category="mcp">
+        <!-- Solution 4: Meeting Intelligence -->
+        <div class="glass-card rounded-xl overflow-hidden flex flex-col group project-card" data-category="operations">
           <div class="video-container aspect-video border-b border-white/5 relative">
             <video preload="metadata" muted playsinline loop poster="assets/images/meeting_intelligence_poster.png" class="hover-video">
               <source src="assets/videos/meeting_intelligence.mp4" type="video/mp4">
             </video>
             <div class="absolute inset-0 bg-gradient-to-t from-dark-950/80 via-transparent to-transparent pointer-events-none"></div>
-            <div class="absolute top-3 left-3 px-2.5 py-1 rounded bg-dark-950/80 backdrop-blur-md border border-indigo-500/30 text-[11px] font-mono font-semibold text-indigo-400">
-              AUDIO DIARIZATION & ASANA DISPATCH
+            <div class="absolute top-3 left-3 px-3 py-1 rounded bg-dark-950/85 backdrop-blur-md border border-indigo-500/30 text-[11px] font-mono font-semibold text-indigo-400">
+              ZERO DROPPED ACTION ITEMS
             </div>
             <div class="absolute bottom-3 right-3 px-2.5 py-1 rounded bg-black/60 backdrop-blur-md text-[11px] font-mono text-slate-300 flex items-center gap-1.5">
               <svg class="w-3 h-3 text-indigo-400" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-              <span>Hover to Play Demo</span>
+              <span>Hover to Play Video</span>
             </div>
           </div>
           <div class="p-6 flex-1 flex flex-col justify-between">
             <div>
-              <div class="flex items-center justify-between gap-4 mb-2">
-                <h3 class="text-xl font-bold text-white group-hover:text-indigo-400 transition-colors">
-                  Meeting Intelligence & Executive Briefing Hub
-                </h3>
-                <a href="https://github.com/KalminX/meeting_intelligence" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white transition-colors">
-                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-                </a>
-              </div>
+              <h3 class="text-xl font-bold text-white group-hover:text-indigo-400 transition-colors font-sans mb-2">
+                Executive Meeting Intelligence & Task Dispatch
+              </h3>
               <p class="text-sm text-slate-300 leading-relaxed mb-4">
-                Conversation intelligence pipeline that digests multi-speaker transcripts, extracts key decisions and risk flags, and automates downstream task generation with bidirectional Asana and Linear synchronization.
+                <strong class="text-white">The Problem:</strong> Critical action items and commitments made during executive calls get forgotten, leading to costly project delays.<br>
+                <strong class="text-indigo-400">The Solution:</strong> An intelligence hub that transcribes conversations, identifies key decisions and risks, and automatically dispatches assigned tasks into Asana or Linear.
               </p>
               <div class="flex flex-wrap gap-2 mb-6">
-                <span class="px-2.5 py-1 rounded bg-indigo-500/10 text-indigo-400 font-mono text-xs">Python</span>
-                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">Claude Tool Use</span>
-                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">Diarization Engine</span>
-                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">Asana API Integration</span>
+                <span class="px-2.5 py-1 rounded bg-indigo-500/10 text-indigo-400 font-mono text-xs font-semibold">Instant Executive Briefs</span>
+                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">Automated Task Dispatch</span>
+                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">Asana / Linear Sync</span>
               </div>
             </div>
             <div class="pt-4 border-t border-white/5 flex items-center justify-between">
-              <span class="text-xs text-slate-400 font-mono">Automated Decision Extraction</span>
-              <a href="https://github.com/KalminX/meeting_intelligence" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-semibold text-indigo-400 hover:text-indigo-300">
-                <span>View Architecture & Code</span>
+              <span class="text-xs text-slate-400 font-mono">100% Accountability</span>
+              <a href="https://github.com/KalminX/meeting_intelligence" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-400 hover:text-indigo-300 font-sans">
+                <span>View Full Case Study & Code</span>
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
               </a>
             </div>
           </div>
         </div>
 
-        <!-- Project 5: Client Query Triage & Support Workbench -->
-        <div class="glass-card rounded-xl overflow-hidden flex flex-col group project-card" data-category="enterprise">
+        <!-- Solution 5: Client Query Triage -->
+        <div class="glass-card rounded-xl overflow-hidden flex flex-col group project-card" data-category="client">
           <div class="video-container aspect-video border-b border-white/5 relative">
             <video preload="metadata" muted playsinline loop poster="assets/images/client_query_triage_poster.png" class="hover-video">
               <source src="assets/videos/client_query_triage.mp4" type="video/mp4">
             </video>
             <div class="absolute inset-0 bg-gradient-to-t from-dark-950/80 via-transparent to-transparent pointer-events-none"></div>
-            <div class="absolute top-3 left-3 px-2.5 py-1 rounded bg-dark-950/80 backdrop-blur-md border border-brand-500/30 text-[11px] font-mono font-semibold text-brand-400">
-              SLA ROUTING & WORKBENCH
+            <div class="absolute top-3 left-3 px-3 py-1 rounded bg-dark-950/85 backdrop-blur-md border border-brand-500/30 text-[11px] font-mono font-semibold text-brand-400">
+              5X FASTER RESPONSE TIMES
             </div>
             <div class="absolute bottom-3 right-3 px-2.5 py-1 rounded bg-black/60 backdrop-blur-md text-[11px] font-mono text-slate-300 flex items-center gap-1.5">
               <svg class="w-3 h-3 text-brand-400" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-              <span>Hover to Play Demo</span>
+              <span>Hover to Play Video</span>
             </div>
           </div>
           <div class="p-6 flex-1 flex flex-col justify-between">
             <div>
-              <div class="flex items-center justify-between gap-4 mb-2">
-                <h3 class="text-xl font-bold text-white group-hover:text-brand-400 transition-colors">
-                  Client Query Triage & Response Workbench
-                </h3>
-                <a href="https://github.com/KalminX/client_query_triage" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white transition-colors">
-                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-                </a>
-              </div>
+              <h3 class="text-xl font-bold text-white group-hover:text-brand-400 transition-colors font-sans mb-2">
+                Client Query Triage & Support Workbench
+              </h3>
               <p class="text-sm text-slate-300 leading-relaxed mb-4">
-                Real-time support operations workspace featuring automated sentiment classification, countdown urgency timers, policy-compliant draft generation, and interactive tone-shift rewriting tools.
+                <strong class="text-white">The Problem:</strong> High-ticket client requests get buried in email inboxes, breaching SLAs and hurting client retention.<br>
+                <strong class="text-brand-400">The Solution:</strong> A real-time triage inbox that scores sentiment urgency, manages SLA countdowns, and generates verified policy-grounded draft responses in seconds.
               </p>
               <div class="flex flex-wrap gap-2 mb-6">
-                <span class="px-2.5 py-1 rounded bg-brand-500/10 text-brand-400 font-mono text-xs">TypeScript</span>
-                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">Node.js</span>
-                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">Real-time Sentiment</span>
-                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">SLA Escalations</span>
+                <span class="px-2.5 py-1 rounded bg-brand-500/10 text-brand-400 font-mono text-xs font-semibold">Zero SLA Breaches</span>
+                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">Urgency Scoring</span>
+                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">Policy-Compliant Drafts</span>
               </div>
             </div>
             <div class="pt-4 border-t border-white/5 flex items-center justify-between">
-              <span class="text-xs text-slate-400 font-mono">100% Policy Grounded</span>
-              <a href="https://github.com/KalminX/client_query_triage" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-400 hover:text-brand-300">
-                <span>View Architecture & Code</span>
+              <span class="text-xs text-slate-400 font-mono">Real-Time Queue</span>
+              <a href="https://github.com/KalminX/client_query_triage" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-bold text-brand-400 hover:text-brand-300 font-sans">
+                <span>View Full Case Study & Code</span>
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
               </a>
             </div>
           </div>
         </div>
 
-        <!-- Project 6: Client Onboarding & Compliance Engine -->
-        <div class="glass-card rounded-xl overflow-hidden flex flex-col group project-card" data-category="enterprise">
+        <!-- Solution 6: Client Onboarding System -->
+        <div class="glass-card rounded-xl overflow-hidden flex flex-col group project-card" data-category="client">
           <div class="video-container aspect-video border-b border-white/5 relative">
             <video preload="metadata" muted playsinline loop poster="assets/images/client_boarding_poster.png" class="hover-video">
               <source src="assets/videos/client_boarding.mp4" type="video/mp4">
             </video>
             <div class="absolute inset-0 bg-gradient-to-t from-dark-950/80 via-transparent to-transparent pointer-events-none"></div>
-            <div class="absolute top-3 left-3 px-2.5 py-1 rounded bg-dark-950/80 backdrop-blur-md border border-accent-500/30 text-[11px] font-mono font-semibold text-accent-400">
-              KYC & MULTI-TIER COMPLIANCE
+            <div class="absolute top-3 left-3 px-3 py-1 rounded bg-dark-950/85 backdrop-blur-md border border-accent-500/30 text-[11px] font-mono font-semibold text-accent-400">
+              FRICTIONLESS ONBOARDING
             </div>
             <div class="absolute bottom-3 right-3 px-2.5 py-1 rounded bg-black/60 backdrop-blur-md text-[11px] font-mono text-slate-300 flex items-center gap-1.5">
               <svg class="w-3 h-3 text-accent-400" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-              <span>Hover to Play Demo</span>
+              <span>Hover to Play Video</span>
             </div>
           </div>
           <div class="p-6 flex-1 flex flex-col justify-between">
             <div>
-              <div class="flex items-center justify-between gap-4 mb-2">
-                <h3 class="text-xl font-bold text-white group-hover:text-accent-400 transition-colors">
-                  Client Onboarding & Compliance Engine
-                </h3>
-                <a href="https://github.com/KalminX/client_boarding" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white transition-colors">
-                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-                </a>
-              </div>
+              <h3 class="text-xl font-bold text-white group-hover:text-accent-400 transition-colors font-sans mb-2">
+                Automated Client Onboarding & Compliance Portal
+              </h3>
               <p class="text-sm text-slate-300 leading-relaxed mb-4">
-                Enterprise client onboarding pipeline combining automated verification checks, secure document intake with OCR parsing, staged managerial approval queues, and immutable audit logs.
+                <strong class="text-white">The Problem:</strong> Onboarding new enterprise clients takes days of manual email exchanges, document chasing, and compliance checks.<br>
+                <strong class="text-accent-400">The Solution:</strong> A guided intake portal with instant document verification, automated risk scoring, and tiered manager approval queues.
               </p>
               <div class="flex flex-wrap gap-2 mb-6">
-                <span class="px-2.5 py-1 rounded bg-accent-500/10 text-accent-400 font-mono text-xs">TypeScript</span>
-                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">SQLite DB</span>
-                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">Approval State Machine</span>
-                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">Audit Event Logger</span>
+                <span class="px-2.5 py-1 rounded bg-accent-500/10 text-accent-400 font-mono text-xs font-semibold">Same-Day Onboarding</span>
+                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">Automated Verification</span>
+                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">Audit Trail</span>
               </div>
             </div>
             <div class="pt-4 border-t border-white/5 flex items-center justify-between">
-              <span class="text-xs text-slate-400 font-mono">SOC-2 Ready Audit Trail</span>
-              <a href="https://github.com/KalminX/client_boarding" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-semibold text-accent-400 hover:text-accent-300">
-                <span>View Architecture & Code</span>
+              <span class="text-xs text-slate-400 font-mono">SOC-2 Ready Architecture</span>
+              <a href="https://github.com/KalminX/client_boarding" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-bold text-accent-400 hover:text-accent-300 font-sans">
+                <span>View Full Case Study & Code</span>
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
               </a>
             </div>
           </div>
         </div>
 
-        <!-- Project 7: Internal Enterprise Knowledge Hub -->
-        <div class="glass-card rounded-xl overflow-hidden flex flex-col group project-card" data-category="document">
+        <!-- Solution 7: Internal Knowledge Hub -->
+        <div class="glass-card rounded-xl overflow-hidden flex flex-col group project-card" data-category="docs">
           <div class="video-container aspect-video border-b border-white/5 relative">
             <video preload="metadata" muted playsinline loop poster="assets/images/internal_knowledge_hub_poster.png" class="hover-video">
               <source src="assets/videos/internal_knowledge_hub.mp4" type="video/mp4">
             </video>
             <div class="absolute inset-0 bg-gradient-to-t from-dark-950/80 via-transparent to-transparent pointer-events-none"></div>
-            <div class="absolute top-3 left-3 px-2.5 py-1 rounded bg-dark-950/80 backdrop-blur-md border border-brand-500/30 text-[11px] font-mono font-semibold text-brand-400">
-              HYBRID RAG & CITATIONS
+            <div class="absolute top-3 left-3 px-3 py-1 rounded bg-dark-950/85 backdrop-blur-md border border-brand-500/30 text-[11px] font-mono font-semibold text-brand-400">
+              INSTANT COMPANY KNOWLEDGE
             </div>
             <div class="absolute bottom-3 right-3 px-2.5 py-1 rounded bg-black/60 backdrop-blur-md text-[11px] font-mono text-slate-300 flex items-center gap-1.5">
               <svg class="w-3 h-3 text-brand-400" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-              <span>Hover to Play Demo</span>
+              <span>Hover to Play Video</span>
             </div>
           </div>
           <div class="p-6 flex-1 flex flex-col justify-between">
             <div>
-              <div class="flex items-center justify-between gap-4 mb-2">
-                <h3 class="text-xl font-bold text-white group-hover:text-brand-400 transition-colors">
-                  Internal Enterprise Knowledge Hub
-                </h3>
-                <a href="https://github.com/KalminX/internal_knowledge_hub" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white transition-colors">
-                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-                </a>
-              </div>
+              <h3 class="text-xl font-bold text-white group-hover:text-brand-400 transition-colors font-sans mb-2">
+                Enterprise Knowledge Hub & Instant Search
+              </h3>
               <p class="text-sm text-slate-300 leading-relaxed mb-4">
-                Hybrid semantic search and knowledge retrieval system marrying BM25 keyword matching with dense vector embeddings. Features interactive source-citation bubbles and zero-hallucination abstention safeguards.
+                <strong class="text-white">The Problem:</strong> Employees spend up to 20% of their week hunting for internal policies, technical SOPs, and project documentation.<br>
+                <strong class="text-brand-400">The Solution:</strong> A lightning-fast knowledge assistant that answers complex team questions in under 40ms with highlighted source citations.
               </p>
               <div class="flex flex-wrap gap-2 mb-6">
-                <span class="px-2.5 py-1 rounded bg-brand-500/10 text-brand-400 font-mono text-xs">Python</span>
-                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">SQLite FTS5</span>
-                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">Vector Search + BM25</span>
-                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">Exact Citations</span>
+                <span class="px-2.5 py-1 rounded bg-brand-500/10 text-brand-400 font-mono text-xs font-semibold">&lt; 40ms Responses</span>
+                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">Exact Source Citations</span>
+                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">Zero-Hallucination Guarantee</span>
               </div>
             </div>
             <div class="pt-4 border-t border-white/5 flex items-center justify-between">
-              <span class="text-xs text-slate-400 font-mono">&lt; 40ms Query Latency</span>
-              <a href="https://github.com/KalminX/internal_knowledge_hub" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-400 hover:text-brand-300">
-                <span>View Architecture & Code</span>
+              <span class="text-xs text-slate-400 font-mono">Role-Based Security</span>
+              <a href="https://github.com/KalminX/internal_knowledge_hub" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-bold text-brand-400 hover:text-brand-300 font-sans">
+                <span>View Full Case Study & Code</span>
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
               </a>
             </div>
           </div>
         </div>
 
-        <!-- Project 8: Executive Board Deck Generator -->
-        <div class="glass-card rounded-xl overflow-hidden flex flex-col group project-card" data-category="document">
+        <!-- Solution 8: Board Deck Generator -->
+        <div class="glass-card rounded-xl overflow-hidden flex flex-col group project-card" data-category="docs">
           <div class="video-container aspect-video border-b border-white/5 relative">
             <video preload="metadata" muted playsinline loop poster="assets/images/board_deck_generator_poster.png" class="hover-video">
               <source src="assets/videos/board_deck_generator.mp4" type="video/mp4">
             </video>
             <div class="absolute inset-0 bg-gradient-to-t from-dark-950/80 via-transparent to-transparent pointer-events-none"></div>
-            <div class="absolute top-3 left-3 px-2.5 py-1 rounded bg-dark-950/80 backdrop-blur-md border border-accent-500/30 text-[11px] font-mono font-semibold text-accent-400">
-              NARRATIVE & PPTX GENERATION
+            <div class="absolute top-3 left-3 px-3 py-1 rounded bg-dark-950/85 backdrop-blur-md border border-accent-500/30 text-[11px] font-mono font-semibold text-accent-400">
+              BOARD-READY IN 60 SECONDS
             </div>
             <div class="absolute bottom-3 right-3 px-2.5 py-1 rounded bg-black/60 backdrop-blur-md text-[11px] font-mono text-slate-300 flex items-center gap-1.5">
               <svg class="w-3 h-3 text-accent-400" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-              <span>Hover to Play Demo</span>
+              <span>Hover to Play Video</span>
             </div>
           </div>
           <div class="p-6 flex-1 flex flex-col justify-between">
             <div>
-              <div class="flex items-center justify-between gap-4 mb-2">
-                <h3 class="text-xl font-bold text-white group-hover:text-accent-400 transition-colors">
-                  Executive Board Deck Generator
-                </h3>
-                <a href="https://github.com/KalminX/board_deck_generator" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white transition-colors">
-                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-                </a>
-              </div>
+              <h3 class="text-xl font-bold text-white group-hover:text-accent-400 transition-colors font-sans mb-2">
+                Executive Board Deck & Presentation Engine
+              </h3>
               <p class="text-sm text-slate-300 leading-relaxed mb-4">
-                Automated narrative synthesis system that transforms raw metrics into polished, corporate-branded PowerPoint (.pptx) and PDF presentations with executive summary cards and chart embeds.
+                <strong class="text-white">The Problem:</strong> Executives spend dozens of hours preparing slides and narrative decks for board meetings and investor updates.<br>
+                <strong class="text-accent-400">The Solution:</strong> An automated slide generation engine that transforms company data into branded, executive-grade PowerPoint (.pptx) and PDF presentations.
               </p>
               <div class="flex flex-wrap gap-2 mb-6">
-                <span class="px-2.5 py-1 rounded bg-accent-500/10 text-accent-400 font-mono text-xs">Python</span>
-                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">python-pptx</span>
+                <span class="px-2.5 py-1 rounded bg-accent-500/10 text-accent-400 font-mono text-xs font-semibold">1-Click PPTX Export</span>
                 <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">Narrative Outlines</span>
-                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">PDF Rendering</span>
+                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">Corporate Branding</span>
               </div>
             </div>
             <div class="pt-4 border-t border-white/5 flex items-center justify-between">
-              <span class="text-xs text-slate-400 font-mono">1-Click PPTX Export</span>
-              <a href="https://github.com/KalminX/board_deck_generator" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-semibold text-accent-400 hover:text-accent-300">
-                <span>View Architecture & Code</span>
+              <span class="text-xs text-slate-400 font-mono">Pixel-Perfect Layouts</span>
+              <a href="https://github.com/KalminX/board_deck_generator" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-bold text-accent-400 hover:text-accent-300 font-sans">
+                <span>View Full Case Study & Code</span>
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
               </a>
             </div>
           </div>
         </div>
 
-        <!-- Project 9: AI Storybook & Illustration Generator -->
-        <div class="glass-card rounded-xl overflow-hidden flex flex-col group project-card" data-category="document">
+        <!-- Solution 9: Storybook Generator -->
+        <div class="glass-card rounded-xl overflow-hidden flex flex-col group project-card" data-category="docs">
           <div class="video-container aspect-video border-b border-white/5 relative">
             <video preload="metadata" muted playsinline loop poster="assets/images/storybook_generator_poster.png" class="hover-video">
               <source src="assets/videos/storybook_generator.mp4" type="video/mp4">
             </video>
             <div class="absolute inset-0 bg-gradient-to-t from-dark-950/80 via-transparent to-transparent pointer-events-none"></div>
-            <div class="absolute top-3 left-3 px-2.5 py-1 rounded bg-dark-950/80 backdrop-blur-md border border-indigo-500/30 text-[11px] font-mono font-semibold text-indigo-400">
-              MULTIMODAL GENERATION & FLIPBOOK
+            <div class="absolute top-3 left-3 px-3 py-1 rounded bg-dark-950/85 backdrop-blur-md border border-indigo-500/30 text-[11px] font-mono font-semibold text-indigo-400">
+              MULTIMODAL PUBLISHING
             </div>
             <div class="absolute bottom-3 right-3 px-2.5 py-1 rounded bg-black/60 backdrop-blur-md text-[11px] font-mono text-slate-300 flex items-center gap-1.5">
               <svg class="w-3 h-3 text-indigo-400" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-              <span>Hover to Play Demo</span>
+              <span>Hover to Play Video</span>
             </div>
           </div>
           <div class="p-6 flex-1 flex flex-col justify-between">
             <div>
-              <div class="flex items-center justify-between gap-4 mb-2">
-                <h3 class="text-xl font-bold text-white group-hover:text-indigo-400 transition-colors">
-                  AI Storybook & Illustration Generator
-                </h3>
-                <a href="https://github.com/KalminX/storybook_generator" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white transition-colors">
-                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-                </a>
-              </div>
+              <h3 class="text-xl font-bold text-white group-hover:text-indigo-400 transition-colors font-sans mb-2">
+                Automated Storybook & Content Publisher
+              </h3>
               <p class="text-sm text-slate-300 leading-relaxed mb-4">
-                Full-lifecycle multimodal children's book publisher maintaining character consistency across chapters, with an interactive HTML5 flipbook web reader and 300 DPI print-ready PDF compilation.
+                <strong class="text-white">The Problem:</strong> Producing illustrated children's books or visual storyboards requires weeks of costly freelance illustration and manual typesetting.<br>
+                <strong class="text-indigo-400">The Solution:</strong> An end-to-end publishing engine that preserves character consistency across chapters and renders interactive web flipbooks and 300 DPI print PDFs.
               </p>
               <div class="flex flex-wrap gap-2 mb-6">
-                <span class="px-2.5 py-1 rounded bg-indigo-500/10 text-indigo-400 font-mono text-xs">Python</span>
-                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">Diffusion Consistency</span>
-                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">ReportLab 300 DPI</span>
-                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">Flipbook Reader</span>
+                <span class="px-2.5 py-1 rounded bg-indigo-500/10 text-indigo-400 font-mono text-xs font-semibold">Print-Ready 300 DPI</span>
+                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">Consistent Characters</span>
+                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">Interactive Reader</span>
               </div>
             </div>
             <div class="pt-4 border-t border-white/5 flex items-center justify-between">
-              <span class="text-xs text-slate-400 font-mono">End-to-End Pipeline</span>
-              <a href="https://github.com/KalminX/storybook_generator" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-semibold text-indigo-400 hover:text-indigo-300">
-                <span>View Architecture & Code</span>
+              <span class="text-xs text-slate-400 font-mono">Full Publishing Pipeline</span>
+              <a href="https://github.com/KalminX/storybook_generator" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-400 hover:text-indigo-300 font-sans">
+                <span>View Full Case Study & Code</span>
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
               </a>
             </div>
           </div>
         </div>
 
-        <!-- Project 10: Enterprise Financial Reporting Engine -->
-        <div class="glass-card rounded-xl overflow-hidden flex flex-col group project-card" data-category="data">
+        <!-- Solution 10: Financial Reporting Engine -->
+        <div class="glass-card rounded-xl overflow-hidden flex flex-col group project-card" data-category="finance">
           <div class="video-container aspect-video border-b border-white/5 relative">
             <video preload="metadata" muted playsinline loop poster="assets/images/finance_report_poster.png" class="hover-video">
               <source src="assets/videos/finance_report.mp4" type="video/mp4">
             </video>
             <div class="absolute inset-0 bg-gradient-to-t from-dark-950/80 via-transparent to-transparent pointer-events-none"></div>
-            <div class="absolute top-3 left-3 px-2.5 py-1 rounded bg-dark-950/80 backdrop-blur-md border border-brand-500/30 text-[11px] font-mono font-semibold text-brand-400">
-              FINANCIAL CONSOLIDATION & VARIANCE
+            <div class="absolute top-3 left-3 px-3 py-1 rounded bg-dark-950/85 backdrop-blur-md border border-brand-500/30 text-[11px] font-mono font-semibold text-brand-400">
+              REAL-TIME FINANCIAL CLARITY
             </div>
             <div class="absolute bottom-3 right-3 px-2.5 py-1 rounded bg-black/60 backdrop-blur-md text-[11px] font-mono text-slate-300 flex items-center gap-1.5">
               <svg class="w-3 h-3 text-brand-400" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-              <span>Hover to Play Demo</span>
+              <span>Hover to Play Video</span>
             </div>
           </div>
           <div class="p-6 flex-1 flex flex-col justify-between">
             <div>
-              <div class="flex items-center justify-between gap-4 mb-2">
-                <h3 class="text-xl font-bold text-white group-hover:text-brand-400 transition-colors">
-                  Enterprise Financial Reporting Engine
-                </h3>
-                <a href="https://github.com/KalminX/finance_report" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white transition-colors">
-                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-                </a>
-              </div>
+              <h3 class="text-xl font-bold text-white group-hover:text-brand-400 transition-colors font-sans mb-2">
+                Enterprise Financial Consolidation & Variance Engine
+              </h3>
               <p class="text-sm text-slate-300 leading-relaxed mb-4">
-                Multi-entity financial statement consolidation suite with automated variance calculations, cash runway forecasts, interactive waterfall charts, and immutable audit logs.
+                <strong class="text-white">The Problem:</strong> Month-end close takes weeks of manual spreadsheet wrestling to reconcile multi-entity ledgers and calculate budget variances.<br>
+                <strong class="text-brand-400">The Solution:</strong> Automated financial consolidation with real-time EBITDA and cash runway forecasting, automated variance commentary, and compliance audit logs.
               </p>
               <div class="flex flex-wrap gap-2 mb-6">
-                <span class="px-2.5 py-1 rounded bg-brand-500/10 text-brand-400 font-mono text-xs">Python</span>
-                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">FastAPI</span>
-                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">Multi-Entity Consolidation</span>
-                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">Variance Analytics</span>
+                <span class="px-2.5 py-1 rounded bg-brand-500/10 text-brand-400 font-mono text-xs font-semibold">1-Click Month-End Close</span>
+                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">Automated Variance Analysis</span>
+                <span class="px-2.5 py-1 rounded bg-dark-800 text-slate-300 font-mono text-xs">Cash Runway Forecast</span>
               </div>
             </div>
             <div class="pt-4 border-t border-white/5 flex items-center justify-between">
-              <span class="text-xs text-slate-400 font-mono">Reconciled Ledgers</span>
-              <a href="https://github.com/KalminX/finance_report" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-400 hover:text-brand-300">
-                <span>View Architecture & Code</span>
+              <span class="text-xs text-slate-400 font-mono">100% Reconciled Ledgers</span>
+              <a href="https://github.com/KalminX/finance_report" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-bold text-brand-400 hover:text-brand-300 font-sans">
+                <span>View Full Case Study & Code</span>
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
               </a>
             </div>
@@ -750,233 +692,174 @@
     </div>
   </section>
 
-  <!-- Deep Dive: Model Context Protocol (MCP) Section -->
-  <section id="mcp-architecture" class="relative z-10 py-20 lg:py-28 border-b border-white/5 bg-dark-900/40">
+  <!-- How It Works / Workflow Simulation -->
+  <section id="how-it-works" class="relative z-10 py-20 lg:py-28 border-b border-white/5 bg-dark-900/40">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="section-header text-center max-w-3xl mx-auto mb-16">
-        <div class="text-xs font-mono text-brand-400 tracking-widest uppercase mb-2">Protocol Rigor</div>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-          How I Build with the Model Context Protocol (MCP)
+        <div class="text-xs font-mono text-brand-400 tracking-widest uppercase mb-2 font-semibold">The Automation Process</div>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight font-sans">
+          How We Go From Manual Headaches to Turnkey Automation
         </h2>
         <p class="text-slate-400 mt-3 text-sm sm:text-base">
-          Instead of brittle prompts and hallucinated actions, I architect system boundaries around Anthropic's open MCP standard with strict JSON-RPC schemas and verified execution.
+          A seamless 3-step engagement process designed to deliver working business automations without disrupting your daily operations.
         </p>
       </div>
 
-      <!-- Interactive MCP Terminal Simulator -->
-      <div class="terminal-box max-w-4xl mx-auto rounded-xl overflow-hidden glass-panel border border-white/10 shadow-2xl mb-16">
-        <div class="bg-dark-950 px-4 py-3 border-b border-white/10 flex items-center justify-between">
+      <!-- 3-Step Process Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 font-sans">
+        
+        <div class="glass-card p-8 rounded-2xl relative">
+          <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 font-mono font-bold text-lg mb-6">
+            01
+          </div>
+          <h3 class="text-xl font-bold text-white mb-3">Workflow Audit & Scope</h3>
+          <p class="text-sm text-slate-300 leading-relaxed">
+            We identify your highest-cost manual bottlenecks, map out exact data touchpoints, and define clear measurable ROI milestones for the automation.
+          </p>
+        </div>
+
+        <div class="glass-card p-8 rounded-2xl relative">
+          <div class="w-12 h-12 rounded-xl bg-accent-500/10 border border-accent-500/20 flex items-center justify-center text-accent-400 font-mono font-bold text-lg mb-6">
+            02
+          </div>
+          <h3 class="text-xl font-bold text-white mb-3">Rapid Prototype & Build</h3>
+          <p class="text-sm text-slate-300 leading-relaxed">
+            I engineer the custom application, integrate with your live databases and APIs, and implement human-in-the-loop approval safeguards.
+          </p>
+        </div>
+
+        <div class="glass-card p-8 rounded-2xl relative">
+          <div class="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 font-mono font-bold text-lg mb-6">
+            03
+          </div>
+          <h3 class="text-xl font-bold text-white mb-3">Deploy & Hand Over</h3>
+          <p class="text-sm text-slate-300 leading-relaxed">
+            We launch the system into production with comprehensive documentation, team training, and full source code ownership transferred to you.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Live Operations Simulator Box -->
+      <div class="terminal-box max-w-4xl mx-auto rounded-xl overflow-hidden glass-panel border border-white/10 shadow-2xl">
+        <div class="bg-dark-950 px-5 py-3.5 border-b border-white/10 flex items-center justify-between">
           <div class="flex items-center gap-2">
-            <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
-            <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
-            <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
-            <span class="ml-2 font-mono text-xs text-slate-400">mcp-server-business-operations &mdash; stdio</span>
+            <span class="w-3 h-3 rounded-full bg-emerald-500/80 animate-pulse"></span>
+            <span class="font-mono text-xs font-semibold text-slate-300">Live Automation Execution Pipeline</span>
           </div>
-          <div class="flex items-center gap-2 font-mono text-xs text-brand-400">
-            <span class="w-2 h-2 rounded-full bg-brand-400 animate-pulse"></span>
-            <span>JSON-RPC 2.0 Connected</span>
-          </div>
+          <span class="font-mono text-xs text-brand-400 font-medium">Status: Active &bull; Zero Errors</span>
         </div>
         
-        <div class="p-6 bg-dark-950/90 font-mono text-xs sm:text-sm text-slate-300 space-y-4 overflow-x-auto">
-          <div class="terminal-line">
-            <span class="text-slate-500">// 1. Claude calls typed MCP tool with validated arguments</span><br>
-            <span class="text-accent-400">&gt; client.callTool</span>(<span class="text-brand-300">"accounting.list_overdue_invoices"</span>, { <span class="text-slate-400">minDaysOverdue:</span> <span class="text-yellow-300">14</span>, <span class="text-slate-400">includeClientDetails:</span> <span class="text-yellow-300">true</span> })
+        <div class="p-6 sm:p-8 bg-dark-950/90 font-sans space-y-4">
+          <div class="flex items-start gap-4 p-4 rounded-lg bg-dark-900 border border-white/5">
+            <div class="w-8 h-8 rounded-lg bg-accent-500/20 text-accent-400 flex items-center justify-center shrink-0 font-bold text-sm mt-0.5">1</div>
+            <div>
+              <div class="text-sm font-bold text-white mb-1">Trigger: Automated Opportunity & Anomaly Detection</div>
+              <div class="text-xs text-slate-400">System queries CRM & financial ledgers &bull; Detects 3 overdue accounts totaling $42,500 with pending contract renewals.</div>
+            </div>
           </div>
 
-          <div class="terminal-line p-4 rounded-lg bg-dark-900 border border-white/5 text-slate-300">
-            <span class="text-slate-500">// 2. MCP Server schema verification (Zod) + Transactional DB Lookup</span><br>
-            <span class="text-emerald-400">&#10003; Schema verified against ZodType&lt;OverdueInvoicesInput&gt;</span><br>
-            <span class="text-emerald-400">&#10003; Executed SQLite prepared query: SELECT * FROM invoices WHERE status = 'overdue' AND due_date &lt; date('now', '-14 days')</span>
+          <div class="flex items-start gap-4 p-4 rounded-lg bg-dark-900 border border-white/5">
+            <div class="w-8 h-8 rounded-lg bg-brand-500/20 text-brand-400 flex items-center justify-center shrink-0 font-bold text-sm mt-0.5">2</div>
+            <div>
+              <div class="text-sm font-bold text-white mb-1">Action: Intelligent Draft & Task Staging</div>
+              <div class="text-xs text-slate-400">Generates tailored follow-up notices, calculates exact fee reconciliations, and stages preview for management.</div>
+            </div>
           </div>
 
-          <div class="terminal-line">
-            <span class="text-slate-500">// 3. Structured result returned to Claude context</span><br>
-            <pre class="text-slate-200 text-xs bg-dark-900/60 p-4 rounded border border-white/5 overflow-x-auto"><code>{
-  "content": [
-    {
-      "type": "text",
-      "text": "Found 3 invoices exceeding 14 days overdue totaling $42,500.00: INV-1002 (Acme Corp, 28 days), INV-1008 (Globex, 19 days)."
-    }
-  ],
-  "isError": false,
-  "_auditId": "evt_9f8e21a8d01b"
-}</code></pre>
+          <div class="flex items-start gap-4 p-4 rounded-lg bg-dark-900 border border-brand-500/30">
+            <div class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0 font-bold text-sm mt-0.5">3</div>
+            <div class="flex-1 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div>
+                <div class="text-sm font-bold text-emerald-400 mb-0.5">Human Approval & Commit: Ready</div>
+                <div class="text-xs text-slate-300">Manager reviews exact proposed action with one click &bull; Committed to ledger with permanent audit log.</div>
+              </div>
+              <button class="px-4 py-1.5 rounded bg-brand-500 text-dark-950 font-bold text-xs shrink-0 shadow-glow-emerald">
+                &check; Approved in 1 Click
+              </button>
+            </div>
           </div>
-        </div>
-      </div>
-
-      <!-- MCP Architecture Pillars -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 font-sans">
-        <div class="glass-card p-6 rounded-xl pillar-card">
-          <div class="w-10 h-10 rounded-lg bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 mb-4">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-          </div>
-          <h3 class="text-lg font-bold text-white mb-2">Strict Schema Contracts</h3>
-          <p class="text-sm text-slate-300 leading-relaxed">
-            Every MCP tool uses Zod schemas with complete parameter validation, redacting secrets and ensuring agents cannot invoke undefined operations.
-          </p>
-        </div>
-
-        <div class="glass-card p-6 rounded-xl pillar-card">
-          <div class="w-10 h-10 rounded-lg bg-accent-500/10 border border-accent-500/20 flex items-center justify-center text-accent-400 mb-4">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
-          </div>
-          <h3 class="text-lg font-bold text-white mb-2">Human-In-The-Loop Staging</h3>
-          <p class="text-sm text-slate-300 leading-relaxed">
-            Destructive write actions generate cryptographically signed previews in pending state, requiring explicit manager confirmation before database commits.
-          </p>
-        </div>
-
-        <div class="glass-card p-6 rounded-xl pillar-card">
-          <div class="w-10 h-10 rounded-lg bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 mb-4">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
-          </div>
-          <h3 class="text-lg font-bold text-white mb-2">Immutable Audit Logging</h3>
-          <p class="text-sm text-slate-300 leading-relaxed">
-            Every read, tool invocation, approved mutation, and error is captured into structured event logs for compliance, analytics, and replayability.
-          </p>
         </div>
       </div>
 
     </div>
   </section>
 
-  <!-- Technical Skills & Systems Matrix -->
-  <section id="tech-stack" class="relative z-10 py-20 lg:py-28 border-b border-white/5">
+  <!-- Why Work With Me Section -->
+  <section id="benefits" class="relative z-10 py-20 lg:py-28 border-b border-white/5">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="section-header text-center max-w-3xl mx-auto mb-16">
-        <div class="text-xs font-mono text-brand-400 tracking-widest uppercase mb-2">Fullstack Stack</div>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-          Core Technologies & Engineering Tooling
+        <div class="text-xs font-mono text-brand-400 tracking-widest uppercase mb-2 font-semibold">Value Proposition</div>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight font-sans">
+          Why Companies Partner With Me
         </h2>
         <p class="text-slate-400 mt-3 text-sm sm:text-base">
-          Proven technologies chosen for speed, reliability, and maintainability across both frontend UI and backend agent infrastructure.
+          I don't build brittle weekend hacks. I deliver robust, production-grade business engines designed to scale with your organization.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 font-mono text-xs">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 font-sans">
         
-        <!-- Category 1 -->
-        <div class="glass-card p-6 rounded-xl stack-card">
-          <div class="text-sm font-sans font-bold text-white mb-4 flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full bg-brand-400"></span>
-            <span>Claude & Agent Tooling</span>
+        <div class="glass-card p-6 rounded-xl flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 rounded-lg bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 mb-4 font-bold text-base">
+              ⚡
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Fast Turnaround</h3>
+            <p class="text-sm text-slate-300 leading-relaxed">
+              Most automation workflows go from initial blueprint to working production prototype in just 10–14 days.
+            </p>
           </div>
-          <ul class="space-y-2.5 text-slate-300">
-            <li class="flex items-center justify-between py-1 border-b border-white/5">
-              <span>Model Context Protocol</span>
-              <span class="text-brand-400 font-semibold">Official SDK</span>
-            </li>
-            <li class="flex items-center justify-between py-1 border-b border-white/5">
-              <span>Claude 3.5 Sonnet / Haiku</span>
-              <span class="text-brand-400 font-semibold">Anthropic API</span>
-            </li>
-            <li class="flex items-center justify-between py-1 border-b border-white/5">
-              <span>Deterministic Routing</span>
-              <span class="text-slate-400">Intent Classifier</span>
-            </li>
-            <li class="flex items-center justify-between py-1 border-b border-white/5">
-              <span>Structured Outputs</span>
-              <span class="text-slate-400">Zod / Pydantic</span>
-            </li>
-            <li class="flex items-center justify-between py-1">
-              <span>Retrieval-Augmented Gen</span>
-              <span class="text-slate-400">BM25 + Dense</span>
-            </li>
-          </ul>
+          <div class="mt-6 pt-4 border-t border-white/5 text-xs font-mono text-brand-400 font-semibold">
+            &check; 2-Week Delivery
+          </div>
         </div>
 
-        <!-- Category 2 -->
-        <div class="glass-card p-6 rounded-xl stack-card">
-          <div class="text-sm font-sans font-bold text-white mb-4 flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full bg-accent-400"></span>
-            <span>Backend & Systems</span>
+        <div class="glass-card p-6 rounded-xl flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 rounded-lg bg-accent-500/10 border border-accent-500/20 flex items-center justify-center text-accent-400 mb-4 font-bold text-base">
+              🛡️
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Total Control & Safety</h3>
+            <p class="text-sm text-slate-300 leading-relaxed">
+              Every sensitive change requires explicit human confirmation. Your team always retains the final say.
+            </p>
           </div>
-          <ul class="space-y-2.5 text-slate-300">
-            <li class="flex items-center justify-between py-1 border-b border-white/5">
-              <span>TypeScript / Node.js</span>
-              <span class="text-accent-400 font-semibold">ES2022+</span>
-            </li>
-            <li class="flex items-center justify-between py-1 border-b border-white/5">
-              <span>Python</span>
-              <span class="text-accent-400 font-semibold">3.11+ / FastAPI</span>
-            </li>
-            <li class="flex items-center justify-between py-1 border-b border-white/5">
-              <span>Async Architectures</span>
-              <span class="text-slate-400">Workers / Queues</span>
-            </li>
-            <li class="flex items-center justify-between py-1 border-b border-white/5">
-              <span>API Protocols</span>
-              <span class="text-slate-400">REST / JSON-RPC</span>
-            </li>
-            <li class="flex items-center justify-between py-1">
-              <span>Authentication</span>
-              <span class="text-slate-400">RBAC / Sessions</span>
-            </li>
-          </ul>
+          <div class="mt-6 pt-4 border-t border-white/5 text-xs font-mono text-accent-400 font-semibold">
+            &check; Staged Approvals
+          </div>
         </div>
 
-        <!-- Category 3 -->
-        <div class="glass-card p-6 rounded-xl stack-card">
-          <div class="text-sm font-sans font-bold text-white mb-4 flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full bg-indigo-400"></span>
-            <span>Databases & Storage</span>
+        <div class="glass-card p-6 rounded-xl flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 rounded-lg bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 mb-4 font-bold text-base">
+              💎
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">100% Code Ownership</h3>
+            <p class="text-sm text-slate-300 leading-relaxed">
+              You own all intellectual property, clean documented source code, and data. Zero recurring platform tax.
+            </p>
           </div>
-          <ul class="space-y-2.5 text-slate-300">
-            <li class="flex items-center justify-between py-1 border-b border-white/5">
-              <span>SQLite</span>
-              <span class="text-indigo-400 font-semibold">FTS5 / JSON1</span>
-            </li>
-            <li class="flex items-center justify-between py-1 border-b border-white/5">
-              <span>PostgreSQL</span>
-              <span class="text-indigo-400 font-semibold">pgvector</span>
-            </li>
-            <li class="flex items-center justify-between py-1 border-b border-white/5">
-              <span>Redis</span>
-              <span class="text-slate-400">Caching & Locks</span>
-            </li>
-            <li class="flex items-center justify-between py-1 border-b border-white/5">
-              <span>Document Indexing</span>
-              <span class="text-slate-400">Embeddings</span>
-            </li>
-            <li class="flex items-center justify-between py-1">
-              <span>Audit Event Logs</span>
-              <span class="text-slate-400">Append-Only</span>
-            </li>
-          </ul>
+          <div class="mt-6 pt-4 border-t border-white/5 text-xs font-mono text-indigo-400 font-semibold">
+            &check; Zero Vendor Lock-in
+          </div>
         </div>
 
-        <!-- Category 4 -->
-        <div class="glass-card p-6 rounded-xl stack-card">
-          <div class="text-sm font-sans font-bold text-white mb-4 flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-            <span>Frontend & Interfaces</span>
+        <div class="glass-card p-6 rounded-xl flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mb-4 font-bold text-base">
+              📈
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Measurable ROI</h3>
+            <p class="text-sm text-slate-300 leading-relaxed">
+              Built specifically to save concrete headcount hours, eliminate customer wait times, and recover revenue.
+            </p>
           </div>
-          <ul class="space-y-2.5 text-slate-300">
-            <li class="flex items-center justify-between py-1 border-b border-white/5">
-              <span>Tailwind CSS</span>
-              <span class="text-emerald-400 font-semibold">Utility-First</span>
-            </li>
-            <li class="flex items-center justify-between py-1 border-b border-white/5">
-              <span>Modern JavaScript</span>
-              <span class="text-emerald-400 font-semibold">Vanilla / React</span>
-            </li>
-            <li class="flex items-center justify-between py-1 border-b border-white/5">
-              <span>Interactive Analytics</span>
-              <span class="text-slate-400">Chart.js / Highcharts</span>
-            </li>
-            <li class="flex items-center justify-between py-1 border-b border-white/5">
-              <span>Diagram Rendering</span>
-              <span class="text-slate-400">Mermaid.js</span>
-            </li>
-            <li class="flex items-center justify-between py-1">
-              <span>Responsive UX</span>
-              <span class="text-slate-400">Mobile & Desktop</span>
-            </li>
-          </ul>
+          <div class="mt-6 pt-4 border-t border-white/5 text-xs font-mono text-emerald-400 font-semibold">
+            &check; Direct Cost Reduction
+          </div>
         </div>
 
       </div>
@@ -984,104 +867,132 @@
     </div>
   </section>
 
-  <!-- Engineering Standards / No AI Giveaways Section -->
-  <section id="engineering-standards" class="relative z-10 py-20 lg:py-28 border-b border-white/5">
+  <!-- Core Services Section -->
+  <section id="services" class="relative z-10 py-20 lg:py-28 border-b border-white/5 bg-dark-900/30">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        <div>
-          <div class="text-xs font-mono text-brand-400 tracking-widest uppercase mb-2">Design Philosophy</div>
-          <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight mb-6">
-            Software Engineering Rigor Over "Prompt Magic".
-          </h2>
-          <p class="text-slate-300 leading-relaxed mb-6">
-            Many AI demos rely on unverified text generation that fails in production. My engineering approach treats LLMs as cognitive microservices integrated into deterministic, testable software architectures.
-          </p>
-          
-          <div class="space-y-4 font-sans text-sm standards-list">
-            <div class="flex items-start gap-3 standard-item">
-              <div class="w-6 h-6 rounded bg-brand-500/20 text-brand-400 flex items-center justify-center shrink-0 mt-0.5 font-mono text-xs font-bold">&#10003;</div>
-              <div>
-                <strong class="text-white">Deterministic Intent & Fallbacks:</strong> If a user request does not match an authorized tool schema, the system explains supported operations instead of hallucinating fake business records.
-              </div>
-            </div>
+      <div class="section-header text-center max-w-3xl mx-auto mb-16">
+        <div class="text-xs font-mono text-brand-400 tracking-widest uppercase mb-2 font-semibold">Capabilities</div>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight font-sans">
+          How We Can Work Together
+        </h2>
+        <p class="text-slate-400 mt-3 text-sm sm:text-base">
+          From custom automation sprints to fullstack web platforms, I provide end-to-end technical execution.
+        </p>
+      </div>
 
-            <div class="flex items-start gap-3 standard-item">
-              <div class="w-6 h-6 rounded bg-brand-500/20 text-brand-400 flex items-center justify-center shrink-0 mt-0.5 font-mono text-xs font-bold">&#10003;</div>
-              <div>
-                <strong class="text-white">State Machines Over Chat Transcripts:</strong> Complex multi-step workflows (such as invoice approvals or KYC onboarding) are tracked as database-backed state machines, not volatile chat context.
-              </div>
-            </div>
-
-            <div class="flex items-start gap-3 standard-item">
-              <div class="w-6 h-6 rounded bg-brand-500/20 text-brand-400 flex items-center justify-center shrink-0 mt-0.5 font-mono text-xs font-bold">&#10003;</div>
-              <div>
-                <strong class="text-white">End-to-End Testability:</strong> Comprehensive unit and integration test suites covering tool validation, mock agent intent resolution, access controls, and replayable audit logs.
-              </div>
-            </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 font-sans">
+        
+        <div class="glass-card p-8 rounded-2xl flex flex-col justify-between">
+          <div>
+            <div class="text-xs font-mono text-brand-400 uppercase tracking-widest mb-2 font-semibold">Sprint 01</div>
+            <h3 class="text-2xl font-bold text-white mb-4">Operations Automation Sprint</h3>
+            <p class="text-sm text-slate-300 leading-relaxed mb-6">
+              Turn your most expensive manual spreadsheet or back-office process into an automated, database-backed workflow with human approval controls.
+            </p>
+            <ul class="space-y-2.5 text-xs text-slate-300">
+              <li class="flex items-center gap-2">
+                <span class="text-brand-400 font-bold">&check;</span> CRM & Invoice Processors
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-brand-400 font-bold">&check;</span> Client Query Triage & Support
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-brand-400 font-bold">&check;</span> Automated Task Delegation
+              </li>
+            </ul>
           </div>
+          <a href="#contact" class="mt-8 block text-center py-2.5 rounded-lg bg-dark-800 hover:bg-dark-700 border border-white/10 text-xs font-bold text-white transition-all">
+            Discuss Your Workflow &rarr;
+          </a>
         </div>
 
-        <div class="glass-panel p-8 rounded-2xl border border-white/10 relative checklist-box">
-          <div class="text-xs font-mono text-slate-400 uppercase tracking-wider mb-4">Engineering Verification Checklist</div>
-          <div class="space-y-3 font-mono text-xs text-slate-300">
-            <div class="p-3 rounded bg-dark-950/70 border border-white/5 flex items-center justify-between checklist-row">
-              <span>TypeScript Strict Mode & Zod Schemas</span>
-              <span class="text-brand-400 font-semibold">[ENFORCED]</span>
-            </div>
-            <div class="p-3 rounded bg-dark-950/70 border border-white/5 flex items-center justify-between checklist-row">
-              <span>Two-Tier Human Approval on Mutations</span>
-              <span class="text-brand-400 font-semibold">[ENFORCED]</span>
-            </div>
-            <div class="p-3 rounded bg-dark-950/70 border border-white/5 flex items-center justify-between checklist-row">
-              <span>Sensitive Parameter Redaction in Logs</span>
-              <span class="text-brand-400 font-semibold">[ENFORCED]</span>
-            </div>
-            <div class="p-3 rounded bg-dark-950/70 border border-white/5 flex items-center justify-between checklist-row">
-              <span>Zero External Cloud Vendor Lock-In</span>
-              <span class="text-brand-400 font-semibold">[ENFORCED]</span>
-            </div>
-            <div class="p-3 rounded bg-dark-950/70 border border-white/5 flex items-center justify-between checklist-row">
-              <span>Cross-System Transaction Consistency</span>
-              <span class="text-brand-400 font-semibold">[ENFORCED]</span>
-            </div>
+        <div class="glass-card p-8 rounded-2xl flex flex-col justify-between border-brand-500/40 shadow-glow-card relative">
+          <div class="absolute -top-3 right-6 px-3 py-0.5 rounded-full bg-brand-500 text-dark-950 font-bold font-mono text-[10px] uppercase tracking-wider">
+            Most Popular
           </div>
+          <div>
+            <div class="text-xs font-mono text-brand-400 uppercase tracking-widest mb-2 font-semibold">Sprint 02</div>
+            <h3 class="text-2xl font-bold text-white mb-4">Custom AI Agent & MCP Systems</h3>
+            <p class="text-sm text-slate-300 leading-relaxed mb-6">
+              Deploy custom Claude agents connected directly to your private databases, ERPs, and APIs using the official Model Context Protocol (MCP).
+            </p>
+            <ul class="space-y-2.5 text-xs text-slate-300">
+              <li class="flex items-center gap-2">
+                <span class="text-brand-400 font-bold">&check;</span> Official Model Context Protocol (MCP)
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-brand-400 font-bold">&check;</span> Internal Knowledge Search (RAG)
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-brand-400 font-bold">&check;</span> Zero-Hallucination Safeguards
+              </li>
+            </ul>
+          </div>
+          <a href="#contact" class="mt-8 block text-center py-2.5 rounded-lg bg-gradient-to-r from-brand-400 to-brand-500 hover:from-brand-300 hover:to-brand-400 text-xs font-bold text-dark-950 transition-all shadow-glow-emerald">
+            Build a Custom Agent &rarr;
+          </a>
         </div>
+
+        <div class="glass-card p-8 rounded-2xl flex flex-col justify-between">
+          <div>
+            <div class="text-xs font-mono text-brand-400 uppercase tracking-widest mb-2 font-semibold">Sprint 03</div>
+            <h3 class="text-2xl font-bold text-white mb-4">Fullstack Application Build</h3>
+            <p class="text-sm text-slate-300 leading-relaxed mb-6">
+              Complete, production-ready web application engineering from responsive UI dashboards to high-performance backend database systems.
+            </p>
+            <ul class="space-y-2.5 text-xs text-slate-300">
+              <li class="flex items-center gap-2">
+                <span class="text-brand-400 font-bold">&check;</span> Fullstack TypeScript & Python
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-brand-400 font-bold">&check;</span> Executive Portals & Dashboards
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-brand-400 font-bold">&check;</span> Complete Source Code & Deployment
+              </li>
+            </ul>
+          </div>
+          <a href="#contact" class="mt-8 block text-center py-2.5 rounded-lg bg-dark-800 hover:bg-dark-700 border border-white/10 text-xs font-bold text-white transition-all">
+            Start a Fullstack Build &rarr;
+          </a>
+        </div>
+
       </div>
 
     </div>
   </section>
 
-  <!-- Contact & Get In Touch Section -->
+  <!-- Pitch Contact / CTA Section -->
   <section id="contact" class="relative z-10 py-20 lg:py-28">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="contact-box max-w-4xl mx-auto glass-panel p-8 sm:p-12 rounded-2xl border border-brand-500/20 shadow-glow-emerald text-center">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-400 text-xs font-mono mb-6">
-          <span>GET IN TOUCH</span>
+      <div class="contact-box max-w-4xl mx-auto glass-panel p-8 sm:p-14 rounded-3xl border border-brand-500/30 shadow-glow-emerald text-center">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-400 text-xs font-mono font-semibold mb-6">
+          <span>READY TO SCALE YOUR BUSINESS?</span>
         </div>
 
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-4">
-          Let's Build Robust Fullstack & Claude Automations
+        <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight mb-4 font-sans">
+          Let's Automate Your Operations
         </h2>
         
         <p class="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto mb-10">
-          Whether you need an enterprise Model Context Protocol (MCP) server, autonomous business workflow pipelines, or fullstack application development, I bring end-to-end execution from architecture to production code.
+          Have an operational bottleneck or a custom fullstack system you want built? Tell me about your workflow and I'll outline an automated solution within 24 hours.
         </p>
 
         <div class="flex flex-wrap items-center justify-center gap-4">
+          <a href="mailto:kalmintech@gmail.com" 
+             class="magnetic-btn inline-flex items-center gap-2.5 px-8 py-4 rounded-xl text-sm font-bold text-dark-950 bg-gradient-to-r from-brand-400 via-brand-500 to-accent-400 hover:from-brand-300 hover:to-accent-300 transition-all shadow-glow-emerald font-sans">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            <span>Email Me: kalmintech@gmail.com</span>
+          </a>
+
           <a href="https://github.com/KalminX" target="_blank" rel="noopener noreferrer" 
-             class="magnetic-btn inline-flex items-center gap-2.5 px-6 py-3.5 rounded-lg text-sm font-semibold text-white bg-dark-800 hover:bg-dark-700 border border-white/10 hover:border-white/20 transition-all">
+             class="magnetic-btn inline-flex items-center gap-2.5 px-7 py-4 rounded-xl text-sm font-semibold text-white bg-dark-800 hover:bg-dark-700 border border-white/10 hover:border-white/20 transition-all font-sans">
             <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
               <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
             </svg>
-            <span>GitHub Profile (@KalminX)</span>
-          </a>
-
-          <a href="mailto:kalmintech@gmail.com" 
-             class="magnetic-btn inline-flex items-center gap-2.5 px-6 py-3.5 rounded-lg text-sm font-semibold text-dark-950 bg-gradient-to-r from-brand-400 to-accent-400 hover:from-brand-300 hover:to-accent-300 transition-all shadow-glow-emerald">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-            <span>Contact via Email</span>
+            <span>Explore GitHub Repositories</span>
           </a>
         </div>
 
@@ -1094,11 +1005,12 @@
   <footer class="relative z-10 border-t border-white/5 py-10 bg-dark-950 text-slate-500 font-mono text-xs">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
       <div>
-        &copy; 2026 <strong class="text-slate-300">Oriabure Numerous</strong>. All rights reserved.
+        &copy; 2026 <strong class="text-slate-300 font-sans">Oriabure Numerous</strong>. Fullstack & Claude Automations.
       </div>
       <div class="flex items-center gap-6">
-        <a href="#projects" class="hover:text-slate-300 transition-colors">Projects</a>
-        <a href="#mcp-architecture" class="hover:text-slate-300 transition-colors">MCP Architecture</a>
+        <a href="#solutions" class="hover:text-slate-300 transition-colors">Case Studies</a>
+        <a href="#how-it-works" class="hover:text-slate-300 transition-colors">Process</a>
+        <a href="#services" class="hover:text-slate-300 transition-colors">Services</a>
         <a href="https://github.com/KalminX" target="_blank" rel="noopener noreferrer" class="hover:text-slate-300 transition-colors">GitHub</a>
       </div>
     </div>
@@ -1106,7 +1018,6 @@
 
   <!-- Nature of Code Simulation & GSAP Animations Engine -->
   <script>
-    // Register GSAP Plugins
     gsap.registerPlugin(ScrollTrigger);
 
     /* ==========================================================================
@@ -1134,7 +1045,6 @@
         mouse.y = -1000;
       });
 
-      // 2D Vector Helper
       class Vector {
         constructor(x = 0, y = 0) {
           this.x = x;
@@ -1148,7 +1058,6 @@
         limit(max) { if (this.mag() > max) { this.normalize(); this.mult(max); } return this; }
       }
 
-      // Autonomous Agent / Particle Class
       class Particle {
         constructor() {
           this.pos = new Vector(Math.random() * width, Math.random() * height);
@@ -1165,7 +1074,6 @@
           this.acc.add(force);
         }
 
-        // Flow Field Behavior
         followFlow(time) {
           const scale = 0.0015;
           const angle = (Math.sin(this.pos.x * scale + time * 0.0005) + Math.cos(this.pos.y * scale + time * 0.0005)) * Math.PI;
@@ -1175,7 +1083,6 @@
           this.applyForce(steer);
         }
 
-        // Mouse Repulsion & Gravitational Swirl
         reactToMouse() {
           const dx = this.pos.x - mouse.x;
           const dy = this.pos.y - mouse.y;
@@ -1183,7 +1090,6 @@
           if (dist < mouse.radius && dist > 0) {
             const forceMag = (1 - dist / mouse.radius) * 1.2;
             const repulse = new Vector((dx / dist) * forceMag, (dy / dist) * forceMag);
-            // subtle perpendicular vortex
             const swirl = new Vector((-dy / dist) * forceMag * 0.5, (dx / dist) * forceMag * 0.5);
             repulse.add(swirl);
             this.applyForce(repulse);
@@ -1194,9 +1100,8 @@
           this.vel.add(this.acc);
           this.vel.limit(this.maxSpeed);
           this.pos.add(this.vel);
-          this.acc.mult(0); // reset acceleration
+          this.acc.mult(0);
 
-          // Wrap around edges
           if (this.pos.x < 0) this.pos.x = width;
           if (this.pos.x > width) this.pos.x = 0;
           if (this.pos.y < 0) this.pos.y = height;
@@ -1211,11 +1116,9 @@
         }
       }
 
-      // Initialize Particle Population
       const particleCount = Math.min(Math.floor((width * height) / 18000), 75);
       const particles = Array.from({ length: particleCount }, () => new Particle());
 
-      // Recursive Fractal Branch System (Agent Decision Tree)
       function drawFractalTree(x, y, len, angle, depth, time) {
         if (depth === 0) return;
 
@@ -1237,17 +1140,14 @@
         drawFractalTree(x2, y2, len * 0.72, angle + spread, depth - 1, time);
       }
 
-      // Animation Loop
       let startTime = performance.now();
       function animate(currentTime) {
         ctx.clearRect(0, 0, width, height);
-
-        // 1. Draw subtle background fractal trees (Abstract AST / Agent Graph)
         const time = currentTime - startTime;
+
         drawFractalTree(width * 0.88, height * 0.95, 80, -Math.PI / 2, 5, time);
         drawFractalTree(width * 0.08, height * 0.45, 60, -Math.PI / 3, 4, time + 2000);
 
-        // 2. Update and draw Autonomous Particles
         particles.forEach(p => {
           p.followFlow(time);
           p.reactToMouse();
@@ -1255,7 +1155,6 @@
           p.draw();
         });
 
-        // 3. Constellation Links (Proximity Graph Network)
         const maxLinkDist = 110;
         for (let i = 0; i < particles.length; i++) {
           for (let j = i + 1; j < particles.length; j++) {
@@ -1281,11 +1180,10 @@
     })();
 
     /* ==========================================================================
-       2. GSAP ENTRANCE & SCROLLTRIGGER ORCHESTRATION
+       2. GSAP ENTRANCE & SCROLL ANIMATIONS
        ========================================================================== */
     document.addEventListener('DOMContentLoaded', () => {
       
-      // Hero Entrance Timeline
       const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
       heroTl
@@ -1295,7 +1193,6 @@
         .from('.hero-cta > a', { y: 20, opacity: 0, stagger: 0.15, duration: 0.7 }, '-=0.5')
         .from('.hero-metrics .metric-item', { y: 25, opacity: 0, stagger: 0.1, duration: 0.7 }, '-=0.4');
 
-      // Metric Numerical Counters Animation
       document.querySelectorAll('.counter').forEach(counter => {
         const target = +counter.getAttribute('data-target');
         ScrollTrigger.create({
@@ -1313,7 +1210,6 @@
         });
       });
 
-      // Section Headers Reveal
       gsap.utils.toArray('.section-header').forEach(header => {
         gsap.from(header, {
           scrollTrigger: {
@@ -1328,8 +1224,7 @@
         });
       });
 
-      // Project Cards Staggered Reveal
-      gsap.utils.toArray('.project-card').forEach((card, index) => {
+      gsap.utils.toArray('.project-card').forEach(card => {
         gsap.from(card, {
           scrollTrigger: {
             trigger: card,
@@ -1343,7 +1238,7 @@
         });
       });
 
-      // 3D Tilt Hover Effect for Project Cards
+      // 3D Tilt Hover
       document.querySelectorAll('.glass-card').forEach(card => {
         const xTo = gsap.quickTo(card, 'rotationY', { duration: 0.4, ease: 'power2.out' });
         const yTo = gsap.quickTo(card, 'rotationX', { duration: 0.4, ease: 'power2.out' });
@@ -1362,81 +1257,7 @@
         });
       });
 
-      // Terminal Box Sequence
-      gsap.from('.terminal-box', {
-        scrollTrigger: {
-          trigger: '.terminal-box',
-          start: 'top 80%'
-        },
-        y: 40,
-        opacity: 0,
-        duration: 0.9,
-        ease: 'power3.out'
-      });
-
-      gsap.from('.terminal-line', {
-        scrollTrigger: {
-          trigger: '.terminal-box',
-          start: 'top 75%'
-        },
-        x: -20,
-        opacity: 0,
-        stagger: 0.25,
-        duration: 0.6,
-        ease: 'power2.out'
-      });
-
-      // MCP Pillar Cards & Tech Stack Staggers
-      gsap.from('.pillar-card', {
-        scrollTrigger: {
-          trigger: '.pillar-card',
-          start: 'top 85%'
-        },
-        y: 30,
-        opacity: 0,
-        stagger: 0.15,
-        duration: 0.7,
-        ease: 'power3.out'
-      });
-
-      gsap.from('.stack-card', {
-        scrollTrigger: {
-          trigger: '.stack-card',
-          start: 'top 85%'
-        },
-        y: 30,
-        opacity: 0,
-        stagger: 0.12,
-        duration: 0.7,
-        ease: 'power3.out'
-      });
-
-      // Engineering Standards Items
-      gsap.from('.standard-item', {
-        scrollTrigger: {
-          trigger: '.standards-list',
-          start: 'top 85%'
-        },
-        x: -30,
-        opacity: 0,
-        stagger: 0.15,
-        duration: 0.6,
-        ease: 'power3.out'
-      });
-
-      gsap.from('.checklist-row', {
-        scrollTrigger: {
-          trigger: '.checklist-box',
-          start: 'top 85%'
-        },
-        scale: 0.95,
-        opacity: 0,
-        stagger: 0.1,
-        duration: 0.5,
-        ease: 'back.out(1.5)'
-      });
-
-      // Magnetic Buttons Effect
+      // Magnetic Buttons
       document.querySelectorAll('.magnetic-btn').forEach(btn => {
         const xTo = gsap.quickTo(btn, 'x', { duration: 0.3, ease: 'power2.out' });
         const yTo = gsap.quickTo(btn, 'y', { duration: 0.3, ease: 'power2.out' });
@@ -1479,7 +1300,6 @@
         });
       });
 
-      // Project Category Filtering
       const filterBtns = document.querySelectorAll('.filter-btn');
       const projectCards = document.querySelectorAll('#projects-grid > div');
 
@@ -1488,10 +1308,10 @@
           const filter = btn.getAttribute('data-filter');
 
           filterBtns.forEach(b => {
-            b.classList.remove('active', 'bg-brand-500', 'text-dark-950', 'font-semibold');
+            b.classList.remove('active', 'bg-brand-500', 'text-dark-950', 'font-bold');
             b.classList.add('text-slate-400');
           });
-          btn.classList.add('active', 'bg-brand-500', 'text-dark-950', 'font-semibold');
+          btn.classList.add('active', 'bg-brand-500', 'text-dark-950', 'font-bold');
           btn.classList.remove('text-slate-400');
 
           projectCards.forEach(card => {
