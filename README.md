@@ -1,6 +1,7 @@
 # Oriabure Numerous — Fullstack & Claude Automation Portfolio
 
-> **Live Website**: [https://kalminx.github.io/](https://kalminx.github.io/)
+> **Live Website**: [https://kalminx.github.io/numerous-portfolio/](https://kalminx.github.io/numerous-portfolio/)  
+> **Repository**: [https://github.com/KalminX/numerous-portfolio](https://github.com/KalminX/numerous-portfolio)
 
 Production portfolio showcasing **10 enterprise fullstack automation engines**, Model Context Protocol (MCP) servers, document parsing pipelines, and deterministic business agent workflows.
 
@@ -21,10 +22,11 @@ Production portfolio showcasing **10 enterprise fullstack automation engines**, 
 
 ---
 
-## 🛠️ Technology Stack
+## 🛠️ Technology Stack & Architecture
 
 - **Claude & Agent Protocol**: Model Context Protocol (Official TypeScript MCP SDK), Claude 3.5 Sonnet / Haiku Tool Use, Structured Zod Schemas.
-- **Backend**: TypeScript / Node.js, Python 3.11+, FastAPI, Express.
+- **Physics & Motion Graphics**: GSAP 3, ScrollTrigger, Custom Nature-of-Code Autonomous Agent Swarm & Recursive Fractals HTML5 Canvas.
+- **Backend Systems**: TypeScript / Node.js, Python 3.11+, FastAPI, Express.
 - **Databases**: SQLite (FTS5, JSON1), PostgreSQL (pgvector), Redis.
 - **Frontend**: Tailwind CSS, Modern Vanilla ES6+, Chart.js, Mermaid.js.
 
