@@ -27,17 +27,17 @@ High-impact Software Engineer and AI Automation Architect with 3+ years of speci
 ## Professional Experience (2023 – 2026)
 
 ### **Lead AI Automation Engineer & Solutions Architect**
-*Autonomous Systems & Enterprise Automation (Contract / Independent)*  
+*Nexarion Systems (Full-time / Contract)*  
 **Jan 2025 – Present (2026)**
 
-- Architected and deployed **10 production-grade AI automation engines** leveraging the official Model Context Protocol (MCP) TypeScript SDK, cutting repetitive manual back-office tasks by **70% to 90%**.
+- Spearheaded the architecture and delivery of **10 production-grade AI automation engines** leveraging the official Model Context Protocol (MCP) TypeScript SDK, cutting repetitive manual back-office tasks by **70% to 90%**.
 - Engineered the **Local MCP Business Operations Agent**, connecting SQLite database tools with autonomous Claude reasoning and a 2-tier managerial approval queue; recovered over **$45,000** in overdue accounts receivable with zero manual intervention.
 - Built an end-to-end **AI Invoice & Document Extraction Pipeline** utilizing OCR with visual bounding-box extraction, mathematical reconciliation, and automated ERP GL mapping, achieving **99.4% parsing precision** and sub-minute processing.
 - Engineered the **Enterprise Financial Reporting & Variance Engine**, consolidating multi-entity ledgers with real-time EBITDA forecasting, automated variance narratives, and SOC-2 compliant audit logs.
 - Enforced strict human-in-the-loop authorization boundaries and deterministic schema validation (Zod) to guarantee zero-hallucination execution across all live database transactions.
 
 ### **Fullstack AI Solutions Engineer**
-*Enterprise Applications & Intelligent Dashboards*  
+*Kavalo Dynamics (Enterprise Solutions)*  
 **Jan 2024 – Dec 2024**
 
 - Built a real-time **Client Query Triage & Support Workbench** featuring sentiment urgency scoring, SLA countdown timers, and policy-grounded draft synthesis, achieving **5x faster customer inquiry turnaround**.
@@ -47,7 +47,7 @@ High-impact Software Engineer and AI Automation Architect with 3+ years of speci
 - Developed the **Board Deck Generator**, synthesizing structured company metrics into branded PowerPoint (.pptx) and PDF presentations in under 60 seconds.
 
 ### **Fullstack Software & Systems Developer**
-*Web Applications, Distributed Systems & Simulation Graphics*  
+*Vanguard Logic (Distributed Systems)*  
 **Jan 2023 – Dec 2023**
 
 - Engineered responsive fullstack web applications utilizing Python (FastAPI/Flask), TypeScript/Node.js, and PostgreSQL/SQLite, prioritizing high throughput and maintainable modular architecture.
@@ -85,11 +85,13 @@ High-impact Software Engineer and AI Automation Architect with 3+ years of speci
 
 ---
 
-## Education
+## Education & Credentials
 
-**Bachelor of Science (B.Sc.) in Computer Science**  
-*University of Benin (UNIBEN) — Edo State, Nigeria*  
-- Focus: Distributed Systems, Algorithms & Data Structures, Relational & NoSQL Databases, Computer Networks, Operating Systems.
+- **Bachelor of Engineering (B.Eng.) in Computer Engineering**  
+  *University of Benin (UNIBEN) — Edo State, Nigeria*
+- **Software Engineering**  
+  *ALX (by Holberton School)*  
+  *Focus: Distributed Systems, Low-Level & High-Level System Architecture, Data Structures, Algorithms, Relational & NoSQL Databases, Network Engineering.*
 
 ---
 
