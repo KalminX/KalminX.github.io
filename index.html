@@ -2,7 +2,7 @@
 <html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
   <title>Oriabure Numerous — Custom Business Automations & Fullstack Solutions</title>
   <meta name="description" content="I build custom Claude-powered automation systems and fullstack applications that cut operational bottlenecks, recover revenue, and scale business operations." />
   
@@ -21,6 +21,9 @@
       darkMode: 'class',
       theme: {
         extend: {
+          screens: {
+            'xs': '480px',
+          },
           fontFamily: {
             sans: ['Plus Jakarta Sans', 'Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
             body: ['Inter', 'sans-serif'],
@@ -54,8 +57,13 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
   <style>
+    html, body {
+      overflow-x: hidden;
+      width: 100%;
+      -webkit-tap-highlight-color: transparent;
+    }
     .glass-panel {
-      background: rgba(14, 20, 34, 0.9);
+      background: rgba(14, 20, 34, 0.92);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border: 1px solid rgba(255, 255, 255, 0.08);
@@ -75,6 +83,7 @@
       overflow: hidden;
       background: #000;
       border-radius: 0.75rem 0.75rem 0 0;
+      cursor: pointer;
     }
     .video-container video {
       width: 100%;
@@ -95,8 +104,16 @@
       pointer-events: none;
       z-index: 1;
     }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
     ::-webkit-scrollbar {
-      width: 7px;
+      width: 6px;
+      height: 6px;
     }
     ::-webkit-scrollbar-track {
       background: #090d14;
@@ -121,18 +138,18 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
       
       <!-- Brand -->
-      <a href="#" class="flex items-center gap-3 group magnetic-btn">
-        <div class="w-9 h-9 rounded-lg bg-brand-500 flex items-center justify-center text-dark-950 font-extrabold text-sm">
+      <a href="#" class="flex items-center gap-2.5 sm:gap-3 group shrink-0">
+        <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-brand-500 flex items-center justify-center text-dark-950 font-extrabold text-xs sm:text-sm">
           ON
         </div>
         <div class="flex flex-col">
-          <span class="font-bold text-white text-sm tracking-tight group-hover:text-brand-400 transition-colors font-sans">Oriabure Numerous</span>
-          <span class="text-[10px] text-slate-400 font-mono tracking-wider">FULLSTACK AUTOMATIONS</span>
+          <span class="font-bold text-white text-xs sm:text-sm tracking-tight group-hover:text-brand-400 transition-colors font-sans">Oriabure Numerous</span>
+          <span class="text-[9px] sm:text-[10px] text-slate-400 font-mono tracking-wider">FULLSTACK AUTOMATIONS</span>
         </div>
       </a>
 
-      <!-- Navigation Links -->
-      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden md:flex items-center gap-6 lg:gap-8 text-sm font-medium text-slate-300">
         <a href="#solutions" class="hover:text-white transition-colors">Case Studies</a>
         <a href="#how-it-works" class="hover:text-white transition-colors">How It Works</a>
         <a href="#benefits" class="hover:text-white transition-colors">Why Work With Me</a>
@@ -140,39 +157,73 @@
         <a href="#contact" class="hover:text-white transition-colors">Contact</a>
       </nav>
 
-      <!-- Right Action CTA -->
-      <div class="flex items-center gap-3">
+      <!-- Right Action CTA & Mobile Menu Toggle -->
+      <div class="flex items-center gap-2 sm:gap-3">
         <a href="https://github.com/KalminX" target="_blank" rel="noopener noreferrer" 
-           class="magnetic-btn inline-flex items-center gap-2 px-3.5 py-1.5 rounded-md text-xs font-mono font-medium text-slate-200 bg-dark-850 hover:bg-dark-800 border border-white/10 hover:border-white/20 transition-all">
-          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+           class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-mono font-medium text-slate-200 bg-dark-850 hover:bg-dark-800 border border-white/10 hover:border-white/20 transition-all">
+          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
           </svg>
           <span>GitHub</span>
         </a>
-        <a href="#contact" class="magnetic-btn inline-flex items-center gap-1.5 px-4 py-2 rounded-md text-xs font-bold text-dark-950 bg-brand-500 hover:bg-brand-400 transition-all font-sans">
-          <span>Book a Strategy Call</span>
+        <a href="#contact" class="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 rounded-md text-xs font-bold text-dark-950 bg-brand-500 hover:bg-brand-400 transition-all font-sans">
+          <span>Book a Call</span>
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
         </a>
+
+        <!-- Mobile Menu Hamburger Button -->
+        <button id="mobile-menu-btn" aria-label="Toggle Navigation Menu" class="md:hidden p-2 rounded-lg text-slate-300 hover:text-white hover:bg-dark-850 border border-white/10 transition-colors">
+          <svg id="menu-icon-open" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <svg id="menu-icon-close" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
       </div>
+    </div>
+
+    <!-- Mobile Slide-Down Menu Drawer -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-white/10 bg-dark-950/98 backdrop-blur-2xl px-4 py-6 transition-all">
+      <nav class="flex flex-col gap-3 font-medium text-sm text-slate-200">
+        <a href="#solutions" class="mobile-nav-link p-2.5 rounded-lg hover:bg-dark-850 hover:text-white transition-colors">Case Studies (10 Working Systems)</a>
+        <a href="#how-it-works" class="mobile-nav-link p-2.5 rounded-lg hover:bg-dark-850 hover:text-white transition-colors">How It Works</a>
+        <a href="#benefits" class="mobile-nav-link p-2.5 rounded-lg hover:bg-dark-850 hover:text-white transition-colors">Why Work With Me</a>
+        <a href="#services" class="mobile-nav-link p-2.5 rounded-lg hover:bg-dark-850 hover:text-white transition-colors">Services & Pricing Sprints</a>
+        <a href="#contact" class="mobile-nav-link p-2.5 rounded-lg hover:bg-dark-850 hover:text-white transition-colors">Contact / Book Consultation</a>
+        
+        <div class="pt-4 border-t border-white/10 flex flex-col gap-2.5">
+          <a href="https://github.com/KalminX" target="_blank" rel="noopener noreferrer" 
+             class="flex items-center justify-center gap-2 p-3 rounded-lg text-xs font-mono font-medium text-slate-200 bg-dark-850 border border-white/10">
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+            </svg>
+            <span>Explore 10+ GitHub Repositories</span>
+          </a>
+          <a href="#contact" class="mobile-nav-link flex items-center justify-center gap-2 p-3 rounded-lg text-xs font-bold text-dark-950 bg-brand-500 hover:bg-brand-400">
+            <span>Book a Strategy Call &rarr;</span>
+          </a>
+        </div>
+      </nav>
     </div>
   </header>
 
   <!-- Pitch Hero Section -->
-  <section class="relative z-10 pt-20 pb-16 lg:pt-28 lg:pb-24 border-b border-white/10 overflow-hidden">
+  <section class="relative z-10 pt-12 pb-14 sm:pt-20 sm:pb-16 lg:pt-28 lg:pb-24 border-b border-white/10 overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-4xl">
         
         <!-- Status Badge -->
-        <div class="hero-badge inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-dark-850 border border-brand-500/30 text-brand-400 text-xs font-mono font-medium mb-8">
-          <span class="relative flex h-2 w-2">
+        <div class="hero-badge inline-flex items-center gap-2 sm:gap-2.5 px-3 py-1.5 rounded-full bg-dark-850 border border-brand-500/30 text-brand-400 text-[10px] sm:text-xs font-mono font-medium mb-6 sm:mb-8 max-w-full">
+          <span class="relative flex h-2 w-2 shrink-0">
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"></span>
             <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-500"></span>
           </span>
-          <span>TAKING ON HIGH-IMPACT CLIENT AUTOMATION ENGAGEMENTS</span>
+          <span class="truncate">TAKING ON HIGH-IMPACT CLIENT AUTOMATION ENGAGEMENTS</span>
         </div>
 
         <!-- Main Pitch Headline -->
-        <h1 class="hero-title text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12] mb-6 font-sans">
+        <h1 class="hero-title text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.15] mb-5 sm:mb-6 font-sans">
           I Build Custom AI Systems That <br class="hidden sm:inline" />
           <span class="text-brand-400">
             Cut 70% of Manual Work
@@ -181,47 +232,47 @@
         </h1>
 
         <!-- Pitch Subtitle -->
-        <p class="hero-subtitle text-lg sm:text-xl text-slate-300 leading-relaxed mb-10 max-w-3xl">
+        <p class="hero-subtitle text-base sm:text-lg lg:text-xl text-slate-300 leading-relaxed mb-8 sm:mb-10 max-w-3xl">
           Hi, I'm <strong class="text-white font-semibold">Oriabure Numerous</strong>. I build custom, end-to-end fullstack automation systems and Claude agent workflows that turn expensive, repetitive business operations into reliable, one-click automated pipelines.
         </p>
 
         <!-- CTA Action Buttons -->
-        <div class="hero-cta flex flex-wrap items-center gap-4 mb-16">
-          <a href="#contact" class="magnetic-btn inline-flex items-center gap-2 px-7 py-3.5 rounded-lg text-sm font-bold text-dark-950 bg-brand-500 hover:bg-brand-400 transition-all font-sans">
+        <div class="hero-cta flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-4 mb-12 sm:mb-16">
+          <a href="#contact" class="inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3.5 rounded-lg text-sm font-bold text-dark-950 bg-brand-500 hover:bg-brand-400 transition-all font-sans text-center">
             <span>Automate Your Workflows</span>
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
           </a>
-          <a href="#solutions" class="magnetic-btn inline-flex items-center gap-2 px-6 py-3.5 rounded-lg text-sm font-semibold text-slate-200 bg-dark-850 hover:bg-dark-800 border border-white/10 hover:border-white/20 transition-all font-sans">
+          <a href="#solutions" class="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3.5 rounded-lg text-sm font-semibold text-slate-200 bg-dark-850 hover:bg-dark-800 border border-white/10 hover:border-white/20 transition-all font-sans text-center">
             <span>See Working Case Studies & Videos</span>
             <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
           </a>
         </div>
 
         <!-- Proof Metrics Grid -->
-        <div class="hero-metrics grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 pt-8 border-t border-white/10 font-mono">
-          <div class="metric-item">
+        <div class="hero-metrics grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 pt-6 sm:pt-8 border-t border-white/10 font-mono">
+          <div class="metric-item p-3 sm:p-0 rounded-lg sm:rounded-none bg-dark-900/60 sm:bg-transparent border sm:border-0 border-white/5">
             <div class="text-2xl sm:text-3xl font-bold text-white mb-1 flex items-baseline">
               <span class="counter" data-target="10">0</span><span>+</span>
             </div>
-            <div class="text-xs text-slate-400 uppercase tracking-wider">Turnkey Systems Shipped</div>
+            <div class="text-[11px] sm:text-xs text-slate-400 uppercase tracking-wider">Turnkey Systems Shipped</div>
           </div>
-          <div class="metric-item">
+          <div class="metric-item p-3 sm:p-0 rounded-lg sm:rounded-none bg-dark-900/60 sm:bg-transparent border sm:border-0 border-white/5">
             <div class="text-2xl sm:text-3xl font-bold text-brand-400 mb-1 flex items-baseline">
               <span class="counter" data-target="90">0</span><span>%</span>
             </div>
-            <div class="text-xs text-slate-400 uppercase tracking-wider">Manual Work Reduced</div>
+            <div class="text-[11px] sm:text-xs text-slate-400 uppercase tracking-wider">Manual Work Reduced</div>
           </div>
-          <div class="metric-item">
+          <div class="metric-item p-3 sm:p-0 rounded-lg sm:rounded-none bg-dark-900/60 sm:bg-transparent border sm:border-0 border-white/5">
             <div class="text-2xl sm:text-3xl font-bold text-accent-400 mb-1">
               <span>100%</span>
             </div>
-            <div class="text-xs text-slate-400 uppercase tracking-wider">Human-In-The-Loop Control</div>
+            <div class="text-[11px] sm:text-xs text-slate-400 uppercase tracking-wider">Human-In-The-Loop Control</div>
           </div>
-          <div class="metric-item">
+          <div class="metric-item p-3 sm:p-0 rounded-lg sm:rounded-none bg-dark-900/60 sm:bg-transparent border sm:border-0 border-white/5">
             <div class="text-2xl sm:text-3xl font-bold text-white mb-1 flex items-baseline">
               <span class="counter" data-target="14">0</span><span> Days</span>
             </div>
-            <div class="text-xs text-slate-400 uppercase tracking-wider">Typical MVP Delivery</div>
+            <div class="text-[11px] sm:text-xs text-slate-400 uppercase tracking-wider">Typical MVP Delivery</div>
           </div>
         </div>
 
@@ -230,33 +281,35 @@
   </section>
 
   <!-- Live Solutions / Case Studies Showcase -->
-  <section id="solutions" class="relative z-10 py-20 lg:py-28 border-b border-white/10">
+  <section id="solutions" class="relative z-10 py-16 sm:py-20 lg:py-28 border-b border-white/10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <!-- Section Header -->
-      <div class="section-header flex flex-col md:flex-row md:items-end justify-between mb-12">
+      <div class="section-header flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12 gap-6">
         <div>
           <div class="text-xs font-mono text-brand-400 tracking-widest uppercase mb-2 font-semibold">Proven Client Solutions</div>
-          <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight font-sans">
+          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight font-sans">
             Real Automated Systems in Action
           </h2>
-          <p class="text-slate-400 mt-2 max-w-2xl text-sm sm:text-base">
+          <p class="text-slate-400 mt-2 max-w-2xl text-xs sm:text-sm md:text-base leading-relaxed">
             Watch the actual application demo videos below to see how these automated systems solve real operational challenges.
           </p>
         </div>
 
-        <!-- Filter Tabs -->
-        <div class="mt-6 md:mt-0 flex flex-wrap gap-1.5 p-1 rounded-lg bg-dark-900 border border-white/10 text-xs font-medium" id="filter-tabs">
-          <button data-filter="all" class="filter-btn active px-3.5 py-1.5 rounded-md bg-brand-500 text-dark-950 font-bold transition-all">All Solutions (10)</button>
-          <button data-filter="operations" class="filter-btn px-3 py-1.5 rounded-md text-slate-400 hover:text-white transition-all">Business Operations</button>
-          <button data-filter="finance" class="filter-btn px-3 py-1.5 rounded-md text-slate-400 hover:text-white transition-all">Finance & Billing</button>
-          <button data-filter="client" class="filter-btn px-3 py-1.5 rounded-md text-slate-400 hover:text-white transition-all">Client Portals</button>
-          <button data-filter="docs" class="filter-btn px-3 py-1.5 rounded-md text-slate-400 hover:text-white transition-all">Document & Content</button>
+        <!-- Filter Tabs (Scrollable on mobile) -->
+        <div class="w-full md:w-auto overflow-x-auto no-scrollbar pb-1 -mx-4 sm:mx-0 px-4 sm:px-0">
+          <div class="flex items-center gap-1.5 p-1 rounded-lg bg-dark-900 border border-white/10 text-xs font-medium shrink-0 whitespace-nowrap" id="filter-tabs">
+            <button data-filter="all" class="filter-btn active px-3 py-1.5 rounded-md bg-brand-500 text-dark-950 font-bold transition-all">All (10)</button>
+            <button data-filter="operations" class="filter-btn px-3 py-1.5 rounded-md text-slate-400 hover:text-white transition-all">Operations</button>
+            <button data-filter="finance" class="filter-btn px-3 py-1.5 rounded-md text-slate-400 hover:text-white transition-all">Finance & Billing</button>
+            <button data-filter="client" class="filter-btn px-3 py-1.5 rounded-md text-slate-400 hover:text-white transition-all">Client Portals</button>
+            <button data-filter="docs" class="filter-btn px-3 py-1.5 rounded-md text-slate-400 hover:text-white transition-all">Doc & Publishing</button>
+          </div>
         </div>
       </div>
 
       <!-- Case Studies Grid -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8" id="projects-grid">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8" id="projects-grid">
 
         <!-- Solution 1: Business Operations Agent -->
         <div class="glass-card rounded-xl overflow-hidden flex flex-col group project-card" data-category="operations">
@@ -264,33 +317,33 @@
             <video preload="metadata" muted playsinline loop poster="assets/images/local_mcp_business_op_poster.png" class="hover-video">
               <source src="assets/videos/local_mcp_business_op.mp4" type="video/mp4">
             </video>
-            <div class="absolute top-3 left-3 px-3 py-1 rounded bg-dark-950 border border-brand-500/40 text-[11px] font-mono font-semibold text-brand-400">
+            <div class="absolute top-2.5 sm:top-3 left-2.5 sm:left-3 px-2.5 sm:px-3 py-0.5 sm:py-1 rounded bg-dark-950 border border-brand-500/40 text-[10px] sm:text-[11px] font-mono font-semibold text-brand-400">
               $45K+ REVENUE RECOVERED
             </div>
-            <div class="absolute bottom-3 right-3 px-2.5 py-1 rounded bg-dark-950/90 text-[11px] font-mono text-slate-300 flex items-center gap-1.5">
+            <div class="absolute bottom-2.5 sm:bottom-3 right-2.5 sm:right-3 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded bg-dark-950/90 text-[10px] sm:text-[11px] font-mono text-slate-300 flex items-center gap-1.5">
               <svg class="w-3 h-3 text-brand-400" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-              <span>Hover to Play Video</span>
+              <span class="video-hint">Hover / Tap to Play</span>
             </div>
           </div>
-          <div class="p-6 flex-1 flex flex-col justify-between">
+          <div class="p-5 sm:p-6 flex-1 flex flex-col justify-between">
             <div>
-              <h3 class="text-xl font-bold text-white group-hover:text-brand-400 transition-colors font-sans mb-2">
+              <h3 class="text-lg sm:text-xl font-bold text-white group-hover:text-brand-400 transition-colors font-sans mb-2">
                 Autonomous Business Operations Agent
               </h3>
-              <p class="text-sm text-slate-300 leading-relaxed mb-4">
+              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
                 <strong class="text-white">The Problem:</strong> Operations teams lose 15+ hours weekly chasing overdue invoices, cross-referencing CRM records, and manually delegating follow-ups.<br>
                 <strong class="text-brand-400">The Solution:</strong> An intelligent agent that autonomously queries live records, identifies at-risk accounts, drafts follow-up tasks, and stages one-click approval requests for staff.
               </p>
-              <div class="flex flex-wrap gap-2 mb-6">
-                <span class="px-2.5 py-1 rounded bg-dark-850 border border-brand-500/30 text-brand-400 font-mono text-xs font-semibold">15+ Hours Saved/Week</span>
-                <span class="px-2.5 py-1 rounded bg-dark-850 text-slate-300 font-mono text-xs">One-Click Approvals</span>
-                <span class="px-2.5 py-1 rounded bg-dark-850 text-slate-300 font-mono text-xs">CRM & Invoice Sync</span>
+              <div class="flex flex-wrap gap-1.5 sm:gap-2 mb-6">
+                <span class="px-2 sm:px-2.5 py-0.5 sm:py-1 rounded bg-dark-850 border border-brand-500/30 text-brand-400 font-mono text-[11px] sm:text-xs font-semibold">15+ Hours Saved/Week</span>
+                <span class="px-2 sm:px-2.5 py-0.5 sm:py-1 rounded bg-dark-850 text-slate-300 font-mono text-[11px] sm:text-xs">One-Click Approvals</span>
+                <span class="px-2 sm:px-2.5 py-0.5 sm:py-1 rounded bg-dark-850 text-slate-300 font-mono text-[11px] sm:text-xs">CRM & Invoice Sync</span>
               </div>
             </div>
-            <div class="pt-4 border-t border-white/10 flex items-center justify-between">
-              <span class="text-xs text-slate-400 font-mono">100% Auditable Record</span>
+            <div class="pt-4 border-t border-white/10 flex flex-col xs:flex-row items-start xs:items-center justify-between gap-2.5">
+              <span class="text-[11px] sm:text-xs text-slate-400 font-mono">100% Auditable Record</span>
               <a href="https://github.com/KalminX/local_mcp_business_op" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-bold text-brand-400 hover:text-brand-300 font-sans">
-                <span>View Full Case Study & Code</span>
+                <span>View Case Study & Code</span>
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
               </a>
             </div>
@@ -303,33 +356,33 @@
             <video preload="metadata" muted playsinline loop poster="assets/images/ai_opportunity_audit_poster.png" class="hover-video">
               <source src="assets/videos/ai_opportunity_audit.mp4" type="video/mp4">
             </video>
-            <div class="absolute top-3 left-3 px-3 py-1 rounded bg-dark-950 border border-accent-500/40 text-[11px] font-mono font-semibold text-accent-400">
+            <div class="absolute top-2.5 sm:top-3 left-2.5 sm:left-3 px-2.5 sm:px-3 py-0.5 sm:py-1 rounded bg-dark-950 border border-accent-500/40 text-[10px] sm:text-[11px] font-mono font-semibold text-accent-400">
               EXECUTIVE DECISION PLATFORM
             </div>
-            <div class="absolute bottom-3 right-3 px-2.5 py-1 rounded bg-dark-950/90 text-[11px] font-mono text-slate-300 flex items-center gap-1.5">
+            <div class="absolute bottom-2.5 sm:bottom-3 right-2.5 sm:right-3 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded bg-dark-950/90 text-[10px] sm:text-[11px] font-mono text-slate-300 flex items-center gap-1.5">
               <svg class="w-3 h-3 text-accent-400" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-              <span>Hover to Play Video</span>
+              <span class="video-hint">Hover / Tap to Play</span>
             </div>
           </div>
-          <div class="p-6 flex-1 flex flex-col justify-between">
+          <div class="p-5 sm:p-6 flex-1 flex flex-col justify-between">
             <div>
-              <h3 class="text-xl font-bold text-white group-hover:text-accent-400 transition-colors font-sans mb-2">
+              <h3 class="text-lg sm:text-xl font-bold text-white group-hover:text-accent-400 transition-colors font-sans mb-2">
                 AI Opportunity Audit & Decision Matrix
               </h3>
-              <p class="text-sm text-slate-300 leading-relaxed mb-4">
+              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
                 <strong class="text-white">The Problem:</strong> Leadership teams struggle to identify which internal workflows offer the highest ROI for automation without wasting months on analysis.<br>
                 <strong class="text-accent-400">The Solution:</strong> An executive audit dashboard that benchmarks company operations, scores ROI vs. implementation complexity, and auto-generates 90-day execution roadmaps.
               </p>
-              <div class="flex flex-wrap gap-2 mb-6">
-                <span class="px-2.5 py-1 rounded bg-dark-850 border border-accent-500/30 text-accent-400 font-mono text-xs font-semibold">Immediate ROI Clarity</span>
-                <span class="px-2.5 py-1 rounded bg-dark-850 text-slate-300 font-mono text-xs">Visual Process Maps</span>
-                <span class="px-2.5 py-1 rounded bg-dark-850 text-slate-300 font-mono text-xs">90-Day Implementation Plan</span>
+              <div class="flex flex-wrap gap-1.5 sm:gap-2 mb-6">
+                <span class="px-2 sm:px-2.5 py-0.5 sm:py-1 rounded bg-dark-850 border border-accent-500/30 text-accent-400 font-mono text-[11px] sm:text-xs font-semibold">Immediate ROI Clarity</span>
+                <span class="px-2 sm:px-2.5 py-0.5 sm:py-1 rounded bg-dark-850 text-slate-300 font-mono text-[11px] sm:text-xs">Visual Process Maps</span>
+                <span class="px-2 sm:px-2.5 py-0.5 sm:py-1 rounded bg-dark-850 text-slate-300 font-mono text-[11px] sm:text-xs">90-Day Implementation Plan</span>
               </div>
             </div>
-            <div class="pt-4 border-t border-white/10 flex items-center justify-between">
-              <span class="text-xs text-slate-400 font-mono">Executive-Ready Outputs</span>
+            <div class="pt-4 border-t border-white/10 flex flex-col xs:flex-row items-start xs:items-center justify-between gap-2.5">
+              <span class="text-[11px] sm:text-xs text-slate-400 font-mono">Executive-Ready Outputs</span>
               <a href="https://github.com/KalminX/ai_opportunity_audit" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-bold text-accent-400 hover:text-accent-300 font-sans">
-                <span>View Full Case Study & Code</span>
+                <span>View Case Study & Code</span>
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
               </a>
             </div>
@@ -342,33 +395,33 @@
             <video preload="metadata" muted playsinline loop poster="assets/images/ai_invoice_document_poster.png" class="hover-video">
               <source src="assets/videos/ai_invoice_document.mp4" type="video/mp4">
             </video>
-            <div class="absolute top-3 left-3 px-3 py-1 rounded bg-dark-950 border border-brand-500/40 text-[11px] font-mono font-semibold text-brand-400">
+            <div class="absolute top-2.5 sm:top-3 left-2.5 sm:left-3 px-2.5 sm:px-3 py-0.5 sm:py-1 rounded bg-dark-950 border border-brand-500/40 text-[10px] sm:text-[11px] font-mono font-semibold text-brand-400">
               90% FASTER INVOICE ENTRY
             </div>
-            <div class="absolute bottom-3 right-3 px-2.5 py-1 rounded bg-dark-950/90 text-[11px] font-mono text-slate-300 flex items-center gap-1.5">
+            <div class="absolute bottom-2.5 sm:bottom-3 right-2.5 sm:right-3 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded bg-dark-950/90 text-[10px] sm:text-[11px] font-mono text-slate-300 flex items-center gap-1.5">
               <svg class="w-3 h-3 text-brand-400" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-              <span>Hover to Play Video</span>
+              <span class="video-hint">Hover / Tap to Play</span>
             </div>
           </div>
-          <div class="p-6 flex-1 flex flex-col justify-between">
+          <div class="p-5 sm:p-6 flex-1 flex flex-col justify-between">
             <div>
-              <h3 class="text-xl font-bold text-white group-hover:text-brand-400 transition-colors font-sans mb-2">
+              <h3 class="text-lg sm:text-xl font-bold text-white group-hover:text-brand-400 transition-colors font-sans mb-2">
                 Automated Invoice & Document Extraction
               </h3>
-              <p class="text-sm text-slate-300 leading-relaxed mb-4">
+              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
                 <strong class="text-white">The Problem:</strong> Manual invoice data entry causes accounting backlogs, human typos, and delayed vendor payments.<br>
                 <strong class="text-brand-400">The Solution:</strong> An automated OCR pipeline that extracts line items with visual bounding boxes, performs mathematical reconciliation, maps GL codes, and syncs to ERP systems.
               </p>
-              <div class="flex flex-wrap gap-2 mb-6">
-                <span class="px-2.5 py-1 rounded bg-dark-850 border border-brand-500/30 text-brand-400 font-mono text-xs font-semibold">99.4% Parsing Accuracy</span>
-                <span class="px-2.5 py-1 rounded bg-dark-850 text-slate-300 font-mono text-xs">Math Validation</span>
-                <span class="px-2.5 py-1 rounded bg-dark-850 text-slate-300 font-mono text-xs">QuickBooks & NetSuite Export</span>
+              <div class="flex flex-wrap gap-1.5 sm:gap-2 mb-6">
+                <span class="px-2 sm:px-2.5 py-0.5 sm:py-1 rounded bg-dark-850 border border-brand-500/30 text-brand-400 font-mono text-[11px] sm:text-xs font-semibold">99.4% Parsing Accuracy</span>
+                <span class="px-2 sm:px-2.5 py-0.5 sm:py-1 rounded bg-dark-850 text-slate-300 font-mono text-[11px] sm:text-xs">Math Validation</span>
+                <span class="px-2 sm:px-2.5 py-0.5 sm:py-1 rounded bg-dark-850 text-slate-300 font-mono text-[11px] sm:text-xs">ERP Integration</span>
               </div>
             </div>
-            <div class="pt-4 border-t border-white/10 flex items-center justify-between">
-              <span class="text-xs text-slate-400 font-mono">Zero Manual Re-typing</span>
+            <div class="pt-4 border-t border-white/10 flex flex-col xs:flex-row items-start xs:items-center justify-between gap-2.5">
+              <span class="text-[11px] sm:text-xs text-slate-400 font-mono">Zero Manual Re-typing</span>
               <a href="https://github.com/KalminX/ai_invoice_document" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-bold text-brand-400 hover:text-brand-300 font-sans">
-                <span>View Full Case Study & Code</span>
+                <span>View Case Study & Code</span>
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
               </a>
             </div>
@@ -381,33 +434,33 @@
             <video preload="metadata" muted playsinline loop poster="assets/images/meeting_intelligence_poster.png" class="hover-video">
               <source src="assets/videos/meeting_intelligence.mp4" type="video/mp4">
             </video>
-            <div class="absolute top-3 left-3 px-3 py-1 rounded bg-dark-950 border border-brand-500/40 text-[11px] font-mono font-semibold text-brand-400">
+            <div class="absolute top-2.5 sm:top-3 left-2.5 sm:left-3 px-2.5 sm:px-3 py-0.5 sm:py-1 rounded bg-dark-950 border border-brand-500/40 text-[10px] sm:text-[11px] font-mono font-semibold text-brand-400">
               ZERO DROPPED ACTION ITEMS
             </div>
-            <div class="absolute bottom-3 right-3 px-2.5 py-1 rounded bg-dark-950/90 text-[11px] font-mono text-slate-300 flex items-center gap-1.5">
+            <div class="absolute bottom-2.5 sm:bottom-3 right-2.5 sm:right-3 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded bg-dark-950/90 text-[10px] sm:text-[11px] font-mono text-slate-300 flex items-center gap-1.5">
               <svg class="w-3 h-3 text-brand-400" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-              <span>Hover to Play Video</span>
+              <span class="video-hint">Hover / Tap to Play</span>
             </div>
           </div>
-          <div class="p-6 flex-1 flex flex-col justify-between">
+          <div class="p-5 sm:p-6 flex-1 flex flex-col justify-between">
             <div>
-              <h3 class="text-xl font-bold text-white group-hover:text-brand-400 transition-colors font-sans mb-2">
+              <h3 class="text-lg sm:text-xl font-bold text-white group-hover:text-brand-400 transition-colors font-sans mb-2">
                 Executive Meeting Intelligence & Task Dispatch
               </h3>
-              <p class="text-sm text-slate-300 leading-relaxed mb-4">
+              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
                 <strong class="text-white">The Problem:</strong> Critical action items and commitments made during executive calls get forgotten, leading to costly project delays.<br>
                 <strong class="text-brand-400">The Solution:</strong> An intelligence hub that transcribes conversations, identifies key decisions and risks, and automatically dispatches assigned tasks into Asana or Linear.
               </p>
-              <div class="flex flex-wrap gap-2 mb-6">
-                <span class="px-2.5 py-1 rounded bg-dark-850 border border-brand-500/30 text-brand-400 font-mono text-xs font-semibold">Instant Executive Briefs</span>
-                <span class="px-2.5 py-1 rounded bg-dark-850 text-slate-300 font-mono text-xs">Automated Task Dispatch</span>
-                <span class="px-2.5 py-1 rounded bg-dark-850 text-slate-300 font-mono text-xs">Asana / Linear Sync</span>
+              <div class="flex flex-wrap gap-1.5 sm:gap-2 mb-6">
+                <span class="px-2 sm:px-2.5 py-0.5 sm:py-1 rounded bg-dark-850 border border-brand-500/30 text-brand-400 font-mono text-[11px] sm:text-xs font-semibold">Instant Executive Briefs</span>
+                <span class="px-2 sm:px-2.5 py-0.5 sm:py-1 rounded bg-dark-850 text-slate-300 font-mono text-[11px] sm:text-xs">Automated Task Dispatch</span>
+                <span class="px-2 sm:px-2.5 py-0.5 sm:py-1 rounded bg-dark-850 text-slate-300 font-mono text-[11px] sm:text-xs">Asana / Linear Sync</span>
               </div>
             </div>
-            <div class="pt-4 border-t border-white/10 flex items-center justify-between">
-              <span class="text-xs text-slate-400 font-mono">100% Accountability</span>
+            <div class="pt-4 border-t border-white/10 flex flex-col xs:flex-row items-start xs:items-center justify-between gap-2.5">
+              <span class="text-[11px] sm:text-xs text-slate-400 font-mono">100% Accountability</span>
               <a href="https://github.com/KalminX/meeting_intelligence" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-bold text-brand-400 hover:text-brand-300 font-sans">
-                <span>View Full Case Study & Code</span>
+                <span>View Case Study & Code</span>
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
               </a>
             </div>
@@ -420,33 +473,33 @@
             <video preload="metadata" muted playsinline loop poster="assets/images/client_query_triage_poster.png" class="hover-video">
               <source src="assets/videos/client_query_triage.mp4" type="video/mp4">
             </video>
-            <div class="absolute top-3 left-3 px-3 py-1 rounded bg-dark-950 border border-brand-500/40 text-[11px] font-mono font-semibold text-brand-400">
+            <div class="absolute top-2.5 sm:top-3 left-2.5 sm:left-3 px-2.5 sm:px-3 py-0.5 sm:py-1 rounded bg-dark-950 border border-brand-500/40 text-[10px] sm:text-[11px] font-mono font-semibold text-brand-400">
               5X FASTER RESPONSE TIMES
             </div>
-            <div class="absolute bottom-3 right-3 px-2.5 py-1 rounded bg-dark-950/90 text-[11px] font-mono text-slate-300 flex items-center gap-1.5">
+            <div class="absolute bottom-2.5 sm:bottom-3 right-2.5 sm:right-3 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded bg-dark-950/90 text-[10px] sm:text-[11px] font-mono text-slate-300 flex items-center gap-1.5">
               <svg class="w-3 h-3 text-brand-400" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-              <span>Hover to Play Video</span>
+              <span class="video-hint">Hover / Tap to Play</span>
             </div>
           </div>
-          <div class="p-6 flex-1 flex flex-col justify-between">
+          <div class="p-5 sm:p-6 flex-1 flex flex-col justify-between">
             <div>
-              <h3 class="text-xl font-bold text-white group-hover:text-brand-400 transition-colors font-sans mb-2">
+              <h3 class="text-lg sm:text-xl font-bold text-white group-hover:text-brand-400 transition-colors font-sans mb-2">
                 Client Query Triage & Support Workbench
               </h3>
-              <p class="text-sm text-slate-300 leading-relaxed mb-4">
+              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
                 <strong class="text-white">The Problem:</strong> High-ticket client requests get buried in email inboxes, breaching SLAs and hurting client retention.<br>
                 <strong class="text-brand-400">The Solution:</strong> A real-time triage inbox that scores sentiment urgency, manages SLA countdowns, and generates verified policy-grounded draft responses in seconds.
               </p>
-              <div class="flex flex-wrap gap-2 mb-6">
-                <span class="px-2.5 py-1 rounded bg-dark-850 border border-brand-500/30 text-brand-400 font-mono text-xs font-semibold">Zero SLA Breaches</span>
-                <span class="px-2.5 py-1 rounded bg-dark-850 text-slate-300 font-mono text-xs">Urgency Scoring</span>
-                <span class="px-2.5 py-1 rounded bg-dark-850 text-slate-300 font-mono text-xs">Policy-Compliant Drafts</span>
+              <div class="flex flex-wrap gap-1.5 sm:gap-2 mb-6">
+                <span class="px-2 sm:px-2.5 py-0.5 sm:py-1 rounded bg-dark-850 border border-brand-500/30 text-brand-400 font-mono text-[11px] sm:text-xs font-semibold">Zero SLA Breaches</span>
+                <span class="px-2 sm:px-2.5 py-0.5 sm:py-1 rounded bg-dark-850 text-slate-300 font-mono text-[11px] sm:text-xs">Urgency Scoring</span>
+                <span class="px-2 sm:px-2.5 py-0.5 sm:py-1 rounded bg-dark-850 text-slate-300 font-mono text-[11px] sm:text-xs">Policy-Compliant Drafts</span>
               </div>
             </div>
-            <div class="pt-4 border-t border-white/10 flex items-center justify-between">
-              <span class="text-xs text-slate-400 font-mono">Real-Time Queue</span>
+            <div class="pt-4 border-t border-white/10 flex flex-col xs:flex-row items-start xs:items-center justify-between gap-2.5">
+              <span class="text-[11px] sm:text-xs text-slate-400 font-mono">Real-Time Queue</span>
               <a href="https://github.com/KalminX/client_query_triage" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-bold text-brand-400 hover:text-brand-300 font-sans">
-                <span>View Full Case Study & Code</span>
+                <span>View Case Study & Code</span>
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
               </a>
             </div>
@@ -459,33 +512,33 @@
             <video preload="metadata" muted playsinline loop poster="assets/images/client_boarding_poster.png" class="hover-video">
               <source src="assets/videos/client_boarding.mp4" type="video/mp4">
             </video>
-            <div class="absolute top-3 left-3 px-3 py-1 rounded bg-dark-950 border border-accent-500/40 text-[11px] font-mono font-semibold text-accent-400">
+            <div class="absolute top-2.5 sm:top-3 left-2.5 sm:left-3 px-2.5 sm:px-3 py-0.5 sm:py-1 rounded bg-dark-950 border border-accent-500/40 text-[10px] sm:text-[11px] font-mono font-semibold text-accent-400">
               FRICTIONLESS ONBOARDING
             </div>
-            <div class="absolute bottom-3 right-3 px-2.5 py-1 rounded bg-dark-950/90 text-[11px] font-mono text-slate-300 flex items-center gap-1.5">
+            <div class="absolute bottom-2.5 sm:bottom-3 right-2.5 sm:right-3 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded bg-dark-950/90 text-[10px] sm:text-[11px] font-mono text-slate-300 flex items-center gap-1.5">
               <svg class="w-3 h-3 text-accent-400" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-              <span>Hover to Play Video</span>
+              <span class="video-hint">Hover / Tap to Play</span>
             </div>
           </div>
-          <div class="p-6 flex-1 flex flex-col justify-between">
+          <div class="p-5 sm:p-6 flex-1 flex flex-col justify-between">
             <div>
-              <h3 class="text-xl font-bold text-white group-hover:text-accent-400 transition-colors font-sans mb-2">
+              <h3 class="text-lg sm:text-xl font-bold text-white group-hover:text-accent-400 transition-colors font-sans mb-2">
                 Automated Client Onboarding & Compliance Portal
               </h3>
-              <p class="text-sm text-slate-300 leading-relaxed mb-4">
+              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
                 <strong class="text-white">The Problem:</strong> Onboarding new enterprise clients takes days of manual email exchanges, document chasing, and compliance checks.<br>
                 <strong class="text-accent-400">The Solution:</strong> A guided intake portal with instant document verification, automated risk scoring, and tiered manager approval queues.
               </p>
-              <div class="flex flex-wrap gap-2 mb-6">
-                <span class="px-2.5 py-1 rounded bg-dark-850 border border-accent-500/30 text-accent-400 font-mono text-xs font-semibold">Same-Day Onboarding</span>
-                <span class="px-2.5 py-1 rounded bg-dark-850 text-slate-300 font-mono text-xs">Automated Verification</span>
-                <span class="px-2.5 py-1 rounded bg-dark-850 text-slate-300 font-mono text-xs">Audit Trail</span>
+              <div class="flex flex-wrap gap-1.5 sm:gap-2 mb-6">
+                <span class="px-2 sm:px-2.5 py-0.5 sm:py-1 rounded bg-dark-850 border border-accent-500/30 text-accent-400 font-mono text-[11px] sm:text-xs font-semibold">Same-Day Onboarding</span>
+                <span class="px-2 sm:px-2.5 py-0.5 sm:py-1 rounded bg-dark-850 text-slate-300 font-mono text-[11px] sm:text-xs">Automated Verification</span>
+                <span class="px-2 sm:px-2.5 py-0.5 sm:py-1 rounded bg-dark-850 text-slate-300 font-mono text-[11px] sm:text-xs">Audit Trail</span>
               </div>
             </div>
-            <div class="pt-4 border-t border-white/10 flex items-center justify-between">
-              <span class="text-xs text-slate-400 font-mono">SOC-2 Ready Architecture</span>
+            <div class="pt-4 border-t border-white/10 flex flex-col xs:flex-row items-start xs:items-center justify-between gap-2.5">
+              <span class="text-[11px] sm:text-xs text-slate-400 font-mono">SOC-2 Ready</span>
               <a href="https://github.com/KalminX/client_boarding" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-bold text-accent-400 hover:text-accent-300 font-sans">
-                <span>View Full Case Study & Code</span>
+                <span>View Case Study & Code</span>
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
               </a>
             </div>
@@ -498,33 +551,33 @@
             <video preload="metadata" muted playsinline loop poster="assets/images/internal_knowledge_hub_poster.png" class="hover-video">
               <source src="assets/videos/internal_knowledge_hub.mp4" type="video/mp4">
             </video>
-            <div class="absolute top-3 left-3 px-3 py-1 rounded bg-dark-950 border border-brand-500/40 text-[11px] font-mono font-semibold text-brand-400">
+            <div class="absolute top-2.5 sm:top-3 left-2.5 sm:left-3 px-2.5 sm:px-3 py-0.5 sm:py-1 rounded bg-dark-950 border border-brand-500/40 text-[10px] sm:text-[11px] font-mono font-semibold text-brand-400">
               INSTANT COMPANY KNOWLEDGE
             </div>
-            <div class="absolute bottom-3 right-3 px-2.5 py-1 rounded bg-dark-950/90 text-[11px] font-mono text-slate-300 flex items-center gap-1.5">
+            <div class="absolute bottom-2.5 sm:bottom-3 right-2.5 sm:right-3 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded bg-dark-950/90 text-[10px] sm:text-[11px] font-mono text-slate-300 flex items-center gap-1.5">
               <svg class="w-3 h-3 text-brand-400" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-              <span>Hover to Play Video</span>
+              <span class="video-hint">Hover / Tap to Play</span>
             </div>
           </div>
-          <div class="p-6 flex-1 flex flex-col justify-between">
+          <div class="p-5 sm:p-6 flex-1 flex flex-col justify-between">
             <div>
-              <h3 class="text-xl font-bold text-white group-hover:text-brand-400 transition-colors font-sans mb-2">
+              <h3 class="text-lg sm:text-xl font-bold text-white group-hover:text-brand-400 transition-colors font-sans mb-2">
                 Enterprise Knowledge Hub & Instant Search
               </h3>
-              <p class="text-sm text-slate-300 leading-relaxed mb-4">
+              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
                 <strong class="text-white">The Problem:</strong> Employees spend up to 20% of their week hunting for internal policies, technical SOPs, and project documentation.<br>
                 <strong class="text-brand-400">The Solution:</strong> A lightning-fast knowledge assistant that answers complex team questions in under 40ms with highlighted source citations.
               </p>
-              <div class="flex flex-wrap gap-2 mb-6">
-                <span class="px-2.5 py-1 rounded bg-dark-850 border border-brand-500/30 text-brand-400 font-mono text-xs font-semibold">&lt; 40ms Responses</span>
-                <span class="px-2.5 py-1 rounded bg-dark-850 text-slate-300 font-mono text-xs">Exact Source Citations</span>
-                <span class="px-2.5 py-1 rounded bg-dark-850 text-slate-300 font-mono text-xs">Zero-Hallucination Guarantee</span>
+              <div class="flex flex-wrap gap-1.5 sm:gap-2 mb-6">
+                <span class="px-2 sm:px-2.5 py-0.5 sm:py-1 rounded bg-dark-850 border border-brand-500/30 text-brand-400 font-mono text-[11px] sm:text-xs font-semibold">&lt; 40ms Responses</span>
+                <span class="px-2 sm:px-2.5 py-0.5 sm:py-1 rounded bg-dark-850 text-slate-300 font-mono text-[11px] sm:text-xs">Exact Citations</span>
+                <span class="px-2 sm:px-2.5 py-0.5 sm:py-1 rounded bg-dark-850 text-slate-300 font-mono text-[11px] sm:text-xs">Zero-Hallucination</span>
               </div>
             </div>
-            <div class="pt-4 border-t border-white/10 flex items-center justify-between">
-              <span class="text-xs text-slate-400 font-mono">Role-Based Security</span>
+            <div class="pt-4 border-t border-white/10 flex flex-col xs:flex-row items-start xs:items-center justify-between gap-2.5">
+              <span class="text-[11px] sm:text-xs text-slate-400 font-mono">Role-Based Security</span>
               <a href="https://github.com/KalminX/internal_knowledge_hub" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-bold text-brand-400 hover:text-brand-300 font-sans">
-                <span>View Full Case Study & Code</span>
+                <span>View Case Study & Code</span>
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
               </a>
             </div>
@@ -537,33 +590,33 @@
             <video preload="metadata" muted playsinline loop poster="assets/images/board_deck_generator_poster.png" class="hover-video">
               <source src="assets/videos/board_deck_generator.mp4" type="video/mp4">
             </video>
-            <div class="absolute top-3 left-3 px-3 py-1 rounded bg-dark-950 border border-accent-500/40 text-[11px] font-mono font-semibold text-accent-400">
+            <div class="absolute top-2.5 sm:top-3 left-2.5 sm:left-3 px-2.5 sm:px-3 py-0.5 sm:py-1 rounded bg-dark-950 border border-accent-500/40 text-[10px] sm:text-[11px] font-mono font-semibold text-accent-400">
               BOARD-READY IN 60 SECONDS
             </div>
-            <div class="absolute bottom-3 right-3 px-2.5 py-1 rounded bg-dark-950/90 text-[11px] font-mono text-slate-300 flex items-center gap-1.5">
+            <div class="absolute bottom-2.5 sm:bottom-3 right-2.5 sm:right-3 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded bg-dark-950/90 text-[10px] sm:text-[11px] font-mono text-slate-300 flex items-center gap-1.5">
               <svg class="w-3 h-3 text-accent-400" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-              <span>Hover to Play Video</span>
+              <span class="video-hint">Hover / Tap to Play</span>
             </div>
           </div>
-          <div class="p-6 flex-1 flex flex-col justify-between">
+          <div class="p-5 sm:p-6 flex-1 flex flex-col justify-between">
             <div>
-              <h3 class="text-xl font-bold text-white group-hover:text-accent-400 transition-colors font-sans mb-2">
+              <h3 class="text-lg sm:text-xl font-bold text-white group-hover:text-accent-400 transition-colors font-sans mb-2">
                 Executive Board Deck & Presentation Engine
               </h3>
-              <p class="text-sm text-slate-300 leading-relaxed mb-4">
+              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
                 <strong class="text-white">The Problem:</strong> Executives spend dozens of hours preparing slides and narrative decks for board meetings and investor updates.<br>
                 <strong class="text-accent-400">The Solution:</strong> An automated slide generation engine that transforms company data into branded, executive-grade PowerPoint (.pptx) and PDF presentations.
               </p>
-              <div class="flex flex-wrap gap-2 mb-6">
-                <span class="px-2.5 py-1 rounded bg-dark-850 border border-accent-500/30 text-accent-400 font-mono text-xs font-semibold">1-Click PPTX Export</span>
-                <span class="px-2.5 py-1 rounded bg-dark-850 text-slate-300 font-mono text-xs">Narrative Outlines</span>
-                <span class="px-2.5 py-1 rounded bg-dark-850 text-slate-300 font-mono text-xs">Corporate Branding</span>
+              <div class="flex flex-wrap gap-1.5 sm:gap-2 mb-6">
+                <span class="px-2 sm:px-2.5 py-0.5 sm:py-1 rounded bg-dark-850 border border-accent-500/30 text-accent-400 font-mono text-[11px] sm:text-xs font-semibold">1-Click PPTX Export</span>
+                <span class="px-2 sm:px-2.5 py-0.5 sm:py-1 rounded bg-dark-850 text-slate-300 font-mono text-[11px] sm:text-xs">Narrative Outlines</span>
+                <span class="px-2 sm:px-2.5 py-0.5 sm:py-1 rounded bg-dark-850 text-slate-300 font-mono text-[11px] sm:text-xs">Corporate Branding</span>
               </div>
             </div>
-            <div class="pt-4 border-t border-white/10 flex items-center justify-between">
-              <span class="text-xs text-slate-400 font-mono">Pixel-Perfect Layouts</span>
+            <div class="pt-4 border-t border-white/10 flex flex-col xs:flex-row items-start xs:items-center justify-between gap-2.5">
+              <span class="text-[11px] sm:text-xs text-slate-400 font-mono">Pixel-Perfect Slides</span>
               <a href="https://github.com/KalminX/board_deck_generator" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-bold text-accent-400 hover:text-accent-300 font-sans">
-                <span>View Full Case Study & Code</span>
+                <span>View Case Study & Code</span>
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
               </a>
             </div>
@@ -576,33 +629,33 @@
             <video preload="metadata" muted playsinline loop poster="assets/images/storybook_generator_poster.png" class="hover-video">
               <source src="assets/videos/storybook_generator.mp4" type="video/mp4">
             </video>
-            <div class="absolute top-3 left-3 px-3 py-1 rounded bg-dark-950 border border-brand-500/40 text-[11px] font-mono font-semibold text-brand-400">
+            <div class="absolute top-2.5 sm:top-3 left-2.5 sm:left-3 px-2.5 sm:px-3 py-0.5 sm:py-1 rounded bg-dark-950 border border-brand-500/40 text-[10px] sm:text-[11px] font-mono font-semibold text-brand-400">
               MULTIMODAL PUBLISHING
             </div>
-            <div class="absolute bottom-3 right-3 px-2.5 py-1 rounded bg-dark-950/90 text-[11px] font-mono text-slate-300 flex items-center gap-1.5">
+            <div class="absolute bottom-2.5 sm:bottom-3 right-2.5 sm:right-3 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded bg-dark-950/90 text-[10px] sm:text-[11px] font-mono text-slate-300 flex items-center gap-1.5">
               <svg class="w-3 h-3 text-brand-400" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-              <span>Hover to Play Video</span>
+              <span class="video-hint">Hover / Tap to Play</span>
             </div>
           </div>
-          <div class="p-6 flex-1 flex flex-col justify-between">
+          <div class="p-5 sm:p-6 flex-1 flex flex-col justify-between">
             <div>
-              <h3 class="text-xl font-bold text-white group-hover:text-brand-400 transition-colors font-sans mb-2">
+              <h3 class="text-lg sm:text-xl font-bold text-white group-hover:text-brand-400 transition-colors font-sans mb-2">
                 Automated Storybook & Content Publisher
               </h3>
-              <p class="text-sm text-slate-300 leading-relaxed mb-4">
+              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
                 <strong class="text-white">The Problem:</strong> Producing illustrated children's books or visual storyboards requires weeks of costly freelance illustration and manual typesetting.<br>
                 <strong class="text-brand-400">The Solution:</strong> An end-to-end publishing engine that preserves character consistency across chapters and renders interactive web flipbooks and 300 DPI print PDFs.
               </p>
-              <div class="flex flex-wrap gap-2 mb-6">
-                <span class="px-2.5 py-1 rounded bg-dark-850 border border-brand-500/30 text-brand-400 font-mono text-xs font-semibold">Print-Ready 300 DPI</span>
-                <span class="px-2.5 py-1 rounded bg-dark-850 text-slate-300 font-mono text-xs">Consistent Characters</span>
-                <span class="px-2.5 py-1 rounded bg-dark-850 text-slate-300 font-mono text-xs">Interactive Reader</span>
+              <div class="flex flex-wrap gap-1.5 sm:gap-2 mb-6">
+                <span class="px-2 sm:px-2.5 py-0.5 sm:py-1 rounded bg-dark-850 border border-brand-500/30 text-brand-400 font-mono text-[11px] sm:text-xs font-semibold">Print-Ready 300 DPI</span>
+                <span class="px-2 sm:px-2.5 py-0.5 sm:py-1 rounded bg-dark-850 text-slate-300 font-mono text-[11px] sm:text-xs">Consistent Characters</span>
+                <span class="px-2 sm:px-2.5 py-0.5 sm:py-1 rounded bg-dark-850 text-slate-300 font-mono text-[11px] sm:text-xs">Interactive Reader</span>
               </div>
             </div>
-            <div class="pt-4 border-t border-white/10 flex items-center justify-between">
-              <span class="text-xs text-slate-400 font-mono">Full Publishing Pipeline</span>
+            <div class="pt-4 border-t border-white/10 flex flex-col xs:flex-row items-start xs:items-center justify-between gap-2.5">
+              <span class="text-[11px] sm:text-xs text-slate-400 font-mono">Full Publishing Pipeline</span>
               <a href="https://github.com/KalminX/storybook_generator" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-bold text-brand-400 hover:text-brand-300 font-sans">
-                <span>View Full Case Study & Code</span>
+                <span>View Case Study & Code</span>
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
               </a>
             </div>
@@ -615,33 +668,33 @@
             <video preload="metadata" muted playsinline loop poster="assets/images/finance_report_poster.png" class="hover-video">
               <source src="assets/videos/finance_report.mp4" type="video/mp4">
             </video>
-            <div class="absolute top-3 left-3 px-3 py-1 rounded bg-dark-950 border border-brand-500/40 text-[11px] font-mono font-semibold text-brand-400">
+            <div class="absolute top-2.5 sm:top-3 left-2.5 sm:left-3 px-2.5 sm:px-3 py-0.5 sm:py-1 rounded bg-dark-950 border border-brand-500/40 text-[10px] sm:text-[11px] font-mono font-semibold text-brand-400">
               REAL-TIME FINANCIAL CLARITY
             </div>
-            <div class="absolute bottom-3 right-3 px-2.5 py-1 rounded bg-dark-950/90 text-[11px] font-mono text-slate-300 flex items-center gap-1.5">
+            <div class="absolute bottom-2.5 sm:bottom-3 right-2.5 sm:right-3 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded bg-dark-950/90 text-[10px] sm:text-[11px] font-mono text-slate-300 flex items-center gap-1.5">
               <svg class="w-3 h-3 text-brand-400" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-              <span>Hover to Play Video</span>
+              <span class="video-hint">Hover / Tap to Play</span>
             </div>
           </div>
-          <div class="p-6 flex-1 flex flex-col justify-between">
+          <div class="p-5 sm:p-6 flex-1 flex flex-col justify-between">
             <div>
-              <h3 class="text-xl font-bold text-white group-hover:text-brand-400 transition-colors font-sans mb-2">
+              <h3 class="text-lg sm:text-xl font-bold text-white group-hover:text-brand-400 transition-colors font-sans mb-2">
                 Enterprise Financial Consolidation & Variance Engine
               </h3>
-              <p class="text-sm text-slate-300 leading-relaxed mb-4">
+              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
                 <strong class="text-white">The Problem:</strong> Month-end close takes weeks of manual spreadsheet wrestling to reconcile multi-entity ledgers and calculate budget variances.<br>
                 <strong class="text-brand-400">The Solution:</strong> Automated financial consolidation with real-time EBITDA and cash runway forecasting, automated variance commentary, and compliance audit logs.
               </p>
-              <div class="flex flex-wrap gap-2 mb-6">
-                <span class="px-2.5 py-1 rounded bg-dark-850 border border-brand-500/30 text-brand-400 font-mono text-xs font-semibold">1-Click Month-End Close</span>
-                <span class="px-2.5 py-1 rounded bg-dark-850 text-slate-300 font-mono text-xs">Automated Variance Analysis</span>
-                <span class="px-2.5 py-1 rounded bg-dark-850 text-slate-300 font-mono text-xs">Cash Runway Forecast</span>
+              <div class="flex flex-wrap gap-1.5 sm:gap-2 mb-6">
+                <span class="px-2 sm:px-2.5 py-0.5 sm:py-1 rounded bg-dark-850 border border-brand-500/30 text-brand-400 font-mono text-[11px] sm:text-xs font-semibold">1-Click Month-End Close</span>
+                <span class="px-2 sm:px-2.5 py-0.5 sm:py-1 rounded bg-dark-850 text-slate-300 font-mono text-[11px] sm:text-xs">Automated Variance</span>
+                <span class="px-2 sm:px-2.5 py-0.5 sm:py-1 rounded bg-dark-850 text-slate-300 font-mono text-[11px] sm:text-xs">Cash Runway Forecast</span>
               </div>
             </div>
-            <div class="pt-4 border-t border-white/10 flex items-center justify-between">
-              <span class="text-xs text-slate-400 font-mono">100% Reconciled Ledgers</span>
+            <div class="pt-4 border-t border-white/10 flex flex-col xs:flex-row items-start xs:items-center justify-between gap-2.5">
+              <span class="text-[11px] sm:text-xs text-slate-400 font-mono">100% Reconciled Ledgers</span>
               <a href="https://github.com/KalminX/finance_report" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-bold text-brand-400 hover:text-brand-300 font-sans">
-                <span>View Full Case Study & Code</span>
+                <span>View Case Study & Code</span>
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
               </a>
             </div>
@@ -653,48 +706,48 @@
   </section>
 
   <!-- How It Works / Workflow Simulation -->
-  <section id="how-it-works" class="relative z-10 py-20 lg:py-28 border-b border-white/10 bg-dark-900">
+  <section id="how-it-works" class="relative z-10 py-16 sm:py-20 lg:py-28 border-b border-white/10 bg-dark-900">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="section-header text-center max-w-3xl mx-auto mb-16">
+      <div class="section-header text-center max-w-3xl mx-auto mb-12 sm:mb-16">
         <div class="text-xs font-mono text-brand-400 tracking-widest uppercase mb-2 font-semibold">The Automation Process</div>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight font-sans">
+        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight font-sans">
           How We Go From Manual Headaches to Turnkey Automation
         </h2>
-        <p class="text-slate-400 mt-3 text-sm sm:text-base">
+        <p class="text-slate-400 mt-3 text-xs sm:text-sm md:text-base leading-relaxed">
           A seamless 3-step engagement process designed to deliver working business automations without disrupting your daily operations.
         </p>
       </div>
 
       <!-- 3-Step Process Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 font-sans">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-16 font-sans">
         
-        <div class="glass-card p-8 rounded-2xl relative">
-          <div class="w-12 h-12 rounded-xl bg-dark-850 border border-brand-500/30 flex items-center justify-center text-brand-400 font-mono font-bold text-lg mb-6">
+        <div class="glass-card p-6 sm:p-8 rounded-2xl relative">
+          <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-dark-850 border border-brand-500/30 flex items-center justify-center text-brand-400 font-mono font-bold text-base sm:text-lg mb-5 sm:mb-6">
             01
           </div>
-          <h3 class="text-xl font-bold text-white mb-3">Workflow Audit & Scope</h3>
-          <p class="text-sm text-slate-300 leading-relaxed">
+          <h3 class="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3">Workflow Audit & Scope</h3>
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
             We identify your highest-cost manual bottlenecks, map out exact data touchpoints, and define clear measurable ROI milestones for the automation.
           </p>
         </div>
 
-        <div class="glass-card p-8 rounded-2xl relative">
-          <div class="w-12 h-12 rounded-xl bg-dark-850 border border-accent-500/30 flex items-center justify-center text-accent-400 font-mono font-bold text-lg mb-6">
+        <div class="glass-card p-6 sm:p-8 rounded-2xl relative">
+          <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-dark-850 border border-accent-500/30 flex items-center justify-center text-accent-400 font-mono font-bold text-base sm:text-lg mb-5 sm:mb-6">
             02
           </div>
-          <h3 class="text-xl font-bold text-white mb-3">Rapid Prototype & Build</h3>
-          <p class="text-sm text-slate-300 leading-relaxed">
+          <h3 class="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3">Rapid Prototype & Build</h3>
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
             I engineer the custom application, integrate with your live databases and APIs, and implement human-in-the-loop approval safeguards.
           </p>
         </div>
 
-        <div class="glass-card p-8 rounded-2xl relative">
-          <div class="w-12 h-12 rounded-xl bg-dark-850 border border-brand-500/30 flex items-center justify-center text-brand-400 font-mono font-bold text-lg mb-6">
+        <div class="glass-card p-6 sm:p-8 rounded-2xl relative">
+          <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-dark-850 border border-brand-500/30 flex items-center justify-center text-brand-400 font-mono font-bold text-base sm:text-lg mb-5 sm:mb-6">
             03
           </div>
-          <h3 class="text-xl font-bold text-white mb-3">Deploy & Hand Over</h3>
-          <p class="text-sm text-slate-300 leading-relaxed">
+          <h3 class="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3">Deploy & Hand Over</h3>
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
             We launch the system into production with comprehensive documentation, team training, and full source code ownership transferred to you.
           </p>
         </div>
@@ -703,39 +756,39 @@
 
       <!-- Live Operations Simulator Box -->
       <div class="terminal-box max-w-4xl mx-auto rounded-xl overflow-hidden glass-panel border border-white/10">
-        <div class="bg-dark-950 px-5 py-3.5 border-b border-white/10 flex items-center justify-between">
+        <div class="bg-dark-950 px-4 sm:px-5 py-3 sm:py-3.5 border-b border-white/10 flex flex-col xs:flex-row items-start xs:items-center justify-between gap-2">
           <div class="flex items-center gap-2">
-            <span class="w-3 h-3 rounded-full bg-brand-500"></span>
-            <span class="font-mono text-xs font-semibold text-slate-300">Live Automation Execution Pipeline</span>
+            <span class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-brand-500"></span>
+            <span class="font-mono text-[11px] sm:text-xs font-semibold text-slate-300">Live Execution Pipeline</span>
           </div>
-          <span class="font-mono text-xs text-brand-400 font-medium">Status: Active &bull; Zero Errors</span>
+          <span class="font-mono text-[10px] sm:text-xs text-brand-400 font-medium">Status: Active &bull; Zero Errors</span>
         </div>
         
-        <div class="p-6 sm:p-8 bg-dark-950 font-sans space-y-4">
-          <div class="flex items-start gap-4 p-4 rounded-lg bg-dark-900 border border-white/10">
-            <div class="w-8 h-8 rounded-lg bg-dark-850 text-accent-400 border border-accent-500/30 flex items-center justify-center shrink-0 font-bold text-sm mt-0.5">1</div>
+        <div class="p-4 sm:p-6 lg:p-8 bg-dark-950 font-sans space-y-3 sm:space-y-4">
+          <div class="flex items-start gap-3 sm:gap-4 p-3.5 sm:p-4 rounded-lg bg-dark-900 border border-white/10">
+            <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-dark-850 text-accent-400 border border-accent-500/30 flex items-center justify-center shrink-0 font-bold text-xs sm:text-sm mt-0.5">1</div>
             <div>
-              <div class="text-sm font-bold text-white mb-1">Trigger: Automated Opportunity & Anomaly Detection</div>
-              <div class="text-xs text-slate-400">System queries CRM & financial ledgers &bull; Detects 3 overdue accounts totaling $42,500 with pending contract renewals.</div>
+              <div class="text-xs sm:text-sm font-bold text-white mb-1">Trigger: Automated Opportunity & Anomaly Detection</div>
+              <div class="text-[11px] sm:text-xs text-slate-400 leading-relaxed">System queries CRM & financial ledgers &bull; Detects 3 overdue accounts totaling $42,500 with pending contract renewals.</div>
             </div>
           </div>
 
-          <div class="flex items-start gap-4 p-4 rounded-lg bg-dark-900 border border-white/10">
-            <div class="w-8 h-8 rounded-lg bg-dark-850 text-brand-400 border border-brand-500/30 flex items-center justify-center shrink-0 font-bold text-sm mt-0.5">2</div>
+          <div class="flex items-start gap-3 sm:gap-4 p-3.5 sm:p-4 rounded-lg bg-dark-900 border border-white/10">
+            <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-dark-850 text-brand-400 border border-brand-500/30 flex items-center justify-center shrink-0 font-bold text-xs sm:text-sm mt-0.5">2</div>
             <div>
-              <div class="text-sm font-bold text-white mb-1">Action: Intelligent Draft & Task Staging</div>
-              <div class="text-xs text-slate-400">Generates tailored follow-up notices, calculates exact fee reconciliations, and stages preview for management.</div>
+              <div class="text-xs sm:text-sm font-bold text-white mb-1">Action: Intelligent Draft & Task Staging</div>
+              <div class="text-[11px] sm:text-xs text-slate-400 leading-relaxed">Generates tailored follow-up notices, calculates exact fee reconciliations, and stages preview for management.</div>
             </div>
           </div>
 
-          <div class="flex items-start gap-4 p-4 rounded-lg bg-dark-900 border border-brand-500/30">
-            <div class="w-8 h-8 rounded-lg bg-dark-850 text-brand-400 border border-brand-500/30 flex items-center justify-center shrink-0 font-bold text-sm mt-0.5">3</div>
+          <div class="flex items-start gap-3 sm:gap-4 p-3.5 sm:p-4 rounded-lg bg-dark-900 border border-brand-500/30">
+            <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-dark-850 text-brand-400 border border-brand-500/30 flex items-center justify-center shrink-0 font-bold text-xs sm:text-sm mt-0.5">3</div>
             <div class="flex-1 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <div>
-                <div class="text-sm font-bold text-brand-400 mb-0.5">Human Approval & Commit: Ready</div>
-                <div class="text-xs text-slate-300">Manager reviews exact proposed action with one click &bull; Committed to ledger with permanent audit log.</div>
+                <div class="text-xs sm:text-sm font-bold text-brand-400 mb-0.5">Human Approval & Commit: Ready</div>
+                <div class="text-[11px] sm:text-xs text-slate-300 leading-relaxed">Manager reviews exact proposed action with one click &bull; Committed to ledger with permanent audit log.</div>
               </div>
-              <button class="px-4 py-2 rounded bg-brand-500 hover:bg-brand-400 text-dark-950 font-bold text-xs shrink-0 transition-colors flex items-center gap-1.5">
+              <button class="px-3.5 sm:px-4 py-2 rounded bg-brand-500 hover:bg-brand-400 text-dark-950 font-bold text-xs shrink-0 transition-colors flex items-center gap-1.5 self-start sm:self-auto">
                 <svg class="w-3.5 h-3.5 text-dark-950" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
                 <span>Approved in 1 Click</span>
               </button>
@@ -748,30 +801,30 @@
   </section>
 
   <!-- Why Work With Me Section -->
-  <section id="benefits" class="relative z-10 py-20 lg:py-28 border-b border-white/10">
+  <section id="benefits" class="relative z-10 py-16 sm:py-20 lg:py-28 border-b border-white/10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="section-header text-center max-w-3xl mx-auto mb-16">
+      <div class="section-header text-center max-w-3xl mx-auto mb-12 sm:mb-16">
         <div class="text-xs font-mono text-brand-400 tracking-widest uppercase mb-2 font-semibold">Value Proposition</div>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight font-sans">
+        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight font-sans">
           Why Companies Partner With Me
         </h2>
-        <p class="text-slate-400 mt-3 text-sm sm:text-base">
+        <p class="text-slate-400 mt-3 text-xs sm:text-sm md:text-base leading-relaxed">
           I don't build brittle weekend hacks. I deliver robust, production-grade business engines designed to scale with your organization.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 font-sans">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 font-sans">
         
-        <div class="glass-card p-6 rounded-xl flex flex-col justify-between">
+        <div class="glass-card p-5 sm:p-6 rounded-xl flex flex-col justify-between">
           <div>
             <div class="w-10 h-10 rounded-lg bg-dark-850 border border-brand-500/30 flex items-center justify-center text-brand-400 mb-4">
               <svg class="w-5 h-5 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
               </svg>
             </div>
-            <h3 class="text-lg font-bold text-white mb-2">Fast Turnaround</h3>
-            <p class="text-sm text-slate-300 leading-relaxed">
+            <h3 class="text-base sm:text-lg font-bold text-white mb-2">Fast Turnaround</h3>
+            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
               Most automation workflows go from initial blueprint to working production prototype in just 10–14 days.
             </p>
           </div>
@@ -781,15 +834,15 @@
           </div>
         </div>
 
-        <div class="glass-card p-6 rounded-xl flex flex-col justify-between">
+        <div class="glass-card p-5 sm:p-6 rounded-xl flex flex-col justify-between">
           <div>
             <div class="w-10 h-10 rounded-lg bg-dark-850 border border-accent-500/30 flex items-center justify-center text-accent-400 mb-4">
               <svg class="w-5 h-5 text-accent-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
               </svg>
             </div>
-            <h3 class="text-lg font-bold text-white mb-2">Total Control & Safety</h3>
-            <p class="text-sm text-slate-300 leading-relaxed">
+            <h3 class="text-base sm:text-lg font-bold text-white mb-2">Total Control & Safety</h3>
+            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
               Every sensitive change requires explicit human confirmation. Your team always retains the final say.
             </p>
           </div>
@@ -799,15 +852,15 @@
           </div>
         </div>
 
-        <div class="glass-card p-6 rounded-xl flex flex-col justify-between">
+        <div class="glass-card p-5 sm:p-6 rounded-xl flex flex-col justify-between">
           <div>
             <div class="w-10 h-10 rounded-lg bg-dark-850 border border-white/10 flex items-center justify-center text-slate-300 mb-4">
               <svg class="w-5 h-5 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
               </svg>
             </div>
-            <h3 class="text-lg font-bold text-white mb-2">100% Code Ownership</h3>
-            <p class="text-sm text-slate-300 leading-relaxed">
+            <h3 class="text-base sm:text-lg font-bold text-white mb-2">100% Code Ownership</h3>
+            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
               You own all intellectual property, clean documented source code, and data. Zero recurring platform tax.
             </p>
           </div>
@@ -817,15 +870,15 @@
           </div>
         </div>
 
-        <div class="glass-card p-6 rounded-xl flex flex-col justify-between">
+        <div class="glass-card p-5 sm:p-6 rounded-xl flex flex-col justify-between">
           <div>
             <div class="w-10 h-10 rounded-lg bg-dark-850 border border-brand-500/30 flex items-center justify-center text-brand-400 mb-4">
               <svg class="w-5 h-5 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
               </svg>
             </div>
-            <h3 class="text-lg font-bold text-white mb-2">Measurable ROI</h3>
-            <p class="text-sm text-slate-300 leading-relaxed">
+            <h3 class="text-base sm:text-lg font-bold text-white mb-2">Measurable ROI</h3>
+            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
               Built specifically to save concrete headcount hours, eliminate customer wait times, and recover revenue.
             </p>
           </div>
@@ -841,27 +894,27 @@
   </section>
 
   <!-- Core Services Section -->
-  <section id="services" class="relative z-10 py-20 lg:py-28 border-b border-white/10 bg-dark-900">
+  <section id="services" class="relative z-10 py-16 sm:py-20 lg:py-28 border-b border-white/10 bg-dark-900">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="section-header text-center max-w-3xl mx-auto mb-16">
+      <div class="section-header text-center max-w-3xl mx-auto mb-12 sm:mb-16">
         <div class="text-xs font-mono text-brand-400 tracking-widest uppercase mb-2 font-semibold">Capabilities</div>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight font-sans">
+        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight font-sans">
           How We Can Work Together
         </h2>
-        <p class="text-slate-400 mt-3 text-sm sm:text-base">
-          From custom automation sprints to fullstack web platforms, I provide end-to-end technical execution.
+        <p class="text-slate-400 mt-3 text-xs sm:text-sm md:text-base leading-relaxed">
+          Flexible sprint engagement models tailored to your team's exact automation goals.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 font-sans">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 font-sans">
         
-        <div class="glass-card p-8 rounded-2xl flex flex-col justify-between">
+        <div class="glass-card p-6 sm:p-8 rounded-2xl flex flex-col justify-between">
           <div>
             <div class="text-xs font-mono text-brand-400 uppercase tracking-widest mb-2 font-semibold">Sprint 01</div>
-            <h3 class="text-2xl font-bold text-white mb-4">Operations Automation Sprint</h3>
-            <p class="text-sm text-slate-300 leading-relaxed mb-6">
-              Turn your most expensive manual spreadsheet or back-office process into an automated, database-backed workflow with human approval controls.
+            <h3 class="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">Workflow Automation Sprint</h3>
+            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-6">
+              Automate a high-friction internal process from start to finish with guaranteed time savings and error reduction.
             </p>
             <ul class="space-y-2.5 text-xs text-slate-300">
               <li class="flex items-center gap-2">
@@ -878,20 +931,20 @@
               </li>
             </ul>
           </div>
-          <a href="#contact" class="mt-8 block text-center py-2.5 rounded-lg bg-dark-850 hover:bg-dark-800 border border-white/10 text-xs font-bold text-white transition-all">
-            Discuss Your Workflow &rarr;
+          <a href="#contact" class="mt-8 block text-center py-3 rounded-lg bg-dark-850 hover:bg-dark-800 border border-white/10 text-xs font-bold text-white transition-all">
+            Book Automation Sprint &rarr;
           </a>
         </div>
 
-        <div class="glass-card p-8 rounded-2xl flex flex-col justify-between border-brand-500/50 relative">
-          <div class="absolute -top-3 right-6 px-3 py-0.5 rounded-full bg-brand-500 text-dark-950 font-bold font-mono text-[10px] uppercase tracking-wider">
+        <div class="glass-card p-6 sm:p-8 rounded-2xl flex flex-col justify-between border-brand-500/50 relative">
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-brand-500 text-dark-950 font-mono text-[10px] font-extrabold uppercase tracking-wider">
             Most Popular
           </div>
           <div>
             <div class="text-xs font-mono text-brand-400 uppercase tracking-widest mb-2 font-semibold">Sprint 02</div>
-            <h3 class="text-2xl font-bold text-white mb-4">Custom AI Agent & MCP Systems</h3>
-            <p class="text-sm text-slate-300 leading-relaxed mb-6">
-              Deploy custom Claude agents connected directly to your private databases, ERPs, and APIs using the official Model Context Protocol (MCP).
+            <h3 class="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">Custom Claude AI Agent</h3>
+            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-6">
+              Custom tool-using Claude agent with MCP integration, internal knowledge vector search, and strict human authorization barriers.
             </p>
             <ul class="space-y-2.5 text-xs text-slate-300">
               <li class="flex items-center gap-2">
@@ -913,11 +966,11 @@
           </a>
         </div>
 
-        <div class="glass-card p-8 rounded-2xl flex flex-col justify-between">
+        <div class="glass-card p-6 sm:p-8 rounded-2xl flex flex-col justify-between">
           <div>
             <div class="text-xs font-mono text-brand-400 uppercase tracking-widest mb-2 font-semibold">Sprint 03</div>
-            <h3 class="text-2xl font-bold text-white mb-4">Fullstack Application Build</h3>
-            <p class="text-sm text-slate-300 leading-relaxed mb-6">
+            <h3 class="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">Fullstack Application Build</h3>
+            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-6">
               Complete, production-ready web application engineering from responsive UI dashboards to high-performance backend database systems.
             </p>
             <ul class="space-y-2.5 text-xs text-slate-300">
@@ -935,7 +988,7 @@
               </li>
             </ul>
           </div>
-          <a href="#contact" class="mt-8 block text-center py-2.5 rounded-lg bg-dark-850 hover:bg-dark-800 border border-white/10 text-xs font-bold text-white transition-all">
+          <a href="#contact" class="mt-8 block text-center py-3 rounded-lg bg-dark-850 hover:bg-dark-800 border border-white/10 text-xs font-bold text-white transition-all">
             Start a Fullstack Build &rarr;
           </a>
         </div>
@@ -946,35 +999,35 @@
   </section>
 
   <!-- Pitch Contact / CTA Section -->
-  <section id="contact" class="relative z-10 py-20 lg:py-28">
+  <section id="contact" class="relative z-10 py-16 sm:py-20 lg:py-28">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="contact-box max-w-4xl mx-auto glass-panel p-8 sm:p-14 rounded-3xl border border-brand-500/30 text-center">
-        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-dark-850 border border-brand-500/30 text-brand-400 text-xs font-mono font-semibold mb-6">
+      <div class="contact-box max-w-4xl mx-auto glass-panel p-6 sm:p-10 lg:p-14 rounded-2xl sm:rounded-3xl border border-brand-500/30 text-center">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-dark-850 border border-brand-500/30 text-brand-400 text-[10px] sm:text-xs font-mono font-semibold mb-5 sm:mb-6">
           <span>READY TO SCALE YOUR BUSINESS?</span>
         </div>
 
-        <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight mb-4 font-sans">
+        <h2 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight mb-4 font-sans">
           Let's Automate Your Operations
         </h2>
         
-        <p class="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto mb-10">
+        <p class="text-slate-300 text-sm sm:text-base lg:text-lg leading-relaxed max-w-2xl mx-auto mb-8 sm:mb-10">
           Have an operational bottleneck or a custom fullstack system you want built? Tell me about your workflow and I'll outline an automated solution within 24 hours.
         </p>
 
-        <div class="flex flex-wrap items-center justify-center gap-4">
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3.5 sm:gap-4">
           <a href="mailto:kalmintech@gmail.com" 
-             class="magnetic-btn inline-flex items-center gap-2.5 px-8 py-4 rounded-xl text-sm font-bold text-dark-950 bg-brand-500 hover:bg-brand-400 transition-all font-sans">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+             class="inline-flex items-center justify-center gap-2.5 px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl text-sm font-bold text-dark-950 bg-brand-500 hover:bg-brand-400 transition-all font-sans text-center">
+            <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
             <span>Email Me: kalmintech@gmail.com</span>
           </a>
 
           <a href="https://github.com/KalminX" target="_blank" rel="noopener noreferrer" 
-             class="magnetic-btn inline-flex items-center gap-2.5 px-7 py-4 rounded-xl text-sm font-semibold text-white bg-dark-850 hover:bg-dark-800 border border-white/10 hover:border-white/20 transition-all font-sans">
-            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+             class="inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3.5 sm:py-4 rounded-xl text-sm font-semibold text-white bg-dark-850 hover:bg-dark-800 border border-white/10 hover:border-white/20 transition-all font-sans text-center">
+            <svg class="w-5 h-5 fill-current shrink-0" viewBox="0 0 24 24">
               <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
             </svg>
-            <span>Explore GitHub Repositories</span>
+            <span>Explore Repositories</span>
           </a>
         </div>
 
@@ -984,12 +1037,12 @@
   </section>
 
   <!-- Footer -->
-  <footer class="relative z-10 border-t border-white/10 py-10 bg-dark-950 text-slate-500 font-mono text-xs">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+  <footer class="relative z-10 border-t border-white/10 py-8 sm:py-10 bg-dark-950 text-slate-500 font-mono text-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
       <div>
         &copy; 2026 <strong class="text-slate-300 font-sans">Oriabure Numerous</strong>. Fullstack & Claude Automations.
       </div>
-      <div class="flex items-center gap-6">
+      <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
         <a href="#solutions" class="hover:text-slate-300 transition-colors">Case Studies</a>
         <a href="#how-it-works" class="hover:text-slate-300 transition-colors">Process</a>
         <a href="#services" class="hover:text-slate-300 transition-colors">Services</a>
@@ -1002,11 +1055,49 @@
   <script>
     gsap.registerPlugin(ScrollTrigger);
 
+    // Responsive Mobile Menu Controller
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIconOpen = document.getElementById('menu-icon-open');
+    const menuIconClose = document.getElementById('menu-icon-close');
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+    let isMenuOpen = false;
+    function toggleMobileMenu() {
+      isMenuOpen = !isMenuOpen;
+      if (isMenuOpen) {
+        mobileMenu.classList.remove('hidden');
+        menuIconOpen.classList.add('hidden');
+        menuIconClose.classList.remove('hidden');
+      } else {
+        mobileMenu.classList.add('hidden');
+        menuIconOpen.classList.remove('hidden');
+        menuIconClose.classList.add('hidden');
+      }
+    }
+
+    if (mobileMenuBtn) {
+      mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+    }
+    mobileNavLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        if (isMenuOpen) toggleMobileMenu();
+      });
+    });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 768 && isMenuOpen) {
+        toggleMobileMenu();
+      }
+    });
+
+    // Nature of Code Simulation
     (function initNatureOfCode() {
       const canvas = document.getElementById('noc-canvas');
+      if (!canvas) return;
       const ctx = canvas.getContext('2d');
       let width, height;
-      let mouse = { x: -1000, y: -1000, radius: 160 };
+      let mouse = { x: -1000, y: -1000, radius: 140 };
 
       function resize() {
         width = canvas.width = window.innerWidth;
@@ -1019,7 +1110,17 @@
         mouse.x = e.clientX;
         mouse.y = e.clientY;
       });
+      window.addEventListener('touchmove', e => {
+        if (e.touches && e.touches[0]) {
+          mouse.x = e.touches[0].clientX;
+          mouse.y = e.touches[0].clientY;
+        }
+      }, { passive: true });
       window.addEventListener('mouseleave', () => {
+        mouse.x = -1000;
+        mouse.y = -1000;
+      });
+      window.addEventListener('touchend', () => {
         mouse.x = -1000;
         mouse.y = -1000;
       });
@@ -1042,7 +1143,7 @@
           this.pos = new Vector(Math.random() * width, Math.random() * height);
           this.vel = new Vector((Math.random() - 0.5) * 0.8, (Math.random() - 0.5) * 0.8);
           this.acc = new Vector(0, 0);
-          this.maxSpeed = 1.6;
+          this.maxSpeed = 1.5;
           this.maxForce = 0.05;
           this.radius = Math.random() * 1.5 + 1.2;
           this.baseColor = Math.random() > 0.4 ? 'rgba(52, 211, 153, ' : 'rgba(56, 189, 248, ';
@@ -1095,7 +1196,8 @@
         }
       }
 
-      const particleCount = Math.min(Math.floor((width * height) / 18000), 75);
+      const isMobile = window.innerWidth < 768;
+      const particleCount = isMobile ? Math.min(Math.floor((width * height) / 25000), 35) : Math.min(Math.floor((width * height) / 18000), 75);
       const particles = Array.from({ length: particleCount }, () => new Particle());
 
       function drawFractalTree(x, y, len, angle, depth, time) {
@@ -1124,8 +1226,10 @@
         ctx.clearRect(0, 0, width, height);
         const time = currentTime - startTime;
 
-        drawFractalTree(width * 0.88, height * 0.95, 80, -Math.PI / 2, 5, time);
-        drawFractalTree(width * 0.08, height * 0.45, 60, -Math.PI / 3, 4, time + 2000);
+        if (width > 640) {
+          drawFractalTree(width * 0.88, height * 0.95, 80, -Math.PI / 2, 5, time);
+          drawFractalTree(width * 0.08, height * 0.45, 60, -Math.PI / 3, 4, time + 2000);
+        }
 
         particles.forEach(p => {
           p.followFlow(time);
@@ -1134,7 +1238,7 @@
           p.draw();
         });
 
-        const maxLinkDist = 110;
+        const maxLinkDist = isMobile ? 85 : 110;
         for (let i = 0; i < particles.length; i++) {
           for (let j = i + 1; j < particles.length; j++) {
             const dx = particles[i].pos.x - particles[j].pos.x;
@@ -1158,6 +1262,7 @@
       requestAnimationFrame(animate);
     })();
 
+    // GSAP Scroll Triggers & Animations
     document.addEventListener('DOMContentLoaded', () => {
       
       const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
@@ -1193,7 +1298,7 @@
             start: 'top 85%',
             toggleActions: 'play none none none'
           },
-          y: 35,
+          y: 30,
           opacity: 0,
           duration: 0.8,
           ease: 'power3.out'
@@ -1207,54 +1312,41 @@
             start: 'top 85%',
             toggleActions: 'play none none none'
           },
-          y: 40,
+          y: 35,
           opacity: 0,
-          duration: 0.8,
+          duration: 0.7,
           ease: 'power3.out'
         });
       });
 
-      document.querySelectorAll('.glass-card').forEach(card => {
-        const xTo = gsap.quickTo(card, 'rotationY', { duration: 0.4, ease: 'power2.out' });
-        const yTo = gsap.quickTo(card, 'rotationX', { duration: 0.4, ease: 'power2.out' });
+      // Desktop-only 3D Card Tilt (disabled on touch to preserve smooth scrolling)
+      if (window.matchMedia('(pointer: fine)').matches) {
+        document.querySelectorAll('.glass-card').forEach(card => {
+          const xTo = gsap.quickTo(card, 'rotationY', { duration: 0.4, ease: 'power2.out' });
+          const yTo = gsap.quickTo(card, 'rotationX', { duration: 0.4, ease: 'power2.out' });
 
-        card.addEventListener('mousemove', e => {
-          const rect = card.getBoundingClientRect();
-          const x = e.clientX - rect.left - rect.width / 2;
-          const y = e.clientY - rect.top - rect.height / 2;
-          xTo((x / rect.width) * 8);
-          yTo((-y / rect.height) * 8);
+          card.addEventListener('mousemove', e => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            xTo((x / rect.width) * 6);
+            yTo((-y / rect.height) * 6);
+          });
+
+          card.addEventListener('mouseleave', () => {
+            xTo(0);
+            yTo(0);
+          });
         });
+      }
 
-        card.addEventListener('mouseleave', () => {
-          xTo(0);
-          yTo(0);
-        });
-      });
-
-      document.querySelectorAll('.magnetic-btn').forEach(btn => {
-        const xTo = gsap.quickTo(btn, 'x', { duration: 0.3, ease: 'power2.out' });
-        const yTo = gsap.quickTo(btn, 'y', { duration: 0.3, ease: 'power2.out' });
-
-        btn.addEventListener('mousemove', e => {
-          const rect = btn.getBoundingClientRect();
-          const x = e.clientX - rect.left - rect.width / 2;
-          const y = e.clientY - rect.top - rect.height / 2;
-          xTo(x * 0.25);
-          yTo(y * 0.25);
-        });
-
-        btn.addEventListener('mouseleave', () => {
-          xTo(0);
-          yTo(0);
-        });
-      });
-
+      // Responsive Video Hover & Tap Controller
       const videos = document.querySelectorAll('.hover-video');
       videos.forEach(video => {
         const container = video.closest('.video-container');
         if (!container) return;
 
+        // Hover playback for mouse devices
         container.addEventListener('mouseenter', () => {
           video.play().catch(() => {});
         });
@@ -1262,7 +1354,9 @@
           video.pause();
         });
 
-        container.addEventListener('click', () => {
+        // Tap/click playback for touch & mobile
+        container.addEventListener('click', (e) => {
+          e.stopPropagation();
           if (video.paused) {
             video.play().catch(() => {});
           } else {
@@ -1271,6 +1365,7 @@
         });
       });
 
+      // Interactive Category Filter Bar
       const filterBtns = document.querySelectorAll('.filter-btn');
       const projectCards = document.querySelectorAll('#projects-grid > div');
 
@@ -1291,15 +1386,15 @@
               gsap.to(card, {
                 scale: 1,
                 opacity: 1,
-                duration: 0.4,
+                duration: 0.35,
                 display: 'flex',
                 ease: 'power2.out'
               });
             } else {
               gsap.to(card, {
-                scale: 0.95,
+                scale: 0.96,
                 opacity: 0,
-                duration: 0.3,
+                duration: 0.25,
                 display: 'none',
                 ease: 'power2.in'
               });
