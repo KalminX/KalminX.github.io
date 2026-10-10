@@ -12,7 +12,7 @@
   <!-- Google Fonts: Inter & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -40,7 +40,7 @@
               600: '#0284c7',
             },
             dark: {
-              950: '#06090e',
+              950: '#05070c',
               900: '#0b101b',
               850: '#0f172a',
               800: '#1e293b',
@@ -48,62 +48,79 @@
             }
           },
           boxShadow: {
-            'glow-emerald': '0 0 25px -5px rgba(16, 185, 129, 0.3)',
-            'glow-cyan': '0 0 25px -5px rgba(14, 165, 233, 0.3)',
-            'glow-indigo': '0 0 25px -5px rgba(99, 102, 241, 0.25)',
+            'glow-emerald': '0 0 30px -5px rgba(16, 185, 129, 0.35)',
+            'glow-cyan': '0 0 30px -5px rgba(14, 165, 233, 0.35)',
+            'glow-indigo': '0 0 30px -5px rgba(99, 102, 241, 0.3)',
+            'glow-card': '0 12px 35px -10px rgba(0, 0, 0, 0.6), 0 0 25px -5px rgba(16, 185, 129, 0.12)',
           }
         }
       }
     }
   </script>
 
+  <!-- GSAP & ScrollTrigger CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
   <style>
     /* Subtle grid background */
     .bg-grid {
       background-size: 40px 40px;
       background-image: 
-        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-    }
-    .bg-dots {
-      background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
-      background-size: 24px 24px;
+        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
     }
     .glass-panel {
-      background: rgba(15, 23, 42, 0.75);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      background: rgba(11, 16, 27, 0.82);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
       border: 1px solid rgba(255, 255, 255, 0.08);
     }
     .glass-card {
-      background: rgba(15, 23, 42, 0.6);
-      backdrop-filter: blur(10px);
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(12px);
       border: 1px solid rgba(255, 255, 255, 0.07);
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      transform-style: preserve-3d;
+      will-change: transform, opacity;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
     }
     .glass-card:hover {
-      border-color: rgba(52, 211, 153, 0.3);
-      transform: translateY(-2px);
-      box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.5), 0 0 20px -5px rgba(16, 185, 129, 0.15);
+      border-color: rgba(52, 211, 153, 0.35);
+      box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.6), 0 0 25px -5px rgba(16, 185, 129, 0.2);
     }
-    /* Custom video overlay */
+    /* Video container */
     .video-container {
       position: relative;
       overflow: hidden;
       background: #000;
+      border-radius: 0.75rem 0.75rem 0 0;
     }
     .video-container video {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .glass-card:hover .video-container video {
+      transform: scale(1.02);
+    }
+    /* Canvas styling */
+    #noc-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 1;
     }
     /* Custom scrollbar */
     ::-webkit-scrollbar {
-      width: 8px;
+      width: 7px;
     }
     ::-webkit-scrollbar-track {
-      background: #06090e;
+      background: #05070c;
     }
     ::-webkit-scrollbar-thumb {
       background: #1e293b;
@@ -112,51 +129,62 @@
     ::-webkit-scrollbar-thumb:hover {
       background: #334155;
     }
+    /* Glow text animation */
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.4; transform: scale(1); }
+      50% { opacity: 0.8; transform: scale(1.05); }
+    }
+    .glow-orb {
+      animation: pulseGlow 8s ease-in-out infinite alternate;
+    }
   </style>
 </head>
 
 <body class="bg-dark-950 text-slate-200 font-sans antialiased selection:bg-brand-500/20 selection:text-brand-400 min-h-screen relative overflow-x-hidden">
 
-  <!-- Background Gradients -->
+  <!-- Interactive Nature of Code Canvas (Autonomous Particles & Recursive Fractals) -->
+  <canvas id="noc-canvas"></canvas>
+
+  <!-- Background Gradients & Grid -->
   <div class="fixed inset-0 bg-grid pointer-events-none z-0"></div>
-  <div class="fixed top-0 left-1/4 w-96 h-96 bg-brand-500/10 rounded-full blur-3xl pointer-events-none z-0"></div>
-  <div class="fixed top-1/3 right-10 w-[30rem] h-[30rem] bg-accent-500/10 rounded-full blur-3xl pointer-events-none z-0"></div>
-  <div class="fixed bottom-10 left-1/3 w-[36rem] h-[36rem] bg-indigo-500/5 rounded-full blur-3xl pointer-events-none z-0"></div>
+  <div class="fixed top-0 left-1/4 w-[32rem] h-[32rem] bg-brand-500/10 rounded-full blur-[120px] pointer-events-none z-0 glow-orb"></div>
+  <div class="fixed top-1/3 right-10 w-[30rem] h-[30rem] bg-accent-500/10 rounded-full blur-[120px] pointer-events-none z-0 glow-orb" style="animation-delay: 2s;"></div>
+  <div class="fixed bottom-10 left-1/3 w-[36rem] h-[36rem] bg-indigo-500/5 rounded-full blur-[140px] pointer-events-none z-0 glow-orb" style="animation-delay: 4s;"></div>
 
   <!-- Navigation Header -->
   <header class="sticky top-0 z-50 glass-panel border-b border-white/5 transition-all">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
       
       <!-- Brand / Logo -->
-      <a href="#" class="flex items-center gap-3 group">
-        <div class="w-9 h-9 rounded-lg bg-gradient-to-tr from-brand-600 to-accent-500 flex items-center justify-center text-white font-bold text-base shadow-glow-emerald">
+      <a href="#" class="flex items-center gap-3 group magnetic-btn">
+        <div class="w-9 h-9 rounded-lg bg-gradient-to-tr from-brand-600 via-brand-500 to-accent-500 flex items-center justify-center text-white font-bold text-sm shadow-glow-emerald">
           ON
         </div>
         <div class="flex flex-col">
           <span class="font-bold text-white text-sm tracking-tight group-hover:text-brand-400 transition-colors">Oriabure Numerous</span>
-          <span class="text-[11px] text-slate-400 font-mono tracking-wider">FULLSTACK & CLAUDE AUTOMATION</span>
+          <span class="text-[10px] text-slate-400 font-mono tracking-wider">FULLSTACK & CLAUDE AUTOMATION</span>
         </div>
       </a>
 
       <!-- Desktop Navigation Links -->
       <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
-        <a href="#projects" class="hover:text-white transition-colors">Projects & Demos</a>
-        <a href="#mcp-architecture" class="hover:text-white transition-colors">MCP Architecture</a>
-        <a href="#engineering-standards" class="hover:text-white transition-colors">Standards</a>
-        <a href="#tech-stack" class="hover:text-white transition-colors">Tech Stack</a>
-        <a href="#contact" class="hover:text-white transition-colors">Contact</a>
+        <a href="#projects" class="hover:text-white transition-colors nav-link">Projects & Demos</a>
+        <a href="#mcp-architecture" class="hover:text-white transition-colors nav-link">MCP Architecture</a>
+        <a href="#engineering-standards" class="hover:text-white transition-colors nav-link">Engineering Standards</a>
+        <a href="#tech-stack" class="hover:text-white transition-colors nav-link">Tech Stack</a>
+        <a href="#contact" class="hover:text-white transition-colors nav-link">Contact</a>
       </nav>
 
       <!-- Right Action CTA -->
       <div class="flex items-center gap-3">
         <a href="https://github.com/KalminX" target="_blank" rel="noopener noreferrer" 
-           class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-md text-xs font-mono font-medium text-slate-200 bg-dark-800 hover:bg-dark-700 border border-white/10 hover:border-white/20 transition-all">
+           class="magnetic-btn inline-flex items-center gap-2 px-3.5 py-1.5 rounded-md text-xs font-mono font-medium text-slate-200 bg-dark-800 hover:bg-dark-700 border border-white/10 hover:border-white/20 transition-all">
           <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
           </svg>
           <span>GitHub</span>
         </a>
-        <a href="#contact" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-md text-xs font-semibold text-dark-950 bg-gradient-to-r from-brand-400 to-accent-400 hover:from-brand-300 hover:to-accent-300 transition-all shadow-glow-emerald">
+        <a href="#contact" class="magnetic-btn inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-md text-xs font-semibold text-dark-950 bg-gradient-to-r from-brand-400 via-brand-500 to-accent-400 hover:from-brand-300 hover:to-accent-300 transition-all shadow-glow-emerald">
           <span>Get in Touch</span>
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
         </a>
@@ -170,7 +198,7 @@
       <div class="max-w-4xl">
         
         <!-- Status Badge -->
-        <div class="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-400 text-xs font-mono font-medium mb-8">
+        <div class="hero-badge inline-flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-400 text-xs font-mono font-medium mb-8">
           <span class="relative flex h-2 w-2">
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"></span>
             <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-500"></span>
@@ -179,7 +207,7 @@
         </div>
 
         <!-- Main Headline -->
-        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.15] mb-6">
+        <h1 class="hero-title text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12] mb-6">
           Architecting Deterministic <br class="hidden sm:inline" />
           <span class="bg-clip-text text-transparent bg-gradient-to-r from-brand-400 via-accent-400 to-indigo-400">
             Claude Fullstack Automations
@@ -188,40 +216,48 @@
         </h1>
 
         <!-- Subtitle -->
-        <p class="text-lg sm:text-xl text-slate-300 leading-relaxed mb-10 max-w-3xl">
-          Hi, I'm <strong class="text-white font-semibold">Oriabure Numerous</strong>. I build production-grade enterprise workflows that pair the 
-          <span class="text-brand-400 font-mono font-medium">Model Context Protocol (MCP)</span> and Claude tool-use with rigorous fullstack software engineering. 
+        <p class="hero-subtitle text-lg sm:text-xl text-slate-300 leading-relaxed mb-10 max-w-3xl">
+          Hi, I'm <strong class="text-white font-semibold">Oriabure Numerous</strong>. I engineer enterprise business automation systems that pair the 
+          <span class="text-brand-400 font-mono font-medium">Model Context Protocol (MCP)</span> and Claude tool-use with foundational fullstack software engineering. 
           Zero fragile prompt hacks, 100% database-backed state, cryptographically staged approval gates, and deterministic reliability.
         </p>
 
         <!-- CTA Action Buttons -->
-        <div class="flex flex-wrap items-center gap-4 mb-16">
-          <a href="#projects" class="inline-flex items-center gap-2 px-6 py-3 rounded-lg text-sm font-semibold text-dark-950 bg-gradient-to-r from-brand-400 to-brand-500 hover:from-brand-300 hover:to-brand-400 transition-all shadow-glow-emerald">
+        <div class="hero-cta flex flex-wrap items-center gap-4 mb-16">
+          <a href="#projects" class="magnetic-btn inline-flex items-center gap-2 px-6 py-3.5 rounded-lg text-sm font-semibold text-dark-950 bg-gradient-to-r from-brand-400 to-brand-500 hover:from-brand-300 hover:to-brand-400 transition-all shadow-glow-emerald">
             <span>Explore 10 Live Workflows</span>
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
           </a>
-          <a href="#mcp-architecture" class="inline-flex items-center gap-2 px-6 py-3 rounded-lg text-sm font-semibold text-slate-200 bg-dark-850 hover:bg-dark-800 border border-white/10 hover:border-white/20 transition-all">
+          <a href="#mcp-architecture" class="magnetic-btn inline-flex items-center gap-2 px-6 py-3.5 rounded-lg text-sm font-semibold text-slate-200 bg-dark-850 hover:bg-dark-800 border border-white/10 hover:border-white/20 transition-all">
             <span>Inspect MCP Protocol Engine</span>
             <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
           </a>
         </div>
 
         <!-- Proof Metrics Grid -->
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 pt-8 border-t border-white/10 font-mono">
-          <div>
-            <div class="text-2xl sm:text-3xl font-bold text-white mb-1">10+</div>
+        <div class="hero-metrics grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 pt-8 border-t border-white/10 font-mono">
+          <div class="metric-item">
+            <div class="text-2xl sm:text-3xl font-bold text-white mb-1 flex items-baseline">
+              <span class="counter" data-target="10">0</span><span>+</span>
+            </div>
             <div class="text-xs text-slate-400 uppercase tracking-wider">Enterprise Systems Shipped</div>
           </div>
-          <div>
-            <div class="text-2xl sm:text-3xl font-bold text-brand-400 mb-1">100%</div>
+          <div class="metric-item">
+            <div class="text-2xl sm:text-3xl font-bold text-brand-400 mb-1 flex items-baseline">
+              <span class="counter" data-target="100">0</span><span>%</span>
+            </div>
             <div class="text-xs text-slate-400 uppercase tracking-wider">Deterministic State & Schema</div>
           </div>
-          <div>
-            <div class="text-2xl sm:text-3xl font-bold text-accent-400 mb-1">MCP SDK</div>
+          <div class="metric-item">
+            <div class="text-2xl sm:text-3xl font-bold text-accent-400 mb-1">
+              <span>MCP SDK</span>
+            </div>
             <div class="text-xs text-slate-400 uppercase tracking-wider">Standardized Tool Protocol</div>
           </div>
-          <div>
-            <div class="text-2xl sm:text-3xl font-bold text-indigo-400 mb-1">2-Tier</div>
+          <div class="metric-item">
+            <div class="text-2xl sm:text-3xl font-bold text-indigo-400 mb-1 flex items-baseline">
+              <span class="counter" data-target="2">0</span><span>-Tier</span>
+            </div>
             <div class="text-xs text-slate-400 uppercase tracking-wider">Human-In-The-Loop Approval</div>
           </div>
         </div>
@@ -235,14 +271,14 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <!-- Section Header -->
-      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+      <div class="section-header flex flex-col md:flex-row md:items-end justify-between mb-12">
         <div>
           <div class="text-xs font-mono text-brand-400 tracking-widest uppercase mb-2">Production Implementations</div>
           <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
             Featured Automated Systems & Fullstack Engines
           </h2>
           <p class="text-slate-400 mt-2 max-w-2xl text-sm sm:text-base">
-            Every project below is a functional, real-world application backed by persistent storage, real API/MCP protocols, and verified demo recordings.
+            Every project below is an active, production-grade application backed by persistent storage, real API/MCP protocols, and verified demo recordings.
           </p>
         </div>
 
@@ -260,7 +296,7 @@
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8" id="projects-grid">
 
         <!-- Project 1: Local MCP Business Operations Agent -->
-        <div class="glass-card rounded-xl overflow-hidden flex flex-col group" data-category="mcp">
+        <div class="glass-card rounded-xl overflow-hidden flex flex-col group project-card" data-category="mcp">
           <div class="video-container aspect-video border-b border-white/5 relative">
             <video preload="metadata" muted playsinline loop poster="assets/images/local_mcp_business_op_poster.png" class="hover-video">
               <source src="assets/videos/local_mcp_business_op.mp4" type="video/mp4">
@@ -306,7 +342,7 @@
         </div>
 
         <!-- Project 2: AI Opportunity Audit & Decision Matrix -->
-        <div class="glass-card rounded-xl overflow-hidden flex flex-col group" data-category="data">
+        <div class="glass-card rounded-xl overflow-hidden flex flex-col group project-card" data-category="data">
           <div class="video-container aspect-video border-b border-white/5 relative">
             <video preload="metadata" muted playsinline loop poster="assets/images/ai_opportunity_audit_poster.png" class="hover-video">
               <source src="assets/videos/ai_opportunity_audit.mp4" type="video/mp4">
@@ -351,7 +387,7 @@
         </div>
 
         <!-- Project 3: AI Invoice & Document Processing Pipeline -->
-        <div class="glass-card rounded-xl overflow-hidden flex flex-col group" data-category="document">
+        <div class="glass-card rounded-xl overflow-hidden flex flex-col group project-card" data-category="document">
           <div class="video-container aspect-video border-b border-white/5 relative">
             <video preload="metadata" muted playsinline loop poster="assets/images/ai_invoice_document_poster.png" class="hover-video">
               <source src="assets/videos/ai_invoice_document.mp4" type="video/mp4">
@@ -396,7 +432,7 @@
         </div>
 
         <!-- Project 4: Meeting Intelligence & Executive Briefing Hub -->
-        <div class="glass-card rounded-xl overflow-hidden flex flex-col group" data-category="mcp">
+        <div class="glass-card rounded-xl overflow-hidden flex flex-col group project-card" data-category="mcp">
           <div class="video-container aspect-video border-b border-white/5 relative">
             <video preload="metadata" muted playsinline loop poster="assets/images/meeting_intelligence_poster.png" class="hover-video">
               <source src="assets/videos/meeting_intelligence.mp4" type="video/mp4">
@@ -441,7 +477,7 @@
         </div>
 
         <!-- Project 5: Client Query Triage & Support Workbench -->
-        <div class="glass-card rounded-xl overflow-hidden flex flex-col group" data-category="enterprise">
+        <div class="glass-card rounded-xl overflow-hidden flex flex-col group project-card" data-category="enterprise">
           <div class="video-container aspect-video border-b border-white/5 relative">
             <video preload="metadata" muted playsinline loop poster="assets/images/client_query_triage_poster.png" class="hover-video">
               <source src="assets/videos/client_query_triage.mp4" type="video/mp4">
@@ -486,7 +522,7 @@
         </div>
 
         <!-- Project 6: Client Onboarding & Compliance Engine -->
-        <div class="glass-card rounded-xl overflow-hidden flex flex-col group" data-category="enterprise">
+        <div class="glass-card rounded-xl overflow-hidden flex flex-col group project-card" data-category="enterprise">
           <div class="video-container aspect-video border-b border-white/5 relative">
             <video preload="metadata" muted playsinline loop poster="assets/images/client_boarding_poster.png" class="hover-video">
               <source src="assets/videos/client_boarding.mp4" type="video/mp4">
@@ -531,7 +567,7 @@
         </div>
 
         <!-- Project 7: Internal Enterprise Knowledge Hub -->
-        <div class="glass-card rounded-xl overflow-hidden flex flex-col group" data-category="document">
+        <div class="glass-card rounded-xl overflow-hidden flex flex-col group project-card" data-category="document">
           <div class="video-container aspect-video border-b border-white/5 relative">
             <video preload="metadata" muted playsinline loop poster="assets/images/internal_knowledge_hub_poster.png" class="hover-video">
               <source src="assets/videos/internal_knowledge_hub.mp4" type="video/mp4">
@@ -576,7 +612,7 @@
         </div>
 
         <!-- Project 8: Executive Board Deck Generator -->
-        <div class="glass-card rounded-xl overflow-hidden flex flex-col group" data-category="document">
+        <div class="glass-card rounded-xl overflow-hidden flex flex-col group project-card" data-category="document">
           <div class="video-container aspect-video border-b border-white/5 relative">
             <video preload="metadata" muted playsinline loop poster="assets/images/board_deck_generator_poster.png" class="hover-video">
               <source src="assets/videos/board_deck_generator.mp4" type="video/mp4">
@@ -621,7 +657,7 @@
         </div>
 
         <!-- Project 9: AI Storybook & Illustration Generator -->
-        <div class="glass-card rounded-xl overflow-hidden flex flex-col group" data-category="document">
+        <div class="glass-card rounded-xl overflow-hidden flex flex-col group project-card" data-category="document">
           <div class="video-container aspect-video border-b border-white/5 relative">
             <video preload="metadata" muted playsinline loop poster="assets/images/storybook_generator_poster.png" class="hover-video">
               <source src="assets/videos/storybook_generator.mp4" type="video/mp4">
@@ -666,7 +702,7 @@
         </div>
 
         <!-- Project 10: Enterprise Financial Reporting Engine -->
-        <div class="glass-card rounded-xl overflow-hidden flex flex-col group" data-category="data">
+        <div class="glass-card rounded-xl overflow-hidden flex flex-col group project-card" data-category="data">
           <div class="video-container aspect-video border-b border-white/5 relative">
             <video preload="metadata" muted playsinline loop poster="assets/images/finance_report_poster.png" class="hover-video">
               <source src="assets/videos/finance_report.mp4" type="video/mp4">
@@ -715,10 +751,10 @@
   </section>
 
   <!-- Deep Dive: Model Context Protocol (MCP) Section -->
-  <section id="mcp-architecture" class="relative z-10 py-20 lg:py-28 border-b border-white/5 bg-dark-900/50">
+  <section id="mcp-architecture" class="relative z-10 py-20 lg:py-28 border-b border-white/5 bg-dark-900/40">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="section-header text-center max-w-3xl mx-auto mb-16">
         <div class="text-xs font-mono text-brand-400 tracking-widest uppercase mb-2">Protocol Rigor</div>
         <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
           How I Build with the Model Context Protocol (MCP)
@@ -729,7 +765,7 @@
       </div>
 
       <!-- Interactive MCP Terminal Simulator -->
-      <div class="max-w-4xl mx-auto rounded-xl overflow-hidden glass-panel border border-white/10 shadow-2xl mb-16">
+      <div class="terminal-box max-w-4xl mx-auto rounded-xl overflow-hidden glass-panel border border-white/10 shadow-2xl mb-16">
         <div class="bg-dark-950 px-4 py-3 border-b border-white/10 flex items-center justify-between">
           <div class="flex items-center gap-2">
             <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
@@ -744,18 +780,18 @@
         </div>
         
         <div class="p-6 bg-dark-950/90 font-mono text-xs sm:text-sm text-slate-300 space-y-4 overflow-x-auto">
-          <div>
+          <div class="terminal-line">
             <span class="text-slate-500">// 1. Claude calls typed MCP tool with validated arguments</span><br>
             <span class="text-accent-400">&gt; client.callTool</span>(<span class="text-brand-300">"accounting.list_overdue_invoices"</span>, { <span class="text-slate-400">minDaysOverdue:</span> <span class="text-yellow-300">14</span>, <span class="text-slate-400">includeClientDetails:</span> <span class="text-yellow-300">true</span> })
           </div>
 
-          <div class="p-4 rounded-lg bg-dark-900 border border-white/5 text-slate-300">
+          <div class="terminal-line p-4 rounded-lg bg-dark-900 border border-white/5 text-slate-300">
             <span class="text-slate-500">// 2. MCP Server schema verification (Zod) + Transactional DB Lookup</span><br>
             <span class="text-emerald-400">&#10003; Schema verified against ZodType&lt;OverdueInvoicesInput&gt;</span><br>
             <span class="text-emerald-400">&#10003; Executed SQLite prepared query: SELECT * FROM invoices WHERE status = 'overdue' AND due_date &lt; date('now', '-14 days')</span>
           </div>
 
-          <div>
+          <div class="terminal-line">
             <span class="text-slate-500">// 3. Structured result returned to Claude context</span><br>
             <pre class="text-slate-200 text-xs bg-dark-900/60 p-4 rounded border border-white/5 overflow-x-auto"><code>{
   "content": [
@@ -773,7 +809,7 @@
 
       <!-- MCP Architecture Pillars -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 font-sans">
-        <div class="glass-card p-6 rounded-xl">
+        <div class="glass-card p-6 rounded-xl pillar-card">
           <div class="w-10 h-10 rounded-lg bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 mb-4">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
           </div>
@@ -783,7 +819,7 @@
           </p>
         </div>
 
-        <div class="glass-card p-6 rounded-xl">
+        <div class="glass-card p-6 rounded-xl pillar-card">
           <div class="w-10 h-10 rounded-lg bg-accent-500/10 border border-accent-500/20 flex items-center justify-center text-accent-400 mb-4">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
           </div>
@@ -793,7 +829,7 @@
           </p>
         </div>
 
-        <div class="glass-card p-6 rounded-xl">
+        <div class="glass-card p-6 rounded-xl pillar-card">
           <div class="w-10 h-10 rounded-lg bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 mb-4">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
           </div>
@@ -811,7 +847,7 @@
   <section id="tech-stack" class="relative z-10 py-20 lg:py-28 border-b border-white/5">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="section-header text-center max-w-3xl mx-auto mb-16">
         <div class="text-xs font-mono text-brand-400 tracking-widest uppercase mb-2">Fullstack Stack</div>
         <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
           Core Technologies & Engineering Tooling
@@ -824,7 +860,7 @@
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 font-mono text-xs">
         
         <!-- Category 1 -->
-        <div class="glass-card p-6 rounded-xl">
+        <div class="glass-card p-6 rounded-xl stack-card">
           <div class="text-sm font-sans font-bold text-white mb-4 flex items-center gap-2">
             <span class="w-2 h-2 rounded-full bg-brand-400"></span>
             <span>Claude & Agent Tooling</span>
@@ -854,7 +890,7 @@
         </div>
 
         <!-- Category 2 -->
-        <div class="glass-card p-6 rounded-xl">
+        <div class="glass-card p-6 rounded-xl stack-card">
           <div class="text-sm font-sans font-bold text-white mb-4 flex items-center gap-2">
             <span class="w-2 h-2 rounded-full bg-accent-400"></span>
             <span>Backend & Systems</span>
@@ -884,7 +920,7 @@
         </div>
 
         <!-- Category 3 -->
-        <div class="glass-card p-6 rounded-xl">
+        <div class="glass-card p-6 rounded-xl stack-card">
           <div class="text-sm font-sans font-bold text-white mb-4 flex items-center gap-2">
             <span class="w-2 h-2 rounded-full bg-indigo-400"></span>
             <span>Databases & Storage</span>
@@ -914,7 +950,7 @@
         </div>
 
         <!-- Category 4 -->
-        <div class="glass-card p-6 rounded-xl">
+        <div class="glass-card p-6 rounded-xl stack-card">
           <div class="text-sm font-sans font-bold text-white mb-4 flex items-center gap-2">
             <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
             <span>Frontend & Interfaces</span>
@@ -962,22 +998,22 @@
             Many AI demos rely on unverified text generation that fails in production. My engineering approach treats LLMs as cognitive microservices integrated into deterministic, testable software architectures.
           </p>
           
-          <div class="space-y-4 font-sans text-sm">
-            <div class="flex items-start gap-3">
+          <div class="space-y-4 font-sans text-sm standards-list">
+            <div class="flex items-start gap-3 standard-item">
               <div class="w-6 h-6 rounded bg-brand-500/20 text-brand-400 flex items-center justify-center shrink-0 mt-0.5 font-mono text-xs font-bold">&#10003;</div>
               <div>
                 <strong class="text-white">Deterministic Intent & Fallbacks:</strong> If a user request does not match an authorized tool schema, the system explains supported operations instead of hallucinating fake business records.
               </div>
             </div>
 
-            <div class="flex items-start gap-3">
+            <div class="flex items-start gap-3 standard-item">
               <div class="w-6 h-6 rounded bg-brand-500/20 text-brand-400 flex items-center justify-center shrink-0 mt-0.5 font-mono text-xs font-bold">&#10003;</div>
               <div>
                 <strong class="text-white">State Machines Over Chat Transcripts:</strong> Complex multi-step workflows (such as invoice approvals or KYC onboarding) are tracked as database-backed state machines, not volatile chat context.
               </div>
             </div>
 
-            <div class="flex items-start gap-3">
+            <div class="flex items-start gap-3 standard-item">
               <div class="w-6 h-6 rounded bg-brand-500/20 text-brand-400 flex items-center justify-center shrink-0 mt-0.5 font-mono text-xs font-bold">&#10003;</div>
               <div>
                 <strong class="text-white">End-to-End Testability:</strong> Comprehensive unit and integration test suites covering tool validation, mock agent intent resolution, access controls, and replayable audit logs.
@@ -986,26 +1022,26 @@
           </div>
         </div>
 
-        <div class="glass-panel p-8 rounded-2xl border border-white/10 relative">
-          <div class="text-xs font-mono text-slate-400 uppercase tracking-wider mb-4">Engineering Checklist</div>
+        <div class="glass-panel p-8 rounded-2xl border border-white/10 relative checklist-box">
+          <div class="text-xs font-mono text-slate-400 uppercase tracking-wider mb-4">Engineering Verification Checklist</div>
           <div class="space-y-3 font-mono text-xs text-slate-300">
-            <div class="p-3 rounded bg-dark-950/70 border border-white/5 flex items-center justify-between">
+            <div class="p-3 rounded bg-dark-950/70 border border-white/5 flex items-center justify-between checklist-row">
               <span>TypeScript Strict Mode & Zod Schemas</span>
               <span class="text-brand-400 font-semibold">[ENFORCED]</span>
             </div>
-            <div class="p-3 rounded bg-dark-950/70 border border-white/5 flex items-center justify-between">
+            <div class="p-3 rounded bg-dark-950/70 border border-white/5 flex items-center justify-between checklist-row">
               <span>Two-Tier Human Approval on Mutations</span>
               <span class="text-brand-400 font-semibold">[ENFORCED]</span>
             </div>
-            <div class="p-3 rounded bg-dark-950/70 border border-white/5 flex items-center justify-between">
+            <div class="p-3 rounded bg-dark-950/70 border border-white/5 flex items-center justify-between checklist-row">
               <span>Sensitive Parameter Redaction in Logs</span>
               <span class="text-brand-400 font-semibold">[ENFORCED]</span>
             </div>
-            <div class="p-3 rounded bg-dark-950/70 border border-white/5 flex items-center justify-between">
+            <div class="p-3 rounded bg-dark-950/70 border border-white/5 flex items-center justify-between checklist-row">
               <span>Zero External Cloud Vendor Lock-In</span>
               <span class="text-brand-400 font-semibold">[ENFORCED]</span>
             </div>
-            <div class="p-3 rounded bg-dark-950/70 border border-white/5 flex items-center justify-between">
+            <div class="p-3 rounded bg-dark-950/70 border border-white/5 flex items-center justify-between checklist-row">
               <span>Cross-System Transaction Consistency</span>
               <span class="text-brand-400 font-semibold">[ENFORCED]</span>
             </div>
@@ -1020,7 +1056,7 @@
   <section id="contact" class="relative z-10 py-20 lg:py-28">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="max-w-4xl mx-auto glass-panel p-8 sm:p-12 rounded-2xl border border-brand-500/20 shadow-glow-emerald text-center">
+      <div class="contact-box max-w-4xl mx-auto glass-panel p-8 sm:p-12 rounded-2xl border border-brand-500/20 shadow-glow-emerald text-center">
         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-400 text-xs font-mono mb-6">
           <span>GET IN TOUCH</span>
         </div>
@@ -1035,7 +1071,7 @@
 
         <div class="flex flex-wrap items-center justify-center gap-4">
           <a href="https://github.com/KalminX" target="_blank" rel="noopener noreferrer" 
-             class="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-lg text-sm font-semibold text-white bg-dark-800 hover:bg-dark-700 border border-white/10 hover:border-white/20 transition-all">
+             class="magnetic-btn inline-flex items-center gap-2.5 px-6 py-3.5 rounded-lg text-sm font-semibold text-white bg-dark-800 hover:bg-dark-700 border border-white/10 hover:border-white/20 transition-all">
             <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
               <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
             </svg>
@@ -1043,7 +1079,7 @@
           </a>
 
           <a href="mailto:kalmintech@gmail.com" 
-             class="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-lg text-sm font-semibold text-dark-950 bg-gradient-to-r from-brand-400 to-accent-400 hover:from-brand-300 hover:to-accent-300 transition-all shadow-glow-emerald">
+             class="magnetic-btn inline-flex items-center gap-2.5 px-6 py-3.5 rounded-lg text-sm font-semibold text-dark-950 bg-gradient-to-r from-brand-400 to-accent-400 hover:from-brand-300 hover:to-accent-300 transition-all shadow-glow-emerald">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
             <span>Contact via Email</span>
           </a>
@@ -1068,16 +1104,365 @@
     </div>
   </footer>
 
-  <!-- Interactive JavaScript: Video hover preview & Filter tabs -->
+  <!-- Nature of Code Simulation & GSAP Animations Engine -->
   <script>
+    // Register GSAP Plugins
+    gsap.registerPlugin(ScrollTrigger);
+
+    /* ==========================================================================
+       1. NATURE OF CODE: AUTONOMOUS PARTICLES & RECURSIVE FRACTAL CANVAS
+       ========================================================================== */
+    (function initNatureOfCode() {
+      const canvas = document.getElementById('noc-canvas');
+      const ctx = canvas.getContext('2d');
+      let width, height;
+      let mouse = { x: -1000, y: -1000, radius: 160 };
+
+      function resize() {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+      }
+      window.addEventListener('resize', resize);
+      resize();
+
+      window.addEventListener('mousemove', e => {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+      });
+      window.addEventListener('mouseleave', () => {
+        mouse.x = -1000;
+        mouse.y = -1000;
+      });
+
+      // 2D Vector Helper
+      class Vector {
+        constructor(x = 0, y = 0) {
+          this.x = x;
+          this.y = y;
+        }
+        add(v) { this.x += v.x; this.y += v.y; return this; }
+        sub(v) { this.x -= v.x; this.y -= v.y; return this; }
+        mult(n) { this.x *= n; this.y *= n; return this; }
+        mag() { return Math.hypot(this.x, this.y); }
+        normalize() { const m = this.mag(); if (m > 0) this.mult(1 / m); return this; }
+        limit(max) { if (this.mag() > max) { this.normalize(); this.mult(max); } return this; }
+      }
+
+      // Autonomous Agent / Particle Class
+      class Particle {
+        constructor() {
+          this.pos = new Vector(Math.random() * width, Math.random() * height);
+          this.vel = new Vector((Math.random() - 0.5) * 0.8, (Math.random() - 0.5) * 0.8);
+          this.acc = new Vector(0, 0);
+          this.maxSpeed = 1.6;
+          this.maxForce = 0.05;
+          this.radius = Math.random() * 1.5 + 1.2;
+          this.baseColor = Math.random() > 0.4 ? 'rgba(52, 211, 153, ' : 'rgba(56, 189, 248, ';
+          this.alpha = Math.random() * 0.4 + 0.2;
+        }
+
+        applyForce(force) {
+          this.acc.add(force);
+        }
+
+        // Flow Field Behavior
+        followFlow(time) {
+          const scale = 0.0015;
+          const angle = (Math.sin(this.pos.x * scale + time * 0.0005) + Math.cos(this.pos.y * scale + time * 0.0005)) * Math.PI;
+          const desired = new Vector(Math.cos(angle) * this.maxSpeed, Math.sin(angle) * this.maxSpeed);
+          const steer = new Vector(desired.x - this.vel.x, desired.y - this.vel.y);
+          steer.limit(this.maxForce * 0.5);
+          this.applyForce(steer);
+        }
+
+        // Mouse Repulsion & Gravitational Swirl
+        reactToMouse() {
+          const dx = this.pos.x - mouse.x;
+          const dy = this.pos.y - mouse.y;
+          const dist = Math.hypot(dx, dy);
+          if (dist < mouse.radius && dist > 0) {
+            const forceMag = (1 - dist / mouse.radius) * 1.2;
+            const repulse = new Vector((dx / dist) * forceMag, (dy / dist) * forceMag);
+            // subtle perpendicular vortex
+            const swirl = new Vector((-dy / dist) * forceMag * 0.5, (dx / dist) * forceMag * 0.5);
+            repulse.add(swirl);
+            this.applyForce(repulse);
+          }
+        }
+
+        update() {
+          this.vel.add(this.acc);
+          this.vel.limit(this.maxSpeed);
+          this.pos.add(this.vel);
+          this.acc.mult(0); // reset acceleration
+
+          // Wrap around edges
+          if (this.pos.x < 0) this.pos.x = width;
+          if (this.pos.x > width) this.pos.x = 0;
+          if (this.pos.y < 0) this.pos.y = height;
+          if (this.pos.y > height) this.pos.y = 0;
+        }
+
+        draw() {
+          ctx.beginPath();
+          ctx.arc(this.pos.x, this.pos.y, this.radius, 0, Math.PI * 2);
+          ctx.fillStyle = this.baseColor + this.alpha + ')';
+          ctx.fill();
+        }
+      }
+
+      // Initialize Particle Population
+      const particleCount = Math.min(Math.floor((width * height) / 18000), 75);
+      const particles = Array.from({ length: particleCount }, () => new Particle());
+
+      // Recursive Fractal Branch System (Agent Decision Tree)
+      function drawFractalTree(x, y, len, angle, depth, time) {
+        if (depth === 0) return;
+
+        const x2 = x + Math.cos(angle) * len;
+        const y2 = y + Math.sin(angle) * len;
+
+        const alpha = (depth / 6) * 0.15;
+        ctx.strokeStyle = `rgba(52, 211, 153, ${alpha})`;
+        ctx.lineWidth = depth * 0.6;
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+        ctx.lineTo(x2, y2);
+        ctx.stroke();
+
+        const sway = Math.sin(time * 0.001 + depth) * 0.04;
+        const spread = 0.45 + sway;
+
+        drawFractalTree(x2, y2, len * 0.72, angle - spread, depth - 1, time);
+        drawFractalTree(x2, y2, len * 0.72, angle + spread, depth - 1, time);
+      }
+
+      // Animation Loop
+      let startTime = performance.now();
+      function animate(currentTime) {
+        ctx.clearRect(0, 0, width, height);
+
+        // 1. Draw subtle background fractal trees (Abstract AST / Agent Graph)
+        const time = currentTime - startTime;
+        drawFractalTree(width * 0.88, height * 0.95, 80, -Math.PI / 2, 5, time);
+        drawFractalTree(width * 0.08, height * 0.45, 60, -Math.PI / 3, 4, time + 2000);
+
+        // 2. Update and draw Autonomous Particles
+        particles.forEach(p => {
+          p.followFlow(time);
+          p.reactToMouse();
+          p.update();
+          p.draw();
+        });
+
+        // 3. Constellation Links (Proximity Graph Network)
+        const maxLinkDist = 110;
+        for (let i = 0; i < particles.length; i++) {
+          for (let j = i + 1; j < particles.length; j++) {
+            const dx = particles[i].pos.x - particles[j].pos.x;
+            const dy = particles[i].pos.y - particles[j].pos.y;
+            const dist = Math.hypot(dx, dy);
+
+            if (dist < maxLinkDist) {
+              const linkAlpha = (1 - dist / maxLinkDist) * 0.18;
+              ctx.beginPath();
+              ctx.moveTo(particles[i].pos.x, particles[i].pos.y);
+              ctx.lineTo(particles[j].pos.x, particles[j].pos.y);
+              ctx.strokeStyle = `rgba(56, 189, 248, ${linkAlpha})`;
+              ctx.lineWidth = 0.8;
+              ctx.stroke();
+            }
+          }
+        }
+
+        requestAnimationFrame(animate);
+      }
+      requestAnimationFrame(animate);
+    })();
+
+    /* ==========================================================================
+       2. GSAP ENTRANCE & SCROLLTRIGGER ORCHESTRATION
+       ========================================================================== */
     document.addEventListener('DOMContentLoaded', () => {
-      // 1. Video hover to play & pause
+      
+      // Hero Entrance Timeline
+      const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+      heroTl
+        .from('.hero-badge', { y: -20, opacity: 0, duration: 0.8, delay: 0.2 })
+        .from('.hero-title', { y: 30, opacity: 0, duration: 1, ease: 'power4.out' }, '-=0.5')
+        .from('.hero-subtitle', { y: 20, opacity: 0, duration: 0.8 }, '-=0.6')
+        .from('.hero-cta > a', { y: 20, opacity: 0, stagger: 0.15, duration: 0.7 }, '-=0.5')
+        .from('.hero-metrics .metric-item', { y: 25, opacity: 0, stagger: 0.1, duration: 0.7 }, '-=0.4');
+
+      // Metric Numerical Counters Animation
+      document.querySelectorAll('.counter').forEach(counter => {
+        const target = +counter.getAttribute('data-target');
+        ScrollTrigger.create({
+          trigger: counter,
+          start: 'top 90%',
+          once: true,
+          onEnter: () => {
+            gsap.to(counter, {
+              innerText: target,
+              duration: 2,
+              snap: { innerText: 1 },
+              ease: 'power2.out'
+            });
+          }
+        });
+      });
+
+      // Section Headers Reveal
+      gsap.utils.toArray('.section-header').forEach(header => {
+        gsap.from(header, {
+          scrollTrigger: {
+            trigger: header,
+            start: 'top 85%',
+            toggleActions: 'play none none none'
+          },
+          y: 35,
+          opacity: 0,
+          duration: 0.8,
+          ease: 'power3.out'
+        });
+      });
+
+      // Project Cards Staggered Reveal
+      gsap.utils.toArray('.project-card').forEach((card, index) => {
+        gsap.from(card, {
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 85%',
+            toggleActions: 'play none none none'
+          },
+          y: 40,
+          opacity: 0,
+          duration: 0.8,
+          ease: 'power3.out'
+        });
+      });
+
+      // 3D Tilt Hover Effect for Project Cards
+      document.querySelectorAll('.glass-card').forEach(card => {
+        const xTo = gsap.quickTo(card, 'rotationY', { duration: 0.4, ease: 'power2.out' });
+        const yTo = gsap.quickTo(card, 'rotationX', { duration: 0.4, ease: 'power2.out' });
+
+        card.addEventListener('mousemove', e => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left - rect.width / 2;
+          const y = e.clientY - rect.top - rect.height / 2;
+          xTo((x / rect.width) * 8);
+          yTo((-y / rect.height) * 8);
+        });
+
+        card.addEventListener('mouseleave', () => {
+          xTo(0);
+          yTo(0);
+        });
+      });
+
+      // Terminal Box Sequence
+      gsap.from('.terminal-box', {
+        scrollTrigger: {
+          trigger: '.terminal-box',
+          start: 'top 80%'
+        },
+        y: 40,
+        opacity: 0,
+        duration: 0.9,
+        ease: 'power3.out'
+      });
+
+      gsap.from('.terminal-line', {
+        scrollTrigger: {
+          trigger: '.terminal-box',
+          start: 'top 75%'
+        },
+        x: -20,
+        opacity: 0,
+        stagger: 0.25,
+        duration: 0.6,
+        ease: 'power2.out'
+      });
+
+      // MCP Pillar Cards & Tech Stack Staggers
+      gsap.from('.pillar-card', {
+        scrollTrigger: {
+          trigger: '.pillar-card',
+          start: 'top 85%'
+        },
+        y: 30,
+        opacity: 0,
+        stagger: 0.15,
+        duration: 0.7,
+        ease: 'power3.out'
+      });
+
+      gsap.from('.stack-card', {
+        scrollTrigger: {
+          trigger: '.stack-card',
+          start: 'top 85%'
+        },
+        y: 30,
+        opacity: 0,
+        stagger: 0.12,
+        duration: 0.7,
+        ease: 'power3.out'
+      });
+
+      // Engineering Standards Items
+      gsap.from('.standard-item', {
+        scrollTrigger: {
+          trigger: '.standards-list',
+          start: 'top 85%'
+        },
+        x: -30,
+        opacity: 0,
+        stagger: 0.15,
+        duration: 0.6,
+        ease: 'power3.out'
+      });
+
+      gsap.from('.checklist-row', {
+        scrollTrigger: {
+          trigger: '.checklist-box',
+          start: 'top 85%'
+        },
+        scale: 0.95,
+        opacity: 0,
+        stagger: 0.1,
+        duration: 0.5,
+        ease: 'back.out(1.5)'
+      });
+
+      // Magnetic Buttons Effect
+      document.querySelectorAll('.magnetic-btn').forEach(btn => {
+        const xTo = gsap.quickTo(btn, 'x', { duration: 0.3, ease: 'power2.out' });
+        const yTo = gsap.quickTo(btn, 'y', { duration: 0.3, ease: 'power2.out' });
+
+        btn.addEventListener('mousemove', e => {
+          const rect = btn.getBoundingClientRect();
+          const x = e.clientX - rect.left - rect.width / 2;
+          const y = e.clientY - rect.top - rect.height / 2;
+          xTo(x * 0.25);
+          yTo(y * 0.25);
+        });
+
+        btn.addEventListener('mouseleave', () => {
+          xTo(0);
+          yTo(0);
+        });
+      });
+
+      /* ==========================================================================
+         3. VIDEO HOVER CONTROLS & CATEGORY FILTERING
+         ========================================================================== */
       const videos = document.querySelectorAll('.hover-video');
       videos.forEach(video => {
         const container = video.closest('.video-container');
         if (!container) return;
 
-        // On desktop: hover to play
         container.addEventListener('mouseenter', () => {
           video.play().catch(() => {});
         });
@@ -1085,7 +1470,6 @@
           video.pause();
         });
 
-        // Click to toggle play/pause
         container.addEventListener('click', () => {
           if (video.paused) {
             video.play().catch(() => {});
@@ -1095,7 +1479,7 @@
         });
       });
 
-      // 2. Project Category Filtering
+      // Project Category Filtering
       const filterBtns = document.querySelectorAll('.filter-btn');
       const projectCards = document.querySelectorAll('#projects-grid > div');
 
@@ -1103,7 +1487,6 @@
         btn.addEventListener('click', () => {
           const filter = btn.getAttribute('data-filter');
 
-          // Update active button state
           filterBtns.forEach(b => {
             b.classList.remove('active', 'bg-brand-500', 'text-dark-950', 'font-semibold');
             b.classList.add('text-slate-400');
@@ -1111,25 +1494,29 @@
           btn.classList.add('active', 'bg-brand-500', 'text-dark-950', 'font-semibold');
           btn.classList.remove('text-slate-400');
 
-          // Filter cards with smooth animation
           projectCards.forEach(card => {
             const cat = card.getAttribute('data-category');
             if (filter === 'all' || cat === filter) {
-              card.style.display = 'flex';
-              setTimeout(() => {
-                card.style.opacity = '1';
-                card.style.transform = 'scale(1)';
-              }, 10);
+              gsap.to(card, {
+                scale: 1,
+                opacity: 1,
+                duration: 0.4,
+                display: 'flex',
+                ease: 'power2.out'
+              });
             } else {
-              card.style.opacity = '0';
-              card.style.transform = 'scale(0.98)';
-              setTimeout(() => {
-                card.style.display = 'none';
-              }, 200);
+              gsap.to(card, {
+                scale: 0.95,
+                opacity: 0,
+                duration: 0.3,
+                display: 'none',
+                ease: 'power2.in'
+              });
             }
           });
         });
       });
+
     });
   </script>
 
